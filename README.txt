@@ -10,4 +10,3 @@ For every class, keep a record of:
 - bugs
 - any notes (important things to note when using the class)
 --------------------------------------------------------------------------------
-
