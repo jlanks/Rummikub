@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class TestTable extends TestCase{
+public class TableTest extends TestCase{
 
 	public void testAddMeld() {	//Also tests numMelds()
 		Table table = new Table();
