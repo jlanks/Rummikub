@@ -9,9 +9,8 @@ public class TileTest extends TestCase{
 	* This tests: the tile constructor 
 	*/
 	public void testTile(){
-
 		//this confirms the tile was made
-		Card tester = new Card(Color.values()[1], 8);
+		Tile tester = new Tile(Color.values()[1], 8);
 		assertNotNull(tester); //should be a success
 	}
 	
