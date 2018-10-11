@@ -14,15 +14,15 @@ public class DeckTest extends TestCase{
 		assertNotNull(tester); //should be a success
 
 		//test to confirm it has 106 tiles
-		assertEquals(106,tester.numTiles());
+		assertEquals(104,tester.numTiles());
 
 
 		//tests twice, to confirm it has 1 less tile after removal
-		tester.remove(0); //removes a tile
-		assertEquals(105,tester.numTiles());
+		tester.remove(0); //removes a tile by index
+		assertEquals(103,tester.numTiles());
 
-		tester.remove(0); //removes another tile
-		assertEquals(104,tester.numTiles());
+		tester.remove("O5"); //removes another tile by reference
+		assertEquals(102,tester.numTiles());
 	}
 	
 	/**
