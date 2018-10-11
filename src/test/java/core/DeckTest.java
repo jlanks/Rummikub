@@ -21,7 +21,7 @@ public class DeckTest extends TestCase{
 		tester.remove(0); //removes a tile by index
 		assertEquals(103,tester.numTiles());
 
-		tester.remove("O5"); //removes another tile by reference
+		tester.remove(new Tile(O,5)); //removes another tile by reference
 		assertEquals(102,tester.numTiles());
 	}
 	
