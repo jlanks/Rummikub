@@ -1,0 +1,49 @@
+package core;
+
+import junit.framework.TestCase;
+import static org.junit.Assert.*;
+import org.junit.Test;
+
+public class DeckTest extends TestCase{
+	/**
+	* This tests: the deck constructor, removing a tile, and numTiles
+	*/
+	public void testDeck(){
+		//Make a deck of tiles
+		Deck tester = new Deck();
+		assertNotNull(tester); //should be a success
+
+		//test to confirm it has 106 tiles
+		assertEquals(104,tester.numTiles());
+
+
+		//tests twice, to confirm it has 1 less tile after removal
+		tester.remove(0); //removes a tile by index
+		assertEquals(103,tester.numTiles());
+
+		tester.remove(new Tile(O,5)); //removes another tile by reference
+		assertEquals(102,tester.numTiles());
+	}
+	
+	/**
+	* This tests: the deck's shuffler AND next card dealer methods
+	*/
+	public void testShuffleTiles() {
+		//Make 4 decks of tiles, then shuffle 2 of them
+		Deck normalDeckOne = new Deck();
+		Deck normalDeckTwo = new Deck();
+		Deck shuffledOne = new Deck();
+		Deck shuffledTwo = new Deck();
+		shuffledOne.shuffle();
+		shuffledTwo.shuffle();
+		
+		//Each line pulls the top card from two different un-shuffleded decks, and checks if they are equal
+		assertEquals(true, normalDeckOne.nextTile().rank() == normalDeckTwo.nextTile().rank());
+		assertEquals(true, normalDeckOne.nextTile().rank() == normalDeckTwo.nextTile().rank());
+		
+		//Each line pulls the top card from two different shuffleded decks, and checks if they are equal
+		assertEquals(false, shuffledOne.nextTile().rank() == shuffledTwo.nextTile().rank());
+		assertEquals(false, shuffledOne.nextTile().rank() == shuffledTwo.nextTile().rank());
+	}
+
+}
