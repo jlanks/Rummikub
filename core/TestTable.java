@@ -65,5 +65,11 @@ public class TestTable extends TestCase{
 		
 		table.drawTile(table.player2());
 		assertEquals(15, table.player2().getNumTiles());
+		
+		table.drawTile(table.player3());
+		assertEquals(15, table.player3().getNumTiles());
+		
+		table.drawTile(table.player4());
+		assertEquals(15, table.player4().getNumTiles());
 	}
 }
