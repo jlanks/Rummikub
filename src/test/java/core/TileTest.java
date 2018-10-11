@@ -21,7 +21,7 @@ public class TileTest extends TestCase{
 	*/
 	public void testCheckColorAndValue(){
 		Color compare = Color.values()[1];
-		Card tester = new Card(Color.values()[1], 6);
+		Tile tester = new Tile(Color.values()[1], 6);
 		assertNotNull(tester); //should be a success
 		
 		//this confirms the tile's color
