@@ -10,7 +10,6 @@ public class DeckTest extends TestCase{
 	*/
 	public void testDeck(){
 		//Make a deck of tiles
-		assertNotNull(tester); //should be a fail
 		Deck tester = new Deck();
 		assertNotNull(tester); //should be a success
 
