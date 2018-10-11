@@ -11,7 +11,6 @@ public class TileTest extends TestCase{
 	public void testTile(){
 
 		//this confirms the tile was made
-		assertNotNull(tester); //should be a fail
 		Card tester = new Card(Color.values()[1], 8);
 		assertNotNull(tester); //should be a success
 	}
