@@ -54,7 +54,7 @@ public class Deck {
 		}
 	
 	//gets and removes the top card from deck 
-	public Tile getTopCard() {
+	public Tile getTopTile() {
 		return Tiles.pop(); 
 		
 		}

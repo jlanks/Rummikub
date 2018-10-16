@@ -18,10 +18,10 @@ public class DeckTest extends TestCase{
 
 
 		//tests twice, to confirm it has 1 less tile after removal
-		tester.getTopCard(); //removes a top tile
+		tester.getTopTile(); //removes a top tile
 		assertEquals(103,tester.getDeckSize());
 
-		tester.getTopCard(); //removes the next top tile
+		tester.getTopTile(); //removes the next top tile
 		assertEquals(102,tester.getDeckSize());
 		/**/
 	}
@@ -41,15 +41,15 @@ public class DeckTest extends TestCase{
 		
 		
 		// making sure the top card is red, 1
-		assertEquals(1,Deck.getTopCard().getValue());
-		assertEquals(Colour.Red,Deck.getTopCard().getColour());
+		assertEquals(1,Deck.getTopTile().getValue());
+		assertEquals(Colour.Red,Deck.getTopTile().getColour());
 		
 		// shuffling deck 
 		 Deck.Shuffle(); 
 		
 		 //makes sure the top card is not (red,1). This means cards have been shuffled.
-		 assertNotEquals(1,Deck.getTopCard().getValue());
-		 assertNotEquals(Colour.Red,Deck.getTopCard().getColour());
+		 assertNotEquals(1,Deck.getTopTile().getValue());
+		 assertNotEquals(Colour.Red,Deck.getTopTile().getColour());
 		
 	}
 

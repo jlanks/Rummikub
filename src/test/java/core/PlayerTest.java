@@ -8,41 +8,38 @@ import junit.framework.TestCase;
 
 public class PlayerTest extends TestCase {
 
-	//making a player
-	
-	
-	
+	// making a player and adding to players hand from the game deck
 	
 	public void testAdd() {
 		
 		// initializing 
 		Deck MainDeck = new Deck(); 
-		Player Julian = new Player(); 
+		Player Julian = new Player("Julian"); 
 		
 		
 		// adding tile from deck
-		Julian.addTile(MainDeck.nextTile()); 
+		Julian.addTile(MainDeck.getTopTile()); 
 		
 		// testing
-		assertEquals(1,Julian.HandSize());
+		assertEquals(1,Julian.getHandSize());
 		}
 	
 	public void testRemove() {
 		// initializing 
 		Deck MainDeck = new Deck(); 
-		Player Julian = new Player(); 
-		Tile testtile = new Tile(R,10)
+		Player Julian = new Player("JUlian"); 
+		Tile testtile = new Tile(Colour.Red,10); 
 		
 		// calling add function
 		Julian.addTile(testtile); 
 		// testing add was successful
-		assertEquals(1,Julian.HandSize());
+		assertEquals(1,Julian.getHandSize());
 		//  removing tile
-		Julian.removeTile(R,10); 
+		Julian.RemoveTile(0); 
 		// testing remove was successful
-		assertEquals(0,Julian.HandSize());
+		assertEquals(0,Julian.getHandSize());
 		}
-	
+	/*
 	public void testCreateMeld() {
 		// initializing 
 		Deck MainDeck = new Deck(); 
@@ -80,7 +77,7 @@ public class PlayerTest extends TestCase {
 		assertEquals();
 		
 		}
-	*/
+	
 	public void test_toSting() {
 		// initializing 
 		Deck MainDeck = new Deck(); 
@@ -97,5 +94,5 @@ public class PlayerTest extends TestCase {
 		assertEquals("Player:/nJulian/nCards:/n10 Red/10 Blue",Julian.toString());
 		
 		}
-
+*/
 }
