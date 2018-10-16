@@ -14,36 +14,43 @@ public class DeckTest extends TestCase{
 		assertNotNull(tester); //should be a success
 
 		//test to confirm it has 106 tiles
-		assertEquals(104,tester.numTiles());
+		assertEquals(104,tester.getDeckSize());
 
 
 		//tests twice, to confirm it has 1 less tile after removal
-		tester.remove(0); //removes a tile by index
-		assertEquals(103,tester.numTiles());
+		tester.getTopCard(); //removes a top tile
+		assertEquals(103,tester.getDeckSize());
 
-		tester.remove(new Tile(O,5)); //removes another tile by reference
-		assertEquals(102,tester.numTiles());
+		tester.getTopCard(); //removes the next top tile
+		assertEquals(102,tester.getDeckSize());
+		/**/
 	}
 	
-	/**
-	* This tests: the deck's shuffler AND next card dealer methods
-	*/
+	
+	// This tests: the deck's shuffler AND next card dealer methods
+	
 	public void testShuffleTiles() {
-		//Make 4 decks of tiles, then shuffle 2 of them
-		Deck normalDeckOne = new Deck();
-		Deck normalDeckTwo = new Deck();
-		Deck shuffledOne = new Deck();
-		Deck shuffledTwo = new Deck();
-		shuffledOne.shuffle();
-		shuffledTwo.shuffle();
 		
-		//Each line pulls the top card from two different un-shuffleded decks, and checks if they are equal
-		assertEquals(true, normalDeckOne.nextTile().rank() == normalDeckTwo.nextTile().rank());
-		assertEquals(true, normalDeckOne.nextTile().rank() == normalDeckTwo.nextTile().rank());
+		// Deck creation
+		Deck Deck = new Deck(false);
 		
-		//Each line pulls the top card from two different shuffleded decks, and checks if they are equal
-		assertEquals(false, shuffledOne.nextTile().rank() == shuffledTwo.nextTile().rank());
-		assertEquals(false, shuffledOne.nextTile().rank() == shuffledTwo.nextTile().rank());
+		// Tile creation (to compare the top card).
+		// Red 1 should be the top card of an unshuffled deck
+		Tile test = new Tile(Colour.Red,1);
+		
+		
+		
+		// making sure the top card is red, 1
+		assertEquals(1,Deck.getTopCard().getValue());
+		assertEquals(Colour.Red,Deck.getTopCard().getColour());
+		
+		// shuffling deck 
+		 Deck.Shuffle(); 
+		
+		 //makes sure the top card is not (red,1). This means cards have been shuffled.
+		 assertNotEquals(1,Deck.getTopCard().getValue());
+		 assertNotEquals(Colour.Red,Deck.getTopCard().getColour());
+		
 	}
 
 }
