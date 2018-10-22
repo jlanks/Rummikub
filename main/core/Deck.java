@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 public class Deck {
 
-	private LinkedList<Tile> Tiles = new LinkedList<Tile>() ; 
+	public LinkedList<Tile> Tiles = new LinkedList<Tile>() ; 
 	
 	// constructors
 	
