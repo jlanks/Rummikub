@@ -1,5 +1,5 @@
 package core;
 
-public enum Colour {Red,Green,Blue,Orange}
-
-
+public enum Colour {
+	Red, Green, Blue, Orange
+}

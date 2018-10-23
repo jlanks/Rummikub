@@ -3,6 +3,8 @@
 	<name>COMP3004_Iteration1</name>
 	<comment></comment>
 	<projects>
+		<project>COMP3004_A1</project>
+		<project>junit-demo</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
