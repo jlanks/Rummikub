@@ -22,6 +22,25 @@ public class Tile {
 	}
 
 
+	// Tile constructor
+	public Tile(String input) {
+
+
+		// bounds checking
+		if (input.charAt(1) > 13 || input.charAt(1) < 1) {
+
+			System.err.println("Enter a valid card number");
+			System.exit(1);
+
+		}
+
+		// number assignment
+		number = input.charAt(1);
+		// Suit assignment
+		TColour = input.charAt(0);
+	}
+
+
 	// basic getters
 	public Colour getColour() {
 
