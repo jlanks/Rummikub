@@ -1,10 +1,63 @@
 package core;
 
+import java.util.ArrayList;
+
 import junit.framework.TestCase;
 
 public class MeldTest extends TestCase {
 
-	public void testAddingToMeld() {
+	
+	
+	public void testAddToMeld() {
+		// making tiles
+		Tile t1, t2,t3,t4,t5,t6,t7,t8,t9; 
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		
+		t1 = (new Tile(Colour.Red, 10));
+		t2 = (new Tile(Colour.Blue, 10));
+		t3 = (new Tile(Colour.Green, 10));
+		t4 = (new Tile(Colour.Orange, 10));
+		
+		Meld tiles = new Meld(t5,t6,t7,false);
+		
+		//making sure meld has correct sum (means all tiles are added)
+		assertEquals(24,tiles.getSum()); 
+		
+		// adding a valid tile with value 10 
+		// testing adding a tile to a meld: run of size 3 going to size 5
+		tiles.add(t8);
+		
+		// ensuring tile was added properly
+		assertEquals(34,tiles.getSum()); 
+		// t8 should be in index 3 for a valid tile->meld addition 
+		assertEquals(10,tiles.getTile(3).getValue()); 
+		
+		// creating meld for adding a valid tile to a set
+		Meld meld = new Meld(t1,t2,t3,false);
+		
+		//making sure meld has correct sum (means all tiles are added)
+		assertEquals(30,tiles.getSum()); 
+		
+		// adding
+		meld.add(t4); 
+		
+		// ensuring tile was added properly
+		// t4 should be in any index  for a valid tile->meld addition 
+		// since we are dealing with a set
+		assertEquals(40,tiles.getSum()); 
+		
+		
+		
+		
+		
+		
+		
+	}
+	public void testMeldConstructor() {
 
 		// initializing
 		Deck MainDeck = new Deck();

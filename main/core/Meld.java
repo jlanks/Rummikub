@@ -149,6 +149,18 @@ public class Meld {
 		}
 		return sum;
 	}
+	public Tile getTile(int i) {
+		
+		return meld.get(i);  
+	}
+	/*
+	public ArrayList<Tile> SortTiles(ArrayList<Tile> meld) {
+		
+		
+		
+		return meld; 
+		
+	}
 	
-	  
+	  */
 }
