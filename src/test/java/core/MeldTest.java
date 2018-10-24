@@ -9,8 +9,8 @@ public class MeldTest extends TestCase {
 		// initializing
 		Deck MainDeck = new Deck();
 		Player Julian = new Player("Julian");
-		Meld NewMeld, NewMeld2, NewMeld3, NewMeld4, NewMeld5, NewMeld6, NewMeld7, NewMeld8;
-		Tile t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15;
+		Meld NewMeld, NewMeld2, NewMeld3, NewMeld4, NewMeld5, NewMeld6, NewMeld7, NewMeld8, NewMeld9, NewMeld10;
+		Tile t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16;
 
 		// creating tiles to be used in melds
 		t1 = (new Tile(Colour.Red, 10));
@@ -33,6 +33,7 @@ public class MeldTest extends TestCase {
 		t13 = (new Tile(Colour.Orange, 3));
 		t14 = (new Tile(Colour.Orange, 4));
 		t15 = (new Tile(Colour.Orange, 5));
+		t16 = (new Tile(Colour.Orange, 6));
 		
 		// Making meld with only three tiles as first play: set
 		NewMeld = new Meld(t1, t2, t3, true);
@@ -58,6 +59,12 @@ public class MeldTest extends TestCase {
 		// Making meld with four tiles as normal play: run
 		NewMeld8 = new Meld(t12, t13, t14, t15, false);
 		
+		// Making meld with four tiles as first play: run 
+		NewMeld9 = new Meld(t5, t6, t7, t4, t8, true);
+				
+		// Making meld with four tiles as normal play: run
+		NewMeld10 = new Meld(t12, t13, t14, t15, t16, false);
+		
 		
 
 		// checking set melds of 3 tiles 
@@ -79,6 +86,11 @@ public class MeldTest extends TestCase {
 		
 		assertEquals(38, NewMeld7.getSum());
 		assertEquals(14, NewMeld8.getSum());
+		
+		// checking run melds of 5 tiles
+		
+		assertEquals(45, NewMeld9.getSum());
+		assertEquals(20, NewMeld10.getSum());
 		
 	}
 	/*
