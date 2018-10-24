@@ -103,6 +103,45 @@ public class Meld {
 			} 
 		}
 
+		// *********** TILES NEED TO BE ADDED IN ORDER ************ 
+		  // meld constructor for 4 tiles 
+		  // player can only make a run here
+		Meld(Tile a, Tile b, Tile c, Tile d, Tile e, boolean first) {
+			
+			// checking to see if the total for the first meld is 30 or higher
+			if( first && a.getValue() + b.getValue() 
+				+ c.getValue() + d.getValue() + e.getValue() < 30) {
+		  
+				// printing error to console
+				System.out.println("FAILED: TRYING TO MAKE MELD TOTALED LESS THAN 30");
+		  
+				return;
+		   
+			
+			}else {
+		  
+				// checking to see if the colours are the same and numbers are valid 
+				// checking if player is trying to make a run 
+				if( 	a.getColour() == b.getColour() && a.getColour() == c.getColour() &&
+						b.getColour() == c.getColour() && d.getColour() == a.getColour() &&
+						d.getColour() == b.getColour() && d.getColour() == c.getColour() &&
+						e.getColour() == a.getColour() && e.getColour() == b.getColour() &&
+						e.getColour() == c.getColour() && e.getColour() == d.getColour() &&
+						a.getValue() == b.getValue() - 1 && b.getValue() == c.getValue() - 1 &&
+						c.getValue() == d.getValue() -1 && d.getValue() == e.getValue() - 1) { 
+					
+					// adding tiles to meld. meld should be a run
+					
+					meld.add(a);
+					meld.add(b);
+					meld.add(c);
+					meld.add(d);
+					meld.add(e);
+		  
+				}
+		  
+			} 
+		}
 	public int getSum() {
 		int sum = 0;
 		for (int i = 0; i < meld.size(); i++) {
