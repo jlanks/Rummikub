@@ -11,10 +11,8 @@ public class Tile {
 
 		// bounds checking
 		if (TNumb > 13 || TNumb < 1) {
-
 			System.err.println("Enter a valid card number");
 			System.exit(1);
-
 		}
 
 		// number assignment
@@ -22,6 +20,7 @@ public class Tile {
 		// Suit assignment
 		TColour = colour;
 	}
+
 
 	// basic getters
 	public Colour getColour() {
