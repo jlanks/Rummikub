@@ -13,6 +13,16 @@ public class TileTest extends TestCase {
 	}
 
 	/**
+	 * This tests: the tile constructor for string
+	 */
+	public void testTileString() {
+		// this confirms the tile was made
+		Tile tester = new Tile("r5");
+		assertNotNull(tester); // should be a success
+	}
+
+
+	/**
 	 * This tests/confirms: that the tile's color and value are set
 	 */
 	public void testCheckColorAndValue() {
