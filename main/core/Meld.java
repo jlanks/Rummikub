@@ -195,6 +195,66 @@ public class Meld {
 			meld.remove(index); 
 		
 	}
+	public int getSize() {
+		
+		return meld.size(); 
+	}
+	
+	public boolean validMeld() {
+		
+		// melds need to be 3 or more tiles
+		if(this.getSize() < 3) {
+			return false;
+		}
+		
+		int total = 0; 
+		
+		// testing runs
+		for(int i=0;i<this.getSize()-1;i++) {
+			
+			if(meld.get(i).getColour() == meld.get(i+1).getColour()
+				&&
+			   meld.get(i).getValue() == meld.get(i+1).getValue()-1
+				) 
+			{
+				total++; 
+			}
+		}
+		if(total == meld.size()-1) {
+			return true; 
+		}
+		
+		// colour tallys 
+		int Red = 0;
+		int Green = 0;
+		int Blue = 0;
+		int Orange =0; 
+		
+		
+		
+		for(int i=0;i<this.getSize();i++) {
+			
+			if(this.getTile(i).getColour() == Colour.Red)
+				Red ++;
+			if(this.getTile(i).getColour()== Colour.Green)
+				Green ++;
+			if(this.getTile(i).getColour() == Colour.Blue)
+				Blue ++;
+			if(this.getTile(i).getColour() == Colour.Orange)
+				Orange ++;
+		}
+		if(this.getSum()/this.getSize() == this.getTile(0).getValue()
+		   &&
+		   Red < 2 && Green <2 && Blue <2 && Orange < 2) 
+		{
+			return true;
+			
+		}
+		
+		
+		return false; 
+		
+	}
 	/*
 	public ArrayList<Tile> SortTiles(ArrayList<Tile> meld) {
 		

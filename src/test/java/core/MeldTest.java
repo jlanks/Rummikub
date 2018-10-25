@@ -9,6 +9,7 @@ public class MeldTest extends TestCase {
 	public void testValidMeld() {
 		
 		//init
+		
 		Tile t1, t2,t3,t4,t5,t6,t7,t8,t9, t10, t11; 
 		t10 = (new Tile(Colour.Orange, 5));
 		t11 = (new Tile(Colour.Orange, 6));
@@ -24,17 +25,17 @@ public class MeldTest extends TestCase {
 		t4 = (new Tile(Colour.Orange, 10));
 		
 		Meld tiles = new Meld(t5,t6,t7,false);
-		
+		assertEquals(3,tiles.getSize()); 
 		// melds need to be of size 3 or more.
 		// first test is to make sure validMeld() 
 		// returns false on a meld of size 2 or less
 		
 		// removing a tile
 		// tiles now has 2 tiles
-		tiles.removeIndex(0);
-		
+		tiles.removeTile(t5);
+		assertEquals(2,tiles.getSize()); 
 		// making sure the function identifies the invalid meld
-		assertEquals(false,tiles.validMeld()); 
+		assertFalse(tiles.validMeld()); 
 		
 		// removing tile, new length is 1
 		tiles.removeIndex(0);
@@ -52,7 +53,7 @@ public class MeldTest extends TestCase {
 		
 		// testing correct identification of a valid meld
 		// set of size 4
-		assertEquals(true,set1.validMeld()); 
+		assertTrue(set1.validMeld()); 
 		
 		// removing tile 
 		set1.removeTile(t1);
@@ -67,7 +68,7 @@ public class MeldTest extends TestCase {
 		Meld run1 = new Meld(t5,t6,t7,t8,t9,false);
 		
 		// testing that the valid meld returns true
-		assertEquals(true,run1.validMeld()); 
+	assertTrue(run1.validMeld()); 
 		
 		
 		// removing tile 
