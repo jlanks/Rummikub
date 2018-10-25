@@ -6,7 +6,80 @@ import junit.framework.TestCase;
 
 public class MeldTest extends TestCase {
 
-	
+	public void testValidMeld() {
+		
+		//init
+		Tile t1, t2,t3,t4,t5,t6,t7,t8,t9, t10, t11; 
+		t10 = (new Tile(Colour.Orange, 5));
+		t11 = (new Tile(Colour.Orange, 6));
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		
+		t1 = (new Tile(Colour.Red, 10));
+		t2 = (new Tile(Colour.Blue, 10));
+		t3 = (new Tile(Colour.Green, 10));
+		t4 = (new Tile(Colour.Orange, 10));
+		
+		Meld tiles = new Meld(t5,t6,t7,false);
+		
+		// melds need to be of size 3 or more.
+		// first test is to make sure validMeld() 
+		// returns false on a meld of size 2 or less
+		
+		// removing a tile
+		// tiles now has 2 tiles
+		tiles.removeIndex(0);
+		
+		// making sure the function identifies the invalid meld
+		assertEquals(false,tiles.validMeld()); 
+		
+		// removing tile, new length is 1
+		tiles.removeIndex(0);
+		
+		// testing one tile melds are reported invalid
+		assertEquals(false,tiles.validMeld()); 
+		
+		// testing a valid meld gets the valid status
+		// we need to test for runs and sets of different sizes. 
+		
+		// SETS
+		
+		// set of 4
+		Meld set1 = new Meld(t1,t2,t3,t4,false);
+		
+		// testing correct identification of a valid meld
+		// set of size 4
+		assertEquals(true,set1.validMeld()); 
+		
+		// removing tile 
+		set1.removeTile(t1);
+		
+		// testing correct identification of a valid meld
+		// set of size 3
+		assertEquals(true,set1.validMeld()); 
+		
+		// RUNS
+		
+		//run of size 5
+		Meld run1 = new Meld(t5,t6,t7,t8,t9,false);
+		
+		// testing that the valid meld returns true
+		assertEquals(true,run1.validMeld()); 
+		
+		
+		// removing tile 
+		run1.removeTile(t7);
+		
+		// testing that the meld is now invalid
+		// there's a gap in the tiles now
+		assertEquals(false,run1.validMeld()); 
+		
+		
+		
+	}
 	
 	public void testAddToMeld() {
 		// making tiles
