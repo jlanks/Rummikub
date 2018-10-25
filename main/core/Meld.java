@@ -153,6 +153,29 @@ public class Meld {
 		
 		return meld.get(i);  
 	}
+	public void addTile(Tile tile) {
+		
+		// checking to see if the add will be valid: checking for a run 
+		if(tile.getValue()-1 == this.getTile(meld.size()-1).getValue() &&
+		   tile.getColour() == this.getTile(0).getColour()) 
+			{
+				meld.add(tile);
+			}
+		// checking to see if the add will be valid: checking for a set
+		if(meld.size() == 3) {
+			if(tile.getValue() == this.getTile(0).getValue() 
+			   &&
+			   tile.getColour() != this.getTile(0).getColour()
+			   &&
+			   tile.getColour() != this.getTile(1).getColour()
+			   &&
+			   tile.getColour() != this.getTile(2).getColour()) 
+					
+				{
+					meld.add(tile);
+				}
+		}
+	}
 	/*
 	public ArrayList<Tile> SortTiles(ArrayList<Tile> meld) {
 		

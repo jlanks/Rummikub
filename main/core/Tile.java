@@ -21,7 +21,7 @@ public class Tile {
 		TColour = colour;
 	}
 
-
+/*
 	// Tile constructor
 	public Tile(String input) {
 
@@ -40,7 +40,7 @@ public class Tile {
 		TColour = input.charAt(0);
 	}
 
-
+*/
 	// basic getters
 	public Colour getColour() {
 

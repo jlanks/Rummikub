@@ -28,8 +28,8 @@ public class MeldTest extends TestCase {
 		assertEquals(24,tiles.getSum()); 
 		
 		// adding a valid tile with value 10 
-		// testing adding a tile to a meld: run of size 3 going to size 5
-		tiles.add(t8);
+		// testing adding a tile to a meld: run of size 3 going to size 4
+		tiles.addTile(t8);
 		
 		// ensuring tile was added properly
 		assertEquals(34,tiles.getSum()); 
@@ -40,15 +40,15 @@ public class MeldTest extends TestCase {
 		Meld meld = new Meld(t1,t2,t3,false);
 		
 		//making sure meld has correct sum (means all tiles are added)
-		assertEquals(30,tiles.getSum()); 
+		assertEquals(30,meld.getSum()); 
 		
 		// adding
-		meld.add(t4); 
+		meld.addTile(t4); 
 		
 		// ensuring tile was added properly
 		// t4 should be in any index  for a valid tile->meld addition 
 		// since we are dealing with a set
-		assertEquals(40,tiles.getSum()); 
+		assertEquals(40,meld.getSum()); 
 		
 		
 		
