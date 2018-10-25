@@ -177,6 +177,24 @@ public class Meld {
 				}
 		}
 	}
+	public boolean removeTile(Tile tile) {
+		
+		for(int i = 0;i<meld.size();i++) {
+			if(tile.getColour() == meld.get(i).getColour() 
+			   &&
+			   tile.getValue() == meld.get(i).getValue()) 
+			{
+			meld.remove(i); 
+			return true; 
+			}
+		}
+		return false; 
+	}
+	public void removeIndex(int index) {
+			
+			meld.remove(index); 
+		
+	}
 	/*
 	public ArrayList<Tile> SortTiles(ArrayList<Tile> meld) {
 		
