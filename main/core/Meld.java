@@ -156,7 +156,8 @@ public class Meld {
 	public void addTile(Tile tile) {
 		
 		// checking to see if the add will be valid: checking for a run 
-		if(tile.getValue()-1 == this.getTile(meld.size()-1).getValue() &&
+		if(tile.getValue()-1 == this.getTile(meld.size()-1).getValue() 
+		   &&
 		   tile.getColour() == this.getTile(0).getColour()) 
 			{
 				meld.add(tile);

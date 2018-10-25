@@ -57,6 +57,57 @@ public class MeldTest extends TestCase {
 		
 		
 	}
+	
+	public void testRemoveTile() {
+		
+		// initializing
+		Deck MainDeck = new Deck();
+		Player Julian = new Player("Julian");
+		Meld NewMeld, NewMeld2, NewMeld3, NewMeld4, NewMeld5, NewMeld6, NewMeld7, NewMeld8, NewMeld9, NewMeld10;
+		Tile t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16;
+
+		// creating tiles to be used in melds
+		t1 = (new Tile(Colour.Red, 10));
+		t2 = (new Tile(Colour.Blue, 10));
+		t3 = (new Tile(Colour.Green, 10));
+		t4 = (new Tile(Colour.Orange, 10));
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 11));
+		
+		// creating a meld to remove from 
+		NewMeld = new Meld(t1,t2,t3,t4,false); 
+		
+		// making sure meld is made correctly
+		// should have a value of 40 -- 
+		
+		assertEquals(40, NewMeld.getSum());
+		
+		// removing from meld by tile argument 
+		
+		NewMeld.removeTile(t1); 
+		
+		// testing to see if the first tile is not the same
+		// (since it is removed)
+		
+		assertNotSame(Colour.Red,NewMeld.getTile(0)); 
+		
+		// testing melds value is reduced by 10
+		// (tiles value which was removed)
+		
+		assertEquals(30,NewMeld.getSum());
+		
+		// removing from meld by index
+		
+		NewMeld.removeIndex(0); 
+		
+		// testing that the tile at index 0 was removed
+		
+		assertEquals(20,NewMeld.getSum());
+		assertEquals(Colour.Green,NewMeld.getTile(0).getColour());
+		
+	}
 	public void testMeldConstructor() {
 
 		// initializing
