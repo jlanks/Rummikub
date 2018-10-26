@@ -81,6 +81,67 @@ public class MeldTest extends TestCase {
 		
 		
 	}
+	public void testSplitMeld() {
+		
+		// we need can only split melds which are runs
+		// we can split the meld anywhere
+		// we can choose to split on index or by tile
+		
+		// init
+		
+		Tile t1, t2,t3,t4,t5,t6,t7,t8,t9, t10, t11; 
+		t10 = (new Tile(Colour.Orange, 5));
+		t11 = (new Tile(Colour.Orange, 6));
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		
+		t1 = (new Tile(Colour.Red, 10));
+		t2 = (new Tile(Colour.Blue, 10));
+		t3 = (new Tile(Colour.Green, 10));
+		t4 = (new Tile(Colour.Orange, 10));
+		
+		Meld result, result2, invalid, valid;
+		Meld tiles = new Meld(t5,t6,t7,t8,t9,false);
+		
+		assertEquals(5,tiles.getSize()); 
+		
+		// includes index value in original meld
+		// returns the back end of the split. 
+		// (everything after the index
+		
+		result = tiles.splitIndex(2); 
+		
+		assertEquals(3,tiles.getSize()); 
+		assertEquals(2,result.getSize()); 
+		
+		// includes tile argument in original meld
+		// returns the back end of the split. 
+		// (everything after the tile argument)
+		// you should not be able to split a meld of size 3, 
+		// just remove desired tile in this case
+		
+		result2 = tiles.splitMeld(t6); 
+		assertEquals(null,result2); 
+		
+		result2 = new Meld(t5,t6,t7,t8,t9,false);
+		
+		valid = result2.splitMeld(t6);
+		assertEquals(3,valid.getSize()); 
+		assertEquals(2,result2.getSize()); 
+		
+		// you should not be able to split a set
+		
+		invalid =  new Meld(t1,t2,t3,t4,false);
+		
+		// testing both spitMeld and splitIndex for sets
+		assertEquals(null,invalid.splitMeld(t2)); 
+		
+		assertEquals(null,invalid.splitMeld(1)); 
+		
+	}
 	
 	public void testAddToMeld() {
 		// making tiles
