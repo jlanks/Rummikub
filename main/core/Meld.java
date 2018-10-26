@@ -255,6 +255,23 @@ public class Meld {
 		return false; 
 		
 	}
+	
+	public Meld splitIndex(int i) {
+		
+		if(this.getSize() < 4 || this.getTile(0).getColour() == this.getTile(1).getColour()) {
+			return null;
+		}
+		ArrayList<Tile> newMeld = new ArrayList<Tile>();
+		int size = this.getSize()-1;
+		for(int x=size;x>i;x--) {
+			newMeld.add(this.getTile(x));
+			this.removeIndex(x);
+		}
+		
+		
+		
+		return Meld;
+		}
 	/*
 	public ArrayList<Tile> SortTiles(ArrayList<Tile> meld) {
 		
