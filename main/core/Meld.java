@@ -312,6 +312,14 @@ public class Meld {
 		return false; 
 		
 	}
+	public void combineMeld(Meld temp) {
+		
+		for(int i=0;i<temp.getSize();i++) 
+			this.addTile(temp.getTile(i));
+		
+		temp = null; 
+		
+	}
 	/*
 	public Meld splitIndex(int i) {
 		
