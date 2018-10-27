@@ -5,6 +5,38 @@ import java.util.ArrayList;
 import junit.framework.TestCase;
 
 public class MeldTest extends TestCase {
+	
+	public void testEquals() {
+		
+		Tile t1, t2,t3,t4,t5,t6,t7,t8,t9, t10, t11; 
+		
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		
+		
+		
+		
+		Meld tiles = new Meld(t5,t6,t7,false);
+		Meld tiles2 = new Meld(t8,t9,false);
+		
+		// testing melds which are not the same returns false
+		assertEquals(false,tiles.equals(tiles2)); 
+		
+		 
+		tiles2 = new Meld(t5,t6,t7,false);
+		
+		// testing melds which are the same returns true
+		assertEquals(true,tiles.equals(tiles2)); 
+	
+		
+		
+	}
+	
+	
+	
 	public void testCombineMeld() {
 		
 		//init
