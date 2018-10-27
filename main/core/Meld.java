@@ -323,6 +323,21 @@ public class Meld {
 		temp = null; 
 		
 	}
+	public boolean equals(Meld tile) {
+		 
+		if(this.getSize() != tile.getSize())
+			return false; 
+		for(int i = 0;i<tile.getSize();i++) {
+				if(this.getTile(i).getValue() != tile.getTile(i).getValue() &&
+						this.getTile(i).getColour() != tile.getTile(i).getColour()) {
+					return false; 
+				}
+						
+			
+			
+		}
+		return true; 
+	}
 	/*
 	public Meld splitIndex(int i) {
 		
