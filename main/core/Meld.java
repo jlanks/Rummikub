@@ -313,7 +313,10 @@ public class Meld {
 		
 	}
 	public void combineMeld(Meld temp) {
-		
+		if(temp.getTile(0).getValue() != this.getTile(this.getSize()-1).getValue()-1 &&
+			temp.getTile(temp.getSize()-1).getColour() != this.getTile(0).getColour()) {
+			return; 
+		}
 		for(int i=0;i<temp.getSize();i++) 
 			this.addTile(temp.getTile(i));
 		
