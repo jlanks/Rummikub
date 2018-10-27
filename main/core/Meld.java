@@ -4,7 +4,64 @@ import java.util.ArrayList;
 
 public class Meld {
 	ArrayList<Tile> meld = new ArrayList<Tile>();
+	
+	// Constructor for 1 tile
+			Meld(Tile a,  boolean first) {
 
+				// checking to see if the total for the first meld is 30 or higher
+				
+				if (first && a.getValue()   < 30) {
+
+					// printing error to console if error
+					System.out.println("TRING TO MAKE MELD TOTALED LESS THAN 30");
+					// returning due to invalid input
+					return;
+				}
+
+				meld.add(a); 
+			}
+	// Constructor for 2 tiles
+		Meld(Tile a, Tile b,  boolean first) {
+
+			// checking to see if the total for the first meld is 30 or higher
+			
+			if (first && a.getValue() + b.getValue()  < 30) {
+
+				// printing error to console if error
+				System.out.println("TRING TO MAKE MELD TOTALED LESS THAN 30");
+				// returning due to invalid input
+				return;
+			}
+
+			else {
+
+				// checking to see if the colours are the same and numbers are valid
+				// run identifier
+				if (	a.getColour() == b.getColour()  
+						
+						&& a.getValue() == b.getValue() - 1 
+						) {
+					
+					// adding tiles to meld
+					meld.add(a);
+					meld.add(b);
+					
+
+					}
+
+				// checking for a group of same number different colour
+				// set identifier
+				else if (a.getColour() != b.getColour()  
+						&& a.getValue() == b.getValue()  ) {
+					// adding tiles to meld
+					meld.add(a);
+					meld.add(b);
+					
+
+				}
+
+			}
+		}
 	// *********** TILES NEED TO BE ADDED IN ORDER ************
 	
 	// Constructor for 3 tiles
@@ -104,7 +161,7 @@ public class Meld {
 		}
 
 		// *********** TILES NEED TO BE ADDED IN ORDER ************ 
-		  // meld constructor for 4 tiles 
+		  // meld constructor for 5 tiles 
 		  // player can only make a run here
 		Meld(Tile a, Tile b, Tile c, Tile d, Tile e, boolean first) {
 			
@@ -255,7 +312,7 @@ public class Meld {
 		return false; 
 		
 	}
-	
+	/*
 	public Meld splitIndex(int i) {
 		
 		if(this.getSize() < 4 || this.getTile(0).getColour() == this.getTile(1).getColour()) {
@@ -272,6 +329,7 @@ public class Meld {
 		
 		return Meld;
 		}
+		*/
 	/*
 	public ArrayList<Tile> SortTiles(ArrayList<Tile> meld) {
 		

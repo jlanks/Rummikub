@@ -5,7 +5,36 @@ import java.util.ArrayList;
 import junit.framework.TestCase;
 
 public class MeldTest extends TestCase {
-
+	public void testCombineMeld() {
+		
+		//init
+		
+				Tile t1, t2,t3,t4,t5,t6,t7,t8,t9, t10, t11; 
+				t10 = (new Tile(Colour.Orange, 5));
+				t11 = (new Tile(Colour.Orange, 6));
+				t5 = (new Tile(Colour.Orange, 7));
+				t6 = (new Tile(Colour.Orange, 8));
+				t7 = (new Tile(Colour.Orange, 9));
+				t8 = (new Tile(Colour.Orange, 10));
+				t9 = (new Tile(Colour.Orange, 11));
+				
+				
+				
+				Meld tiles = new Meld(t5,t6,t7,false);
+				assertEquals(3,tiles.getSize()); 
+				
+				Meld tiles2 = new Meld(t8,t9,false); 
+				assertEquals(2,tiles.getSize()); 
+				
+				// combining melds
+				tiles.combineMeld(tiles2);
+				// testing meld was added
+				assertEquals(5,tiles.getSize()); 
+				// testing new meld is valid
+				assertEquals(true,tiles.validMeld());
+				// testing the old meld is in valid
+				assertEquals(false,tiles2.validMeld());
+	}
 	public void testValidMeld() {
 		
 		//init
