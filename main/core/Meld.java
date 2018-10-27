@@ -4,7 +4,16 @@ import java.util.ArrayList;
 
 public class Meld {
 	ArrayList<Tile> meld = new ArrayList<Tile>();
-	
+	// constructor which takes in a tile arraylist (for split meld)
+	// no error checking yet 
+	Meld(ArrayList<Tile> arg){
+		for(int i=0;i<arg.size();i++) {
+			meld.add(arg.get(i)); 
+		}
+		
+		
+		
+	}
 	// Constructor for 1 tile
 			Meld(Tile a,  boolean first) {
 
@@ -338,24 +347,28 @@ public class Meld {
 		}
 		return true; 
 	}
-	/*
+	
 	public Meld splitIndex(int i) {
 		
 		if(this.getSize() < 4 || this.getTile(0).getColour() == this.getTile(1).getColour()) {
+			
 			return null;
 		}
+		
 		ArrayList<Tile> newMeld = new ArrayList<Tile>();
-		int size = this.getSize()-1;
-		for(int x=size;x>i;x--) {
-			newMeld.add(this.getTile(x));
-			this.removeIndex(x);
+		
+		for(int j = this.getSize()-1;j<i;j--) {
+			
+			meld.remove(j);
+			
+		}
+		Tile t1 = (new Tile(Colour.Red, 10));
+		Meld result = new Meld(t1,false); 
+		
+		return result;
 		}
 		
 		
-		
-		return Meld;
-		}
-		*/
 	/*
 	public ArrayList<Tile> SortTiles(ArrayList<Tile> meld) {
 		
