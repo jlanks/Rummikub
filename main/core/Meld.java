@@ -341,9 +341,6 @@ public class Meld {
 						this.getTile(i).getColour() != tile.getTile(i).getColour()) {
 					return false; 
 				}
-						
-			
-			
 		}
 		return true; 
 	}
@@ -379,4 +376,13 @@ public class Meld {
 	}
 	
 	  */
+	public int contains(Tile t) {
+		for(int i = 0; i < this.getSize(); i++) {
+			if(meld.get(i).equals(t)) {
+				return i;
+			}
+		}
+		
+		return -1;
+	}
 }
