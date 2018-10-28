@@ -32,7 +32,6 @@ public class Player {
 
 	public boolean RemoveTile(int i) {
 		if (i > hand.size() - 1) {
-			//System.out.println("INDEX ERROR: PLAYER.JAVA: REMOVETILE: LINE 30");
 			return false;
 		}
 		hand.remove(i);
