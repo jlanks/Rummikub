@@ -259,13 +259,6 @@ public class MeldTest extends TestCase {
 		// t4 should be in any index  for a valid tile->meld addition 
 		// since we are dealing with a set
 		assertEquals(40,meld.getSum()); 
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	public void testRemoveTile() {
@@ -458,5 +451,13 @@ public class MeldTest extends TestCase {
 	 * 
 	 * }
 	 */
+	
+	public void testContains() {
+		Meld meld = new Meld(new Tile("R1"), new Tile("R2"), new Tile("R3"), false);
+		
+		assertEquals(-1, meld.contains(new Tile("O4")));
+		assertEquals(0, meld.contains(new Tile("R1")));
+		assertEquals(2, meld.contains(new Tile("R3")));
+	}
 
 }
