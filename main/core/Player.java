@@ -20,6 +20,9 @@ public class Player {
 		hand.add(tile);
 		return true;
 	}
+	public String getName() {
+		return pName; 
+	}
 
 	public Tile getTile(int i) {
 		return hand.get(i);
