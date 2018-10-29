@@ -13,5 +13,5 @@ public class Game {
 		
 		return table; 
 	}
-
+	
 }

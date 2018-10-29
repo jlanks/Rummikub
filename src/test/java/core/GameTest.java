@@ -27,7 +27,9 @@ public class GameTest {
 		// hand has not yet been delt. since the winning condition is 
 		// to have zero tiles checkwinner should return true
 		
-		assertEquals(true,gameone.getTable().player1().CheckWinner()); 		
+		assertEquals(true,gameone.getTable().player1().checkWinner());
+		gameone.getTable().init();
+		assertEquals(false,gameone.getTable().player1().checkWinner());
 	
 		
 		

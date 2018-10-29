@@ -28,6 +28,11 @@ public class Player {
 		return hand.get(i);
 
 	}
+	public boolean checkWinner() {
+		if(this.getHandSize() == 0)
+			return true;
+		return false; 
+	}
 
 	public int getHandSize() {
 		return hand.size();
