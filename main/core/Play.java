@@ -1,6 +1,7 @@
 package core;
 
 public interface Play {
-	void Play(Table table); 
+	
+	int play(Table table); 
 							
 }

@@ -6,15 +6,24 @@ public class Player {
 
 	// players name
 	private String pName;
-
+	private Play strat; 
 	// players hand
 	private ArrayList<Tile> hand = new ArrayList<Tile>();
 	// indicates if player is playing or waiting for their turn
 	private boolean DoneTurn = false;
 
-	public Player(String PName) {
+	public Player(String PName, Play p) {
+		strat = p;  
 		pName = PName;
 	}
+	public Player(String PName) {
+		
+		pName = PName;
+	}
+	public int Play(Table t) {
+		return strat.play(t);
+		
+		}
 
 	public boolean addTile(Tile tile) {
 		hand.add(tile);

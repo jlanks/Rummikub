@@ -5,6 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GameTest {
+	
+		
+		
+	
 
 	@Test
 	public void testinit() {
@@ -18,8 +22,24 @@ public class GameTest {
 			// making sure a player has a full hand after init
 			gameone.getTable().init();
 			assertEquals(14,gameone.getTable().player1().getHandSize());
+			
+			// testing a player can use strat one
+			Table t = new Table(); 
+			StrategyOne s1 = new StrategyOne(); 
+			Player p = new Player("Julian",s1);
+			assertEquals(0,p.Play(t));
+			
+			// testing a player can use strat two
+			
+			Table x = new Table(); 
+			StrategyTwo s2 = new StrategyTwo(); 
+			Player y = new Player("Julian",s2);
+			assertEquals(0,y.Play(x));
+			
+			
 		
 	}
+	
 	public void testCheckWinner() {
 		
 		Game gameone = new Game(); 
