@@ -12,16 +12,14 @@ public class TileTest extends TestCase {
 		assertNotNull(tester); // should be a success
 	}
 
-	
-	 //This tests the tile constructor for string. ALSO TESTS EQUALS().
+	// This tests the tile constructor for string. ALSO TESTS EQUALS().
 	public void testTileString() {
 		Tile tester = new Tile("R5");
 		Tile confirmation = new Tile(Colour.Red, 5);
-		
+
 		assertNotNull(tester);
 		assertEquals(true, tester.equals(confirmation));
 	}
-
 
 	/**
 	 * This tests/confirms: that the tile's color and value are set
@@ -37,9 +35,9 @@ public class TileTest extends TestCase {
 		// this confirms the tile's number
 		assertEquals(6, tester.getValue());
 	}
-	
+
 	public void testEquals() {
-		
+
 	}
 
 }

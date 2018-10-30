@@ -17,7 +17,7 @@ public class TableTest extends TestCase {
 		table.addMeld(m1);
 		assertEquals(3, table.numMelds());
 	}
-	
+
 	public void testInit() {
 		Table table = new Table();
 		assertEquals(0, table.player1().getHandSize());
@@ -33,7 +33,7 @@ public class TableTest extends TestCase {
 		assertEquals(14, table.player4().getHandSize());
 		assertEquals(0, table.numMelds());
 	}
-	
+
 	public void testRemMeld() {
 		Table table = new Table();
 		Meld m1 = new Meld(new Tile(Colour.Red, 1), new Tile(Colour.Red, 2), new Tile(Colour.Red, 3), false);
@@ -44,14 +44,14 @@ public class TableTest extends TestCase {
 		assertEquals(2, table.numMelds());
 
 		table.remMeld(0); // removes
-																													// meld
-																													// [0]
+							// meld
+							// [0]
 		assertEquals(1, table.numMelds());
 
-		//table.remMeld(0); // removes meld [0] (hopefully they have been shifted)
-		//assertEquals(0, table.numMelds());
+		// table.remMeld(0); // removes meld [0] (hopefully they have been shifted)
+		// assertEquals(0, table.numMelds());
 	}
-	
+
 	public void testDrawTile() {
 		Table table = new Table();
 		table.init();

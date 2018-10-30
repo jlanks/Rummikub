@@ -1,19 +1,18 @@
 package core;
 
 public class Game {
-	private Table table; 
-	private boolean isOver; 
-	
-	
+	private Table table;
+	private boolean isOver;
+
 	public Game() {
-		
-		table = new Table(); 
-	
+
+		table = new Table();
+
 	}
-	
+
 	public Table getTable() {
-		
-		return table; 
+
+		return table;
 	}
-	
+
 }
