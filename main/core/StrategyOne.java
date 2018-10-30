@@ -1,8 +1,14 @@
 package core;
 
-public class StrategyOne implements Strategy {
+public class StrategyOne implements Play {
 	
-	public void Play(Game game) {
+	public void Play(Table table) {
+		
+		
+		
+		
+		
+		
 		
 	
 	}
