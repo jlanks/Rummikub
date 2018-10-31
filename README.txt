@@ -56,6 +56,22 @@ Methods:
   - returns -1 if the meld does not contain the tile 
 --------------------------------------------------------------------------------
 Player.java
+- pname represents the players name(String)
+- strat instance of play which represents the players strategy (Play)
+- hand is an ArrayList of tiles representing a hand (ArrayList<Tile>)
+- DoneTurn is true when a player is done their turn (boolean)
+Methods:
+- Constructor which has a players name as an argument 
+- Constructor which has a players name and strategy as an argument  
+- Play is a method which animates a players turn (int)
+  - the actions which a player plays is dependant on the strat passed into the constructor
+  - references the Play interface
+- addTile adds a tile to the players hand of tiles (boolean)
+- removeTile removes a tile from the players hand at the specified index (boolean)
+- getName returns a players name (String)
+- getTile returns the tile at the specified index (Tile)
+- checkWinner checks to see if a player has won the game (boolean)
+- getHandSize returns the amount of cards in a players hand (int)
 --------------------------------------------------------------------------------
 Table.java:
 - Has 4 players, a deck, and an ArrayList of Melds.
@@ -66,12 +82,26 @@ Methods:
 - addMeld adds the specified Meld to the Table.
 - drawTile deals the top tile on the Deck to the specified Player.
 - playerx where 1<x<4 returns Player number x.
-- remMeld removes a Meld from the table. Melds can be removed by reference (compares the Tiles in each Meld) or by index (removes Meld at index i)
+- remMeld removes a Meld from the table. Melds can be removed by reference 
+  (compares the Tiles in each Meld) or by index (removes Meld at index i)
 --------------------------------------------------------------------------------
 Game.java
+- table which the game is played (Table)
+Methods:
+- Constructor which initializes a table
+- getTable returns the game table (Table)
 --------------------------------------------------------------------------------
 Play.java
+Methods:
+- play -> is defined in classes which implement this interface
 --------------------------------------------------------------------------------
 StrategyOne.java
+Methods:
+- play 
+  - prints "Strategy One!"
 --------------------------------------------------------------------------------
 StrategyTwo.java
+Methods:
+- play 
+  - prints "Strategy Two"
+--------------------------------------------------------------------------------
