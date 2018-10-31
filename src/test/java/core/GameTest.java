@@ -39,7 +39,7 @@ public class GameTest {
 			
 		
 	}
-	
+	@Test
 	public void testCheckWinner() {
 		
 		Game gameone = new Game(); 
