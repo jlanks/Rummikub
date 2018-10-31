@@ -68,4 +68,21 @@ public class GameTest {
 		assertEquals("Player 1",gameOne.getPlayer().getName()); 
 		
 	}
+	public void testPlaying() {
+		// making game
+		Game game = new Game();
+		
+		// initializing table
+		game.getTable().init();
+		
+		// testing a player can play their turn
+		//assertEquals(0,game.getPlayer().Play(game)); 
+		
+		game.getPlayer().Play(game); 
+		
+		// testing a player can add a meld to a table
+		assertEquals(1,game.getTable().numMelds()); 
+		
+		
+	}
 }

@@ -11,6 +11,7 @@ public class Game {
 	public Game() {
 
 		table = new Table();
+		// table.init();
 		currPlayer = table.player1(); 
 
 	}
