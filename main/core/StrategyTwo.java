@@ -1,9 +1,15 @@
 package core;
 
 public class StrategyTwo implements Play {
-
-	public int play(Table table) {
-		System.out.print("Strategy Two!");
+	
+	public String Name() {
+		
+		return "S2"; 
+		
+	}
+	
+	public int play(Game game) {
+		
 		return 0;
 	}
 

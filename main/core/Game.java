@@ -2,9 +2,10 @@ package core;
 
 public class Game {
 	private Table table;
-	private boolean isOver;
+	private boolean isOver = false;
 	private Player currPlayer; 
-	private Player nextPlayer; 
+	
+	
 	
 
 	public Game() {
@@ -12,6 +13,9 @@ public class Game {
 		table = new Table();
 		currPlayer = table.player1(); 
 
+	}
+	public boolean getOver() {
+		return isOver; 
 	}
 
 	public Table getTable() {
@@ -35,11 +39,11 @@ public class Game {
 		}
 		return table.player1(); 
 	}
+	
 	public void nextTurn() {
 		
 		currPlayer = this.getNextPlayer(); 
-		
-		
+			
 	}
 
 }

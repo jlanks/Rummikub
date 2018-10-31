@@ -4,11 +4,16 @@ public class StrategyOne implements Play {
 	// public StrategyOne() {
 
 //	}
-	public int play(Table table) {
-
+	StrategyOne(){
 		
-
-		return 0;
+	}
+	public String Name() {
+		
+		return "S1"; 
+	}
+	public int play(Game game) {
+		
+		return 0; 
 
 	}
 }

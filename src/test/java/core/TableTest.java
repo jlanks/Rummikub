@@ -33,6 +33,16 @@ public class TableTest extends TestCase {
 		assertEquals(14, table.player4().getHandSize());
 		assertEquals(0, table.numMelds());
 	}
+	public void testPlay() {
+		
+		Game g = new Game(); 
+		Table table = new Table();
+		table.init();
+		
+		assertEquals(0,table.player1().Play(g)); 
+		
+		
+	}
 
 	public void testRemMeld() {
 		Table table = new Table();
