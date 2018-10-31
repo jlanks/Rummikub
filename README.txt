@@ -96,11 +96,13 @@ Methods:
 - play -> is defined in classes which implement this interface
 --------------------------------------------------------------------------------
 StrategyOne.java
+- Implements Play interface
 Methods:
 - play 
   - prints "Strategy One!"
 --------------------------------------------------------------------------------
 StrategyTwo.java
+- Implements Play interface
 Methods:
 - play 
   - prints "Strategy Two"
