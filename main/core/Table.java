@@ -57,19 +57,19 @@ public class Table {
 	};
 
 	public void remMeld(Meld m) {
-		
+
 		for (int i = 0; i < melds.size(); i++) {
-			
+
 			// THIS FUNCTION NEEDS TO BE IMPLEMENTED STILL
 			// (EQUALS)
 			// WILL SOLVE REMOVING MELDS THAT "LOOK" LIKE DUPLICATES
 			// ALSO COULD BE SOLVED USING A RETURN ON THE FIRST MELD REMOVED
-			
+
 			if (melds.get(i).equals(m)) {
-				
+
 				melds.remove(i);
-				
-				// return; 
+
+				// return;
 			}
 		}
 	}

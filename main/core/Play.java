@@ -1,7 +1,7 @@
 package core;
 
 public interface Play {
-	
-	int play(Table table); 
-							
+
+	int play(Table table);
+
 }
