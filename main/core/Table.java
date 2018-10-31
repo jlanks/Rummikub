@@ -3,12 +3,12 @@ package core;
 import java.util.ArrayList;
 
 public class Table {
-	Deck deck;
-	Player p1;
-	Player p2;
-	Player p3;
-	Player p4;
-	ArrayList<Meld> melds = new ArrayList<Meld>();
+	private Deck deck;
+	private Player p1;
+	private Player p2;
+	private Player p3;
+	private Player p4;
+	private ArrayList<Meld> melds = new ArrayList<Meld>();
 
 	public Table() {
 		deck = new Deck();

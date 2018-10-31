@@ -33,7 +33,7 @@ public class GameTest {
 		assertEquals(0, y.Play(x));
 
 	}
-
+	@Test
 	public void testCheckWinner() {
 
 		Game gameone = new Game();
@@ -45,5 +45,24 @@ public class GameTest {
 		gameone.getTable().init();
 		assertEquals(false, gameone.getTable().player1().checkWinner());
 
+	}
+	@Test
+	public void testNextPlayer() {
+		
+		Game gameOne = new Game(); 
+		// tests p1 is default starting player
+		assertEquals("Player 1",gameOne.getNextPlayer().getName()); 
+		
+		// next turn, currPlayer is switched to p2
+		gameOne.nextTurn();
+		assertEquals("Player 2",gameOne.getNextPlayer().getName()); 
+		
+		// next turn, currPlayer is switched to p3
+		gameOne.nextTurn();
+		assertEquals("Player 3",gameOne.getNextPlayer().getName()); 
+		// next turn, currPlayer is switched to p1
+		gameOne.nextTurn();
+		assertEquals("Player 1",gameOne.getNextPlayer().getName()); 
+		
 	}
 }

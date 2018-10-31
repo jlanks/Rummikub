@@ -6,7 +6,7 @@ public class StrategyOne implements Play {
 //	}
 	public int play(Table table) {
 
-		System.out.print("Strategy One!");
+		
 
 		return 0;
 
