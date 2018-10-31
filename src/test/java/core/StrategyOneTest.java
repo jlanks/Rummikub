@@ -23,7 +23,7 @@ public class StrategyOneTest {
 		
 	}
 	@Test
-	public void testMakeRun() {
+	public void testMakeSet() {
 			
 		// making a game
 		
