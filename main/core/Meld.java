@@ -6,7 +6,7 @@ public class Meld {
 	ArrayList<Tile> meld = new ArrayList<Tile>();
 
 	// constructor which takes in a tile arraylist (for split meld)
-	// no error checking yet
+	// no error checking yet TODO
 	Meld(ArrayList<Tile> arg) {
 		for (int i = 0; i < arg.size(); i++) {
 			meld.add(arg.get(i));
@@ -363,5 +363,21 @@ public class Meld {
 		}
 
 		return -1;
+	}
+
+	// Returns a Meld made up of the Tiles including and after index
+	public Meld split(int index) {
+		Meld right = this;
+		Meld left;
+		ArrayList<Tile> tileArray = new ArrayList<Tile>();
+		int size = right.getSize();
+
+		for (int i = index; i < size; i++) {
+			tileArray.add(right.getTile(index));
+			right.removeIndex(index);
+		}
+
+		left = new Meld(tileArray);
+		return left;
 	}
 }
