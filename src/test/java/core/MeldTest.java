@@ -434,4 +434,20 @@ public class MeldTest extends TestCase {
 		assertEquals(2, meld.contains(new Tile("R3")));
 	}
 
+	// Can't split a Meld if one of the resulting Melds is illegal
+	// (this might actually be a useful feature to have though)
+	public void testSplitMeld() {
+		Meld meld1 = new StringMeld("R1", "R2", "R3");
+		Meld meld2 = new StringMeld("R4", "R5", "R6");
+
+		meld1.combineMeld(meld2); // R1 R2 R3 R4 R5 R6
+		Meld meld3 = meld1.split(3); // Splits meld at R4
+
+		Meld m123 = new StringMeld("R1", "R2", "R3");
+		Meld m456 = new StringMeld("R4", "R5", "R6");
+
+		assertEquals(true, meld1.equals(m123));
+		assertEquals(true, meld3.equals(m456));
+	}
+
 }
