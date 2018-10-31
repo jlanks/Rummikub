@@ -18,17 +18,28 @@ public class Game {
 
 		return table;
 	}
+	public Player getPlayer() {
+		return currPlayer; 
+		
+		
+	}
 	
 	public Player getNextPlayer() {
 		
-		if(currPlayer.getName() == "player1") {
+		if(currPlayer.getName() == "Player 1") {
 			return table.player2(); 
 		
 		}
-		if(currPlayer.getName() == "player2"){
+		if(currPlayer.getName() == "Player 2"){
 			return table.player3(); 
 		}
 		return table.player1(); 
+	}
+	public void nextTurn() {
+		
+		currPlayer = this.getNextPlayer(); 
+		
+		
 	}
 
 }

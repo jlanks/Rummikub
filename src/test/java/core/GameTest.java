@@ -51,18 +51,18 @@ public class GameTest {
 		
 		Game gameOne = new Game(); 
 		// tests p1 is default starting player
-		assertEquals("Player 1",gameOne.getNextPlayer().getName()); 
+		assertEquals("Player 1",gameOne.getPlayer().getName()); 
 		
 		// next turn, currPlayer is switched to p2
 		gameOne.nextTurn();
-		assertEquals("Player 2",gameOne.getNextPlayer().getName()); 
+		assertEquals("Player 2",gameOne.getPlayer().getName()); 
 		
 		// next turn, currPlayer is switched to p3
 		gameOne.nextTurn();
-		assertEquals("Player 3",gameOne.getNextPlayer().getName()); 
+		assertEquals("Player 3",gameOne.getPlayer().getName()); 
 		// next turn, currPlayer is switched to p1
 		gameOne.nextTurn();
-		assertEquals("Player 1",gameOne.getNextPlayer().getName()); 
+		assertEquals("Player 1",gameOne.getPlayer().getName()); 
 		
 	}
 }
