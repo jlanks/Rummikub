@@ -27,6 +27,8 @@ public class StrategyOne implements Play {
 		Tile compare; 
 		Table table = game.getTable();
 		compare = hand.get(0); 
+		
+		
 		int cond = 0; 
 		while(cond != hand.size()) {
 		
