@@ -28,18 +28,24 @@ public class StrategyOne implements Play {
 	public void makeSet(Game game) {
 		
 		ArrayList<Colour> col = new ArrayList<Colour>(); 
+		
 		ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
-		ArrayList<Tile> hand = game.getPlayer().getHand(); 
+		
+		ArrayList<Tile> hand = game.getTable().player2().getHand(); 
+		
 		Player player = game.getPlayer(); 
+		
 		Tile compare; 
+		
 		Table table = game.getTable();
+		
 		compare = hand.get(0); 
 		
 		
-		int cond = 0; 
-		while(cond != hand.size()) {
 		
+		//for(int j=0;j<hand.size();j++) {
 			// adding tiles with all the same value
+			
 			for(int i = 0; i<hand.size(); i++) {
 				
 				if(hand.get(i).getValue() == compare.getValue()) {
@@ -69,14 +75,14 @@ public class StrategyOne implements Play {
 				
 					hand.remove(tempmeld.get(i)); 
 				}
-				
-			}
 			
 			// if the meld is valid, it will be added to the table
 			table.addMeld(addmeld);
+				
+			}
 			
-		}
-		
+			
+		//}	
 		
 		
 	}
@@ -90,13 +96,13 @@ public class StrategyOne implements Play {
 	public int play(Game game) {
 
 		// needs to try and make a set
-
+		makeSet(game);
 		// loop through the hand and checking the meld
 		// combinations that could be made.
 		// if any.
-
+		 
 		// game.getPlayer().getHand();
-
+		System.out.println("got to line 38 in s1");
 		// needs to try and and make a run
 
 		// needs to try and add to and existing meld
