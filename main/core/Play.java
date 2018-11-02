@@ -1,7 +1,8 @@
 package core;
 
 public interface Play {
-	String Name(); 
+	String Name();
+
 	int play(Game game);
 
 }
