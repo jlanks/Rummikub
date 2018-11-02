@@ -8,7 +8,7 @@ public class StrategyOne implements Play {
 
 		return "S1";
 	}
-<<<<<<< HEAD
+
 
 	// function which tries and make a set in with the players tiles.
 	public void makeSet() {
@@ -20,15 +20,9 @@ public class StrategyOne implements Play {
 
 	}
 
-=======
+
 	
-	// function which tries and make a set in with the players tiles. 
-	public void makeRun() {
-		
-		
-		
-		
-	}
+	
 	
 	// function which tries and make a run in with the players tiles. 
 	public void makeSet(Game game) {
@@ -87,7 +81,7 @@ public class StrategyOne implements Play {
 		
 	}
 	
->>>>>>> bfdc04fb70341fb6eb00db0afbebd025ba0d63a3
+
 	// function which tries to add to an existing meld
 	public void addToExisting() {
 
