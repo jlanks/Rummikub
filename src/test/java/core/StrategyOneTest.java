@@ -21,7 +21,7 @@ public class StrategyOneTest {
 		assertEquals(0, strat.play(game));
 
 	}
-
+/*
 	@Test
 	public void testMakeSet() {
 
@@ -49,7 +49,7 @@ public class StrategyOneTest {
 		
 		// this means the table will have a meld on it
 		assertEquals(1, game.getTable().numMelds());
-		/*
+		
 		// giving p1 the cards to make a set (3) but with other tiles in the "hand"
 		P1.addTile(new Tile(Colour.Red, 10));
 		P1.addTile(new Tile(Colour.Red, 13));
@@ -69,7 +69,7 @@ public class StrategyOneTest {
 
 		// this means the table will have 2 meld on it
 		assertEquals(2, game.getTable().numMelds());
-
+		
 		// giving p1 the cards to make a set (4) but with other tiles in the "hand"
 		P1.addTile(new Tile(Colour.Red, 10));
 		P1.addTile(new Tile(Colour.Red, 13));
@@ -79,14 +79,59 @@ public class StrategyOneTest {
 		P1.addTile(new Tile(Colour.Blue, 8));
 		P1.addTile(new Tile(Colour.Green, 10));
 		P1.addTile(new Tile(Colour.Orange, 10));
-
+		
 		// player makes their move
 
 		P1.Play(game);
-
+		/*
 		// this means the table will have 3 meld on it
 		assertEquals(3, game.getTable().numMelds());
-		*/
+		
+	}
+	/*
+	public void testMakeRun() {
+		
+		
+		
+		
+	}
+	*/
+	@Test
+	public void testMakeAdditions() {
+		
+				// making a game
+
+				Game game = new Game();
+				Player P1 = game.getTable().player2();
+				Meld m = new Meld(new Tile(Colour.Red, 10),new Tile(Colour.Blue, 10),new Tile(Colour.Green, 10),false); 
+				// giving p1 the cards to make a set
+				
+				//P1.addTile();
+				//P1.addTile();
+				//P1.addTile();
+				P1.addTile(new Tile(Colour.Orange, 10));
+				
+				
+				game.nextTurn();
+				
+				// testing adding to an existing set
+				P1.Play(game); 
+				// checks the player no longer has a card in their hand
+				assertEquals(0,P1.getHandSize()); 
+				// checks the card has been added to the meld
+				assertEquals(4,game.getTable().getMeld(0).getSize()); 
+				
+				
+				// next test adding to an existing run. 
+				// this needs to be tested in the front, middle, and back of the meld
+				
+				// front
+				
+				
+				// middle
+				
+				// back 
+		
 	}
 
 }

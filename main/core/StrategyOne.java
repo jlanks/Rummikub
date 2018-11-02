@@ -89,14 +89,15 @@ public class StrategyOne implements Play {
 	
 
 	// function which tries to add to an existing meld
-	public void addToExisting() {
+	public void makeAdditions(Game game) {
 
 	}
 
 	public int play(Game game) {
 
 		// needs to try and make a set
-		makeSet(game);
+		//makeSet(game);
+		makeAdditions(game); 
 		// loop through the hand and checking the meld
 		// combinations that could be made.
 		// if any.
