@@ -380,4 +380,18 @@ public class Meld {
 		left = new Meld(tileArray);
 		return left;
 	}
+
+	// Prints Meld in format: "R1 R2 R3 R4 ..."
+	public String toString() {
+		String meldStr = "";
+
+		for (int i = 0; i < this.getSize(); i++) {
+			if (i == this.getSize() - 1) {
+				meldStr += this.getTile(i);
+			} else {
+				meldStr += this.getTile(i) + " ";
+			}
+		}
+		return meldStr;
+	}
 }

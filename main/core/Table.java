@@ -9,14 +9,15 @@ public class Table {
 	private Player p3;
 	private Player p4;
 	private ArrayList<Meld> melds = new ArrayList<Meld>();
-	private StrategyOne s1 = new StrategyOne(); 
-	private StrategyTwo s2 = new StrategyTwo(); 
+	private StrategyOne s1 = new StrategyOne();
+	private StrategyTwo s2 = new StrategyTwo();
+	private StrategyHuman sh = new StrategyHuman();
 
 	public Table() {
 		deck = new Deck();
-		p1 = new Player("Player 1",s1);
-		p2 = new Player("Player 2",s2);
-		p3 = new Player("Player 3");
+		p1 = new Player("Human Player", sh);
+		p2 = new Player("Player 1", s1);
+		p3 = new Player("Player 2", s2);
 		p4 = new Player("Player 4");
 	}
 
@@ -78,6 +79,10 @@ public class Table {
 
 	public void remMeld(int i) {
 		melds.remove(i);
+	}
+
+	public Meld getMeld(int i) {
+		return melds.get(i);
 	}
 
 }
