@@ -24,44 +24,56 @@ public class StrategyOne implements Play {
 	// function which tries and make a run in with the players tiles. 
 	public void makeSet(Game game,Tile t) {
 		
+		// the list of colours already used
 		ArrayList<Colour> col = new ArrayList<Colour>(); 
 		
+		// the temporary meld going to be used 
 		ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
-		// for testing 
+		
+		// for testing (player 2 has the strategy one)
 		ArrayList<Tile> hand = game.getTable().player2().getHand(); 
-		// for game use
+		
+		// for game use (when the game is being played, 
+		// this will only be called by a plyer assigned s1 
 		//ArrayList<Tile> hand = game.getPlayer().getHand(); 
 		
+		// current player, again for when the game is set up properly
 		Player player = game.getPlayer(); 
 		
+		// the tile which will be the comparison basis 
 		Tile compare = t; 
 		
+		// the current games table
 		Table table = game.getTable();
 		
 		
 		
 		
-		
+		//adding the tile argument to the meld array
+		tempmeld.add(t); 
 		
 		// adding tiles with all the same value
 		
+		// loops through all the tiles in the players hand
 		for(int i = 0; i<hand.size(); i++) {
 			
-			if(hand.get(i).getValue() == compare.getValue() && hand.get(i).getColour() != compare.getColour() ) {
+			// if the value is the same, but the colour is not,
+			// and the colour has not already been added
+			// then add to the temp meld
+			
+			if(hand.get(i).getValue() == compare.getValue() && 
+			   hand.get(i).getColour() != compare.getColour() &&
+			   !hand.get(i).equals(t) &&
+			   !(col.contains(hand.get(i).getColour()))) {
 				
+				// adding to tile to the temp meld
 				tempmeld.add(hand.get(i));
+				// adding the colour to the colour meld
+				col.add(hand.get(i).getColour()); 
 			
 			}
 		}
 		
-		// removing duplicate colours if any
-		for(int i =0;i<tempmeld.size();i++) {
-			
-			if(col.contains(tempmeld.get(i).getColour())) 
-				
-				tempmeld.remove(i); 
-				
-		}	
 		
 		// making the meld to be added to the table
 		Meld addmeld = new Meld(tempmeld);
@@ -71,12 +83,13 @@ public class StrategyOne implements Play {
 		
 			// if the meld is valid then the cards from the players hand need to be removed
 			for(int i=0;i<tempmeld.size();i++) {
-				
+					 // removing cards from hand
 					hand.remove(tempmeld.get(i)); 
 				}
 			
 			// if the meld is valid, it will be added to the table
 			table.addMeld(addmeld);
+			// return so the other
 			return; 
 			
 		}
@@ -102,18 +115,18 @@ public class StrategyOne implements Play {
 	public int play(Game game) {
 
 		// needs to try and make a set for each index of the hand
-		for(int i=0;i<game.getPlayer().getHand().size();i++) {
+		//for(int i=0;i<game.getPlayer().getHand().size();i++) {
 			
-			makeSet(game,game.getPlayer().getTile(i)); 
-		}
+			makeSet(game,game.getTable().player2().getTile(0)); 
+		//}
 		
-		makeAdditions(game); 
+		//makeAdditions(game); 
 		// loop through the hand and checking the meld
 		// combinations that could be made.
 		// if any.
 		 
 		// game.getPlayer().getHand();
-		System.out.println("got to line 38 in s1");
+	//x	System.out.println("got to line 38 in s1");
 		// needs to try and and make a run
 
 		// needs to try and add to and existing meld

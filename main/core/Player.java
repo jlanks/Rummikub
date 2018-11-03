@@ -26,6 +26,10 @@ public class Player {
 		return this.strat.play(g);
 		// return 0;
 	}
+	public void ClearHand() {
+		
+		hand.clear();
+	}
 
 	public ArrayList<Tile> getHand() {
 
