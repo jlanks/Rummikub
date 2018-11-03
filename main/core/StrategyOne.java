@@ -116,7 +116,7 @@ public class StrategyOne implements Play {
 		if(!addmeld.validMeld() && index < hand.size()-1) {
 			
 			
-			makeSet(game,game.getPlayer().getTile(index+1));
+			makeSet(game,hand.get(index+1));
 		}
 		
 		// when the index is at the last and meld is invalid

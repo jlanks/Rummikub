@@ -78,7 +78,7 @@ public class StrategyOneTest {
 		//System.out.print(P1.getHand().toString());
 		// this means hand size will be five
 		assertEquals(5, P1.getHandSize());
-
+		
 		// this means the table will have 2 meld on it
 		assertEquals(2, game.getTable().numMelds());
 		// testing that the hand size has been updated
@@ -205,7 +205,7 @@ public class StrategyOneTest {
 		P1.addTile(new Tile(Colour.Orange, 3));
 	
 		// testing if hand size is correct
-		assertEquals(10,P1.getHandSize()); 
+		assertEquals(11,P1.getHandSize()); 
 		
 		// clearing table melds
 		game.getTable().clearMT();
@@ -218,7 +218,7 @@ public class StrategyOneTest {
 		P1.Play(game); 
 		
 		// making sure all cards were taken out of players hand 
-		assertEquals(2,P1.getHandSize());
+		assertEquals(3,P1.getHandSize());
 		
 		
 		// making sure 2 melds were added to the table 
@@ -250,7 +250,7 @@ public class StrategyOneTest {
 		P1.addTile(new Tile(Colour.Blue, 8));
 	
 		// testing if hand size is correct
-		assertEquals(12,P1.getHandSize()); 
+		assertEquals(13,P1.getHandSize()); 
 		
 		// clearing table melds
 		game.getTable().clearMT();
@@ -263,7 +263,7 @@ public class StrategyOneTest {
 		P1.Play(game); 
 		
 		// making sure all cards were taken out of players hand 
-		assertEquals(3,P1.getHandSize());
+		assertEquals(4,P1.getHandSize());
 		
 		
 		// making sure 3 melds were added to the table 
@@ -296,7 +296,7 @@ public class StrategyOneTest {
 		P1.addTile(new Tile(Colour.Blue, 8));
 	
 		// testing if hand size is correct
-		assertEquals(12,P1.getHandSize()); 
+		assertEquals(13,P1.getHandSize()); 
 		
 		// clearing table melds
 		game.getTable().clearMT();
@@ -309,7 +309,7 @@ public class StrategyOneTest {
 		P1.Play(game); 
 		
 		// making sure all cards were taken out of players hand 
-		assertEquals(2,P1.getHandSize());
+		assertEquals(3,P1.getHandSize());
 		
 		
 		// making sure 3 melds were added to the table 
@@ -341,7 +341,7 @@ public class StrategyOneTest {
 		P1.addTile(new Tile(Colour.Blue, 5));
 	
 		// testing if hand size is correct
-		assertEquals(12,P1.getHandSize()); 
+		assertEquals(14,P1.getHandSize()); 
 		
 		// clearing table melds
 		game.getTable().clearMT();
@@ -354,7 +354,7 @@ public class StrategyOneTest {
 		P1.Play(game); 
 		
 		// making sure all cards were taken out of players hand 
-		assertEquals(1,P1.getHandSize());
+		assertEquals(2,P1.getHandSize());
 		
 		
 		// making sure 3 melds were added to the table 
@@ -386,7 +386,7 @@ public class StrategyOneTest {
 		P1.addTile(new Tile(Colour.Blue, 8));
 	
 		// testing if hand size is correct
-		assertEquals(12,P1.getHandSize()); 
+		assertEquals(13,P1.getHandSize()); 
 		
 		// clearing table melds
 		game.getTable().clearMT();
@@ -399,13 +399,13 @@ public class StrategyOneTest {
 		P1.Play(game); 
 		
 		// making sure all cards were taken out of players hand 
-		assertEquals(1,P1.getHandSize());
+		assertEquals(2,P1.getHandSize());
 		
 		
 		// making sure 3 melds were added to the table 
 		assertEquals(3,game.getTable().numMelds());
 
-
+		/**/
 	}
 	/*
 	public void testMakeRun() {
