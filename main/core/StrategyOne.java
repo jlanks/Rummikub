@@ -46,9 +46,6 @@ public class StrategyOne implements Play {
 		// the current games table
 		Table table = game.getTable();
 		
-		
-		
-		
 		//adding the tile argument to the meld array
 		tempmeld.add(t); 
 		
@@ -78,6 +75,22 @@ public class StrategyOne implements Play {
 		// making the meld to be added to the table
 		Meld addmeld = new Meld(tempmeld);
 		
+		// index of current tile
+		int index = 0; 
+		
+		// looping through the hand to find the index 
+		
+		for(int i =0; i<hand.size();i++) {
+			
+			if(i == hand.size() && hand.get(i) != t) {
+				
+				index = -1; 
+			}
+			if(hand.get(i).equals(t)) {
+				index = i; 
+			}
+		}
+		
 		// making sure the meld is valid
 		if(addmeld.validMeld()) {
 		
@@ -89,9 +102,27 @@ public class StrategyOne implements Play {
 			
 			// if the meld is valid, it will be added to the table
 			table.addMeld(addmeld);
-			// return so the other
-			return; 
 			
+			if(hand.size() > 0) 
+				makeSet(game,hand.get(0)); 
+			
+			if(hand.size() <= 0)
+				return;
+		
+			
+		}
+		
+		// when the meld is not valid and index is less than hand size
+		if(!addmeld.validMeld() && index < hand.size()-1) {
+			
+			
+			makeSet(game,game.getPlayer().getTile(index+1));
+		}
+		
+		// when the index is at the last and meld is invalid
+		if(index+1 >= hand.size() && !addmeld.validMeld()) {
+			
+			return; 
 		}
 		
 			
