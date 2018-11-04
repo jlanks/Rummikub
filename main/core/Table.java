@@ -76,6 +76,10 @@ public class Table {
 			}
 		}
 	}
+	public void clearMT() {
+		
+		melds.clear(); 
+	}
 
 	public void remMeld(int i) {
 		melds.remove(i);

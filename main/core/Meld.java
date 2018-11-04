@@ -211,7 +211,11 @@ public class Meld {
 
 		return meld.get(i);
 	}
-
+	public void addFirst(Tile t) {
+		
+		meld.add(0,t);
+		
+	}
 	public void addTile(Tile tile) {
 
 		// checking to see if the add will be valid: checking for a run

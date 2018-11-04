@@ -46,9 +46,6 @@ public class StrategyOne implements Play {
 		// the current games table
 		Table table = game.getTable();
 		
-		
-		
-		
 		//adding the tile argument to the meld array
 		tempmeld.add(t); 
 		
@@ -78,6 +75,22 @@ public class StrategyOne implements Play {
 		// making the meld to be added to the table
 		Meld addmeld = new Meld(tempmeld);
 		
+		// index of current tile
+		int index = 0; 
+		
+		// looping through the hand to find the index 
+		
+		for(int i =0; i<hand.size();i++) {
+			
+			if(i == hand.size() && hand.get(i) != t) {
+				
+				index = -1; 
+			}
+			if(hand.get(i).equals(t)) {
+				index = i; 
+			}
+		}
+		
 		// making sure the meld is valid
 		if(addmeld.validMeld()) {
 		
@@ -89,9 +102,27 @@ public class StrategyOne implements Play {
 			
 			// if the meld is valid, it will be added to the table
 			table.addMeld(addmeld);
-			// return so the other
-			return; 
 			
+			if(hand.size() > 0) 
+				makeSet(game,hand.get(0)); 
+			
+			if(hand.size() <= 0)
+				return;
+		
+			
+		}
+		
+		// when the meld is not valid and index is less than hand size
+		if(!addmeld.validMeld() && index < hand.size()-1) {
+			
+			
+			makeSet(game,hand.get(index+1));
+		}
+		
+		// when the index is at the last and meld is invalid
+		if(index+1 >= hand.size() && !addmeld.validMeld()) {
+			
+			return; 
 		}
 		
 			
@@ -102,8 +133,58 @@ public class StrategyOne implements Play {
 	}
 	
 
-	// function which tries to add to an existing meld
-	public void makeAdditions(Game game) {
+	// function which tries to add to an existing meld on the table 
+	public void makeAdditions(Game game, Meld m) {
+		
+		// if there are no melds on the table, nothing to add to
+		
+		if(game.getTable().numMelds() == 0) {
+			
+			// return if this is the case
+			
+			return; 
+		}
+		
+		
+		Tile currT = game.getTable().player2().getTile(0); 
+		
+		Meld currM = m;  
+		
+		// check if the tile can be added to the front of the meld (run)
+		if(currM.getTile(0).getValue() == currT.getValue()+1) {
+			
+			// add the tile to the front 
+			currM.addFirst(currT); 
+			
+			
+		}
+		
+		// check if the tile can be added to the back of the meld (run)
+		if(currM.getTile(currM.getSize()-1).getValue() == currT.getValue()-1) {
+			
+			// add the tile to the back
+			currM.addTile(currT); 
+			
+			
+		}
+		
+		// check if the tile can be added to the the meld when the meld is a set 
+		if(currM.getTile(currM.getSize()-1).getValue() == currT.getValue() &&
+		   currM.getTile(0).getValue() == currT.getValue() &&
+		   currM.getTile(currM.getSize()-1).getColour() != currT.getColour() &&
+		   currM.getTile(0).getColour() != currT.getColour() &&
+		   currM.getTile(0).getColour() != currT.getColour()) {
+			
+			// add the tile to the meld, index does not 
+			// matter since this meld would be a set
+			
+			currM.addTile(currT);
+			
+			
+		}
+		
+		// check if the meld is the last on the table.
+		// if this is the case, end the function 
 		
 		
 		
@@ -114,22 +195,13 @@ public class StrategyOne implements Play {
 
 	public int play(Game game) {
 
-		// needs to try and make a set for each index of the hand
-		//for(int i=0;i<game.getPlayer().getHand().size();i++) {
-			
-			makeSet(game,game.getTable().player2().getTile(0)); 
-		//}
 		
-		//makeAdditions(game); 
-		// loop through the hand and checking the meld
-		// combinations that could be made.
-		// if any.
-		 
-		// game.getPlayer().getHand();
-	//x	System.out.println("got to line 38 in s1");
-		// needs to try and and make a run
-
-		// needs to try and add to and existing meld
+		// making as many sets as possible
+		makeSet(game,game.getTable().player2().getTile(0)); 
+		
+		// making as many additions as possible
+		makeAdditions(game,game.getTable().getMeld(0)); 
+		
 		return 0;
 	}
 }
