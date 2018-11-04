@@ -15,7 +15,7 @@ public class StrategyHuman implements Play {
 		System.out.println("\n\n0: Draw a tile \n1: Play a meld \n2: Play multiple melds");
 		System.out.print("Enter a choice: ");
 		int choice = scanner.nextInt();
-		System.out.println(choice);
+		//System.out.println(choice);
 
 		switch (choice) {
 		case 0:

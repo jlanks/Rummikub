@@ -17,8 +17,8 @@ public class Table {
 		deck = new Deck();
 		p1 = new Player("Human Player", sh);
 		p2 = new Player("Player 1", s1);
-		p3 = new Player("Player 2", s2);
-		p4 = new Player("Player 4");
+		p3 = new Player("Player 3", s2);
+		p4 = new Player("Player 4");	//dummy player; won't be implemented in game
 	}
 
 	public int numMelds() {

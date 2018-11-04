@@ -6,19 +6,15 @@ public class Game {
 	private Player currPlayer;
 
 	public Game() {
-
 		table = new Table();
-		// table.init();
 		currPlayer = table.player1();
-
 	}
 
-	public boolean getOver() {
+	public boolean isOver() {
 		return isOver;
 	}
 
 	public Table getTable() {
-
 		return table;
 	}
 
@@ -27,21 +23,17 @@ public class Game {
 	}
 
 	public Player getNextPlayer() {
-
-		if (currPlayer.getName() == "Player 1") {
+		if (currPlayer.getName() == "Human Player") {
 			return table.player2();
-
-		}
-		if (currPlayer.getName() == "Player 2") {
+		} else if (currPlayer.getName() == "Player 1") {
 			return table.player3();
+		} else {
+			return table.player1();
 		}
-		return table.player1();
 	}
 
 	public void nextTurn() {
-
 		currPlayer = this.getNextPlayer();
-
 	}
 
 	public void show() {
@@ -63,5 +55,15 @@ public class Game {
 	public void end() {
 		System.out.println("\nThank you for playing!\n\n");
 		isOver = true;
+	}
+	
+	//Tests if the current player has won the game
+	public boolean hasWinner() {
+		if(currPlayer.getHandSize() <= 0) {
+			isOver = true;
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

@@ -77,4 +77,13 @@ public class Player {
 		}
 		return false;
 	}
+	
+	//Checks player equality by name
+	public boolean equals(Player p) {
+		if(this.getName().equals(p.getName())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
