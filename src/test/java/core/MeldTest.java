@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import junit.framework.TestCase;
 
 public class MeldTest extends TestCase {
+	
 	public void testConst() {
+		
 		Tile t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11;
 		t5 = (new Tile(Colour.Orange, 7));
 		t6 = (new Tile(Colour.Orange, 8));
