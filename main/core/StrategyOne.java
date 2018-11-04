@@ -134,15 +134,35 @@ public class StrategyOne implements Play {
 	
 
 	// function which tries to add to an existing meld on the table 
-	public void makeAdditions(Game game, Meld m) {
-		
+	public void makeAdditions(Game game, Meld m, Tile t, int STOPT, int STOPM, int MELD, int TILE) {
+		 
 		// if there are no melds on the table, nothing to add to
 		
-		if(game.getTable().numMelds() == 0) {
+		if(STOPM == 0) {
 			
 			// return if this is the case
 			
 			return; 
+		}
+		
+		// if the search has ended
+		
+		if(STOPT == TILE && STOPM == MELD) {
+			
+			// return if this is the case 
+			
+			return; 
+		}
+		
+		// this is if all tiles have been tried for adding to a meld
+		// but there are still melds to check
+		
+		if(STOPT == TILE && STOPM != MELD) {
+			
+			// resetting the search for the next meld
+			
+			makeAdditions(game, game.getTable().getMeld(MELD +1), game.getPlayer().getTile(0) , STOPM, STOPT, 0,MELD+1);
+			
 		}
 		
 		
@@ -150,11 +170,17 @@ public class StrategyOne implements Play {
 		
 		Meld currM = m;  
 		
+		
+		
 		// check if the tile can be added to the front of the meld (run)
 		if(currM.getTile(0).getValue() == currT.getValue()+1) {
 			
 			// add the tile to the front 
 			currM.addFirst(currT); 
+			// remove the tile from the players hand 
+			game.getPlayer().RemoveTile(TILE); 
+			// call the function
+			makeAdditions(game, game.getTable().getMeld(MELD), game.getPlayer().getTile(TILE+1) , STOPM, STOPT, TILE+1,MELD);
 			
 			
 		}
@@ -164,6 +190,11 @@ public class StrategyOne implements Play {
 			
 			// add the tile to the back
 			currM.addTile(currT); 
+			// remove the tile from the players hand 
+			game.getPlayer().RemoveTile(TILE); 
+			// call the function
+			makeAdditions(game, game.getTable().getMeld(MELD), game.getPlayer().getTile(TILE+1) , STOPM, STOPT, TILE+1,MELD);
+						
 			
 			
 		}
@@ -180,11 +211,21 @@ public class StrategyOne implements Play {
 			
 			currM.addTile(currT);
 			
+			// remove the tile from the players hand 
+			game.getPlayer().RemoveTile(TILE); 
+			// call the function
+			makeAdditions(game, game.getTable().getMeld(MELD), game.getPlayer().getTile(TILE+1) , STOPM, STOPT, TILE+1,MELD);
+						
+			
 			
 		}
 		
-		// check if the meld is the last on the table.
-		// if this is the case, end the function 
+		// if the function got this far, no tiles were valid. 
+		// call the function with updated values 
+		
+		// call the function
+		makeAdditions(game, game.getTable().getMeld(MELD), game.getPlayer().getTile(TILE+1) , STOPM, STOPT, TILE+1,MELD);
+					
 		
 		
 		
@@ -198,10 +239,16 @@ public class StrategyOne implements Play {
 		
 		// making as many sets as possible
 		makeSet(game,game.getTable().player2().getTile(0)); 
-		
+		/*
 		// making as many additions as possible
-		makeAdditions(game,game.getTable().getMeld(0)); 
+		int TNUM, MNUM, TI,MI;
+		TNUM = game.getPlayer().getHandSize();
+		MNUM = game.getTable().numMelds(); 
+		TI = MI = 0 ; 
 		
+		makeAdditions(game,game.getTable().getMeld(0),game.getTable().player2().getTile(0),TNUM,MNUM,MI,TI); 
+		*/
 		return 0;
+		
 	}
 }
