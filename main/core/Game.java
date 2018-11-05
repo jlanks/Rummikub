@@ -33,6 +33,7 @@ public class Game {
 	}
 
 	public void nextTurn() {
+		table.drawTile(currPlayer);
 		currPlayer = this.getNextPlayer();
 	}
 

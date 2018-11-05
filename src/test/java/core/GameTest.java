@@ -55,10 +55,16 @@ public class GameTest {
 		game.getPlayer().Play(game); // p1 plays, draws tile
 		game.nextTurn();
 		game.getPlayer().Play(game); // p3 plays, draws tile
-		game.nextTurn();
 		
 		assertEquals(3, p1.getHandSize());
 		assertEquals(3, p3.getHandSize());
+		
+		game.nextTurn();// human 
+		game.nextTurn(); // p1
+		game.nextTurn(); //p2
+		
+		assertEquals(4, p1.getHandSize());
+		assertEquals(4, p3.getHandSize());
 		
 		assertEquals(0, table.numMelds());
 		
@@ -79,6 +85,13 @@ public class GameTest {
 		game.end();
 		*/
 	}
+	
+	public void testWinFirst() {
+		Game game = new Game(); 
+		assertEquals(true, game.hasWinner());
+
+	}
+	
 	
 	public void testInitialMultiMeld() {
 		Game game = new Game();
@@ -140,28 +153,45 @@ public class GameTest {
 		p1.addTile(new Tile("R1"));
 		p3.addTile(new Tile("R1"));
 
+		p1.addTile(new Tile("O5"));
+		p1.addTile(new Tile("B5"));
+		p1.addTile(new Tile("R5"));
+		
+		p1.addTile(new Tile("R1"));
+		p1.addTile(new Tile("R2"));
+		p1.addTile(new Tile("R3"));
+		p1.addTile(new Tile("R4"));
+		p1.addTile(new Tile("R5"));
+		
+		// ADDING TO 30
+		p1.Play(game); 
+		assertEquals(2, table.numMelds());
+		
 		p1.addTile(new Tile("R9"));
 		p1.addTile(new Tile("R10"));
 		p1.addTile(new Tile("R11"));
-		p3.addTile(new Tile("R10"));
-		p3.addTile(new Tile("G10"));
-		p3.addTile(new Tile("B10"));
+		p1.addTile(new Tile("R12"));
+		p1.addTile(new Tile("R13"));
+		
+		p1.addTile(new Tile("R9"));
+		p1.addTile(new Tile("R10"));
+		p1.addTile(new Tile("R11"));
+		p1.addTile(new Tile("R12"));
+		p1.addTile(new Tile("R13"));
+		p1.addTile(new Tile("R10"));
+		p1.addTile(new Tile("G10"));
+		p1.addTile(new Tile("B10"));
 
 		assertEquals(0, table.numMelds());
 		
 		// Both players play initial 30
 		game.nextTurn();// skip pHuman
-		game.getPlayer().Play(game); // p1 plays single run
-		game.nextTurn();
+		game.getPlayer().Play(game); // p1 plays all melds
+		
 
 		game.show();
-		assertEquals(1, table.numMelds());
+		assertEquals(3, table.numMelds());
 		
-		game.getPlayer().Play(game); // p3 plays single set
-		game.nextTurn();
-		
-		game.show();
-		assertEquals(2, table.numMelds());
 		
 		p1.addTile(new Tile("R9"));
 		p1.addTile(new Tile("R10"));
@@ -169,7 +199,7 @@ public class GameTest {
 		p1.addTile(new Tile("G9"));
 		p1.addTile(new Tile("G10"));
 		p1.addTile(new Tile("G11"));
-
+		
 		p3.addTile(new Tile("R10"));
 		p3.addTile(new Tile("G10"));
 		p3.addTile(new Tile("B10"));
@@ -366,4 +396,89 @@ public class GameTest {
 		game.end();
 		
 	}/**/
+	
+	public void testadd30sum() {
+		Game game = new Game();
+		Table table = game.getTable();
+		Player pHuman = table.player1();
+		Player p1 = table.player2();
+		Player p3 = table.player3();
+
+		// dummy tiles to prevent players from winning
+		pHuman.addTile(new Tile("R1"));
+		p1.addTile(new Tile("R1"));
+		p3.addTile(new Tile("R1"));
+
+		p1.addTile(new Tile("O10"));
+		p1.addTile(new Tile("B10"));
+		p1.addTile(new Tile("R10"));
+		
+		
+		
+		game.nextTurn();
+		game.getPlayer().Play(game); 
+		assertEquals(1, game.getTable().numMelds());
+		p1.addTile(new Tile("O10"));
+		p1.addTile(new Tile("B10"));
+		p1.addTile(new Tile("R10"));
+		p1.addTile(new Tile("G10"));
+		
+		game.nextTurn();
+		game.nextTurn();
+		game.getPlayer().Play(game); 
+		assertEquals(2, game.getTable().numMelds());
+		
+		
+		p1.addTile(new Tile("O10"));
+		p1.addTile(new Tile("B10"));
+		p1.addTile(new Tile("R10"));
+		
+		p1.addTile(new Tile("G10"));
+		p1.addTile(new Tile("B11"));
+		p1.addTile(new Tile("R12"));
+		game.nextTurn();
+		game.nextTurn();
+		game.getPlayer().Play(game); 
+		assertEquals(4, game.getTable().numMelds());
+		
+		p1.addTile(new Tile("O10"));
+		p1.addTile(new Tile("B10"));
+		p1.addTile(new Tile("R10"));
+		
+		game.nextTurn();
+		game.nextTurn();
+		game.getPlayer().Play(game); 
+		assertEquals(5, game.getTable().numMelds());
+		
+		
+		
+	}	
+	
+	public void testdraw() {
+		
+		
+		Game game = new Game();
+		Table table = game.getTable();
+		Player pHuman = table.player1();
+		Player p1 = table.player2();
+		Player p3 = table.player3();
+	
+		// dummy tiles to prevent players from winning
+		pHuman.addTile(new Tile("R1"));
+		p1.addTile(new Tile("R1"));
+		p3.addTile(new Tile("R1"));
+	
+		int x = p1.getHandSize();
+		game.nextTurn();
+		
+		assertEquals(x+1, p1.getHandSize());
+		
+		game.nextTurn();
+		game.nextTurn();
+		
+		game.nextTurn();
+		
+		assertEquals(x+2, p1.getHandSize());
+		
+	}
 }

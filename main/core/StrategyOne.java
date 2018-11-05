@@ -323,7 +323,7 @@ public class StrategyOne implements Play {
 		//System.out.print(game.getTable().getMeld(0).toString()); 
 		//makeAdditions(game,game.getTable().getMeld(0),game.getTable().player2().getTile(0),TNUM,MNUM,MI,TI); 
 		/**/
-		game.getTable().drawTile(game.getPlayer());
+		//game.getTable().drawTile(game.getPlayer());
 		return 0;
 		
 	}

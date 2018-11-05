@@ -212,7 +212,7 @@ public class MeldTest extends TestCase {
 		t4 = (new Tile(Colour.Orange, 10));
 
 		Meld tiles = new Meld(t5, t6, t7, false);
-
+		
 		// making sure meld has correct sum (means all tiles are added)
 		assertEquals(24, tiles.getSum());
 
