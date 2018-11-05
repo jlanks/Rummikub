@@ -420,6 +420,10 @@ public class StrategyOneTest {
 		P1.addTile(new Tile(Colour.Red, 11));
 		P1.addTile(new Tile(Colour.Red, 12));
 		P1.addTile(new Tile(Colour.Red, 13));
+		P1.addTile(new Tile(Colour.Red, 10));
+		P1.addTile(new Tile(Colour.Red, 11));
+		P1.addTile(new Tile(Colour.Red, 12));
+		P1.addTile(new Tile(Colour.Red, 13));
 		//sgame.getTable().init();
 		game.nextTurn();
 		

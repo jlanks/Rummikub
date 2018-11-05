@@ -27,8 +27,9 @@ public class GameTest {
 		assertEquals(game.getPlayer(), pHuman);
 
 		game.end();
+		
 	}
-
+	
 	@Test
 	public void testInitialSingleMeld() {
 		Game game = new Game();
@@ -55,12 +56,12 @@ public class GameTest {
 		game.nextTurn();
 		game.getPlayer().Play(game); // p3 plays, draws tile
 		game.nextTurn();
-
+		
 		assertEquals(3, p1.getHandSize());
 		assertEquals(3, p3.getHandSize());
-
+		
 		assertEquals(0, table.numMelds());
-
+		
 		p1.addTile(new Tile("R11"));
 		p3.addTile(new Tile("G12"));
 
@@ -69,15 +70,16 @@ public class GameTest {
 		game.getPlayer().Play(game); // p1 plays
 
 		assertEquals(1, table.numMelds());
-
+		
 		game.nextTurn();
 		game.getPlayer().Play(game); // p3 plays
-
+		/*
 		assertEquals(2, table.numMelds());
 
 		game.end();
+		*/
 	}
-
+	
 	public void testInitialMultiMeld() {
 		Game game = new Game();
 		Table table = game.getTable();
@@ -100,9 +102,9 @@ public class GameTest {
 		game.nextTurn();
 		game.getPlayer().Play(game); // p3 plays, draws tile
 		game.nextTurn();
-
+		
 		assertEquals(0, table.numMelds());
-
+		
 		p1.addTile(new Tile("B4"));
 		p1.addTile(new Tile("B5"));
 		p1.addTile(new Tile("B6"));
@@ -116,13 +118,14 @@ public class GameTest {
 		game.getPlayer().Play(game); // p1 plays
 
 		assertEquals(2, table.numMelds());
-
+	
 		game.nextTurn();
 		game.getPlayer().Play(game); // p3 plays
-
+	
 		assertEquals(4, table.numMelds());
 
 		game.end();
+		/**/
 	}
 
 	public void testMeldCombos() {
@@ -145,7 +148,7 @@ public class GameTest {
 		p3.addTile(new Tile("B10"));
 
 		assertEquals(0, table.numMelds());
-
+		
 		// Both players play initial 30
 		game.nextTurn();// skip pHuman
 		game.getPlayer().Play(game); // p1 plays single run
@@ -153,13 +156,13 @@ public class GameTest {
 
 		game.show();
 		assertEquals(1, table.numMelds());
-
+		
 		game.getPlayer().Play(game); // p3 plays single set
 		game.nextTurn();
-
+		
 		game.show();
 		assertEquals(2, table.numMelds());
-
+		
 		p1.addTile(new Tile("R9"));
 		p1.addTile(new Tile("R10"));
 		p1.addTile(new Tile("R11"));
@@ -181,7 +184,7 @@ public class GameTest {
 
 		game.show();
 		assertEquals(4, table.numMelds());
-
+		
 		game.getPlayer().Play(game); // p3 plays multiple sets
 		game.nextTurn();
 
@@ -206,7 +209,7 @@ public class GameTest {
 		game.nextTurn();// skip pHuman
 		game.getPlayer().Play(game); // p1 plays set and meld
 		game.nextTurn();
-
+	
 		game.show();
 		assertEquals(8, table.numMelds());
 
@@ -217,8 +220,9 @@ public class GameTest {
 		assertEquals(10, table.numMelds());
 
 		game.end();
+		/**/
 	}
-
+	
 	public void testStrategies() {
 		Game game = new Game();
 		Table table = game.getTable();
@@ -286,7 +290,7 @@ public class GameTest {
 
 		game.end();
 
-		/*** TEST P3 PLAYS ALL THE TILES THEY CAN, IF THEY CAN WIN ***/
+		//*** TEST P3 PLAYS ALL THE TILES THEY CAN, IF THEY CAN WIN
 		game = new Game();
 		table = game.getTable();
 		pHuman = table.player1();
@@ -360,5 +364,6 @@ public class GameTest {
 		assertEquals(true, game.hasWinner());
 
 		game.end();
-	}
+		
+	}/**/
 }

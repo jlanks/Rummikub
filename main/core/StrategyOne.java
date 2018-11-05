@@ -15,6 +15,8 @@ public class StrategyOne implements Play {
 	// function which tries and make a run in with the players tiles.
 	public void makeRun(Game game, Tile t) {
 		
+		
+	
 		// the list of colours already used
 				ArrayList<Colour> col = new ArrayList<Colour>(); 
 				
@@ -321,6 +323,7 @@ public class StrategyOne implements Play {
 		//System.out.print(game.getTable().getMeld(0).toString()); 
 		//makeAdditions(game,game.getTable().getMeld(0),game.getTable().player2().getTile(0),TNUM,MNUM,MI,TI); 
 		/**/
+		game.getTable().drawTile(game.getPlayer());
 		return 0;
 		
 	}

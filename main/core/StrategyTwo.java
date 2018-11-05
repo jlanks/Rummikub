@@ -9,7 +9,7 @@ public class StrategyTwo implements Play {
 	}
 
 	public int play(Game game) {
-
+		game.getTable().drawTile(game.getPlayer());
 		return 0;
 	}
 
