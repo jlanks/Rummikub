@@ -13,9 +13,75 @@ public class StrategyOne implements Play {
 	
 
 	// function which tries and make a run in with the players tiles.
-	public void makeRun() {
-
+	public void makeRun(Game game, Tile t) {
+		
+		// the list of colours already used
+				ArrayList<Colour> col = new ArrayList<Colour>(); 
+				
+				// the temporary meld going to be used 
+				ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
+				
+				// for testing (player 2 has the strategy one)
+				ArrayList<Tile> hand = game.getTable().player2().getHand(); 
+				
+				// for game use (when the game is being played, 
+				// this will only be called by a plyer assigned s1 
+				//ArrayList<Tile> hand = game.getPlayer().getHand(); 
+				
+				// current player, again for when the game is set up properly
+				Player player = game.getPlayer(); 
+				
+				// the tile which will be the comparison basis 
+				Tile compare = t; 
+				
+				// the current games table
+				Table table = game.getTable();
+				
+				//adding the tile argument to the meld array
+				tempmeld.add(t); 
+				
+				// adding tiles with all the same value
+				
+				// loops through all the tiles in the players hand
+				for(int i = 0; i<hand.size(); i++) {
+					
+					// if the card is higher, add it in the back
+					
+					if(hand.get(i).getValue() == compare.getValue() + 1 && 
+							hand.get(i).getColour() == compare.getColour() &&
+							!tempmeld.contains(hand.get(i))) {
+						
+						// adding to tile to the temp meld
+						tempmeld.add(hand.get(i));
+						// incrementing the compare tile
+						compare = hand.get(i); 
+					
+					}
+					
+				
+				}
+				// making the meld to be added to the table
+				Meld addmeld = new Meld(tempmeld);
+					
+					
+				if(addmeld.validMeld()) {
+					game.getTable().addMeld(addmeld);
+					/*
+					// remove tiles from hand
+					for(int i = 0;i<addmeld.getSize();i++) {
+						
+						if(game.getPlayer().getHand().contains(addmeld.getTile(i))){
+							game.getPlayer().RemoveTile(i);
+						}
+					}
+					*/
+				}
+				
+				
 	}
+				
+
+	
 
 
 	
@@ -238,16 +304,20 @@ public class StrategyOne implements Play {
 
 		
 		// making as many sets as possible
-		makeSet(game,game.getTable().player2().getTile(0)); 
+		//makeSet(game,game.getTable().player2().getTile(0)); 
+		makeRun(game,game.getTable().player2().getTile(0));
+		// making as many runs as possible
+		
+		
 		/*
 		// making as many additions as possible
 		int TNUM, MNUM, TI,MI;
 		TNUM = game.getPlayer().getHandSize();
 		MNUM = game.getTable().numMelds(); 
 		TI = MI = 0 ; 
-		
-		makeAdditions(game,game.getTable().getMeld(0),game.getTable().player2().getTile(0),TNUM,MNUM,MI,TI); 
-		*/
+		//System.out.print(game.getTable().getMeld(0).toString()); 
+		//makeAdditions(game,game.getTable().getMeld(0),game.getTable().player2().getTile(0),TNUM,MNUM,MI,TI); 
+		/**/
 		return 0;
 		
 	}

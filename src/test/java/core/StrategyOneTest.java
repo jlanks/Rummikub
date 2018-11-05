@@ -21,7 +21,7 @@ public class StrategyOneTest {
 		assertEquals(0, strat.play(game));
 
 	}
-
+/*
 	@Test
 	public void testMakeSet() {
 
@@ -405,16 +405,49 @@ public class StrategyOneTest {
 		// making sure 3 melds were added to the table 
 		assertEquals(3,game.getTable().numMelds());
 
-		/**/
-	}
-	/*
-	public void testMakeRun() {
-		
-		
-		
 		
 	}
+	
 	*/
+	@Test
+	public void testMakeRun() {
+
+		// making a game
+
+		Game game = new Game();
+		Player P1 = game.getTable().player2();
+
+		// giving p1 the cards to make a set
+		P1.addTile(new Tile(Colour.Red, 10));
+		P1.addTile(new Tile(Colour.Red, 11));
+		P1.addTile(new Tile(Colour.Red, 12));
+		P1.addTile(new Tile(Colour.Red, 13));
+		//sgame.getTable().init();
+		game.nextTurn();
+		
+		// player should make a set and add it to the table
+		// player makes their move
+		
+		assertEquals(4, P1.getHandSize());
+		
+		P1.Play(game);
+		
+		// this means hand size will be zero
+		assertEquals(0, P1.getHandSize());
+		
+		// this means the table will have a meld on it
+		assertEquals(1, game.getTable().numMelds());
+		
+		// this means the table will have a meld on it of correct size
+		assertEquals(4, game.getTable().getMeld(0).getSize());
+		
+		P1.getHand().clear();
+
+		/*	*/
+		
+	}
+	
+	/*
 	@Test
 	public void testMakeAdditions() {
 		
@@ -688,7 +721,8 @@ public class StrategyOneTest {
 				assertEquals(0,P1.getHandSize());
 				
 				
-				
+					
 	}
-	/**/
+/**/
+	
 }
