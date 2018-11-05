@@ -66,15 +66,18 @@ public class StrategyOne implements Play {
 					
 				if(addmeld.validMeld()) {
 					game.getTable().addMeld(addmeld);
-					/*
+					
 					// remove tiles from hand
+					
 					for(int i = 0;i<addmeld.getSize();i++) {
-						
-						if(game.getPlayer().getHand().contains(addmeld.getTile(i))){
-							game.getPlayer().RemoveTile(i);
+						for(int j = 0; j < game.getPlayer().getHand().size(); j++) {
+							if(game.getPlayer().getHand().get(j).equals(addmeld.getTile(i))) {
+								game.getPlayer().getHand().remove(j);
+								break;
+							}
 						}
 					}
-					*/
+					
 				}
 				
 				
