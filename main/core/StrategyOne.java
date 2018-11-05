@@ -304,7 +304,7 @@ public class StrategyOne implements Play {
 
 		
 		// making as many sets as possible
-		//makeSet(game,game.getTable().player2().getTile(0)); 
+		makeSet(game,game.getTable().player2().getTile(0)); 
 		makeRun(game,game.getTable().player2().getTile(0));
 		// making as many runs as possible
 		
