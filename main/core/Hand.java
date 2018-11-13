@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Hand {
@@ -53,6 +54,13 @@ public class Hand {
 			Hand.add(h.getTile(i));
 		}
 		
+		
+	}
+	
+	// sorting method
+	
+	public void sortHand() {
+		Collections.sort(this.Hand); 
 		
 	}
 	

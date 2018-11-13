@@ -1,10 +1,11 @@
 package core;
 
-public class Tile {
+public class Tile implements Comparable<Tile> {
 
 	// Important Tile variables
 	private Colour TColour;
 	private int number;
+	static final String colours = "RGBO";  
 
 	// Tile constructor
 	public Tile(Colour colour, int TNumb) {
@@ -49,7 +50,19 @@ public class Tile {
 	public int getValue() {
 		return this.number;
 	}
-
+	public String ConvColour() {
+		if (this.getColour() == Colour.Red) {
+			return "R";
+		} else if (this.getColour() == Colour.Green) {
+			return "G";
+		} else if (this.getColour() == Colour.Blue) {
+			return "B";
+		} else if (this.getColour() == Colour.Orange) {
+			return "O";
+		}
+		return null; 
+		
+	}
 	public String toString() {
 		String output = "";
 
@@ -74,5 +87,26 @@ public class Tile {
 		} else {
 			return false;
 		}
+	}
+
+	public int compareTo(Tile o) {
+		// TODO Auto-generated method stub
+		if(this.valueOf(this.ConvColour()) < o.valueOf(o.ConvColour()) )
+			return -1;
+		else if (this.valueOf(this.ConvColour()) > o.valueOf(o.ConvColour()) )
+			return 1; 
+		else {
+			if(this.getValue() > o.getValue())
+				return 1;
+			else if(this.valueOf(this.ConvColour()) < o.valueOf(o.ConvColour()) )
+				return -1; 
+			else return 0; 
+			
+			
+		}
+		
+	}
+	private int valueOf(String c) {
+		return colours.indexOf(c); 
 	}
 }
