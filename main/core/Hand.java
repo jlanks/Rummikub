@@ -29,20 +29,41 @@ public class Hand {
 	
 	// hand
 	
-	LinkedList<Tile> Hand = new LinkedList<Tile>(); 
+	LinkedList<Tile> Hand;  
 	
+	// deck
+	
+	Deck deck; 
 	// Constructor
 	public Hand(Deck d){
+		this.deck = d; 
+		Hand = new LinkedList<Tile>();
+		for (int i=0; i<14;i++){
+			Hand.add(deck.getTopTile());
+		}
 		
 		
 	}
 	
 	// Copy Constructor
 	public Hand(Hand h){
+		this.deck = h.deck;
+		Hand = new LinkedList<Tile>();
+		for(int i =0;i<h.getSize();i++) {
+			Hand.add(h.getTile(i));
+		}
 		
 		
 	}
 	
+	public int getSize() {
+		return Hand.size();
+	}
+	
+	public Tile getTile(int i) {
+		return Hand.get(i); 
+		
+	}
 	
 	// function which tries and make a run in with the players tiles.
 	// when calling initially, tile should be the first tile of the players hand

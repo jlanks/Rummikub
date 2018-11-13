@@ -18,7 +18,7 @@ public class HandTest {
 	@Test
 	public void testCConstructor() {
 		
-		public void testConstructor() {
+	
 			// making a deck
 			Deck deck = new Deck();
 			// using reg c
