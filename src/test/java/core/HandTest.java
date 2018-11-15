@@ -94,6 +94,39 @@ public class HandTest {
 	@Test
 	public void testSets() {
 		
+		// make a hand 
+				Hand hand = new Hand(); 
+				
+				Game game = new Game(); 
+				// testing constructor worked
+				assertEquals(hand.getSize(),0); 
+				// making tiles 
+				Tile t5,t6,t7,t8,t9;
+				t5 = (new Tile(Colour.Orange, 10));
+				t6 = (new Tile(Colour.Green, 10));
+				t7 = (new Tile(Colour.Blue, 10));
+				t8 = (new Tile(Colour.Red, 10));
+				
+				
+				//adding tiles to make a run of size 3 
+				hand.add(t5); 
+				hand.add(t6); 
+				hand.add(t7); 
+				hand.add(t8);
+				// testing constructor worked
+				assertEquals(hand.getSize(),4); 
+				
+				// making a run
+				
+				hand.makeSet(game,t5); 
+				
+				// testing the run was played
+				assertEquals(hand.getSize(),0); 
+				
+				// testing the run was added to the table
+				
+				assertEquals(game.getTable().numMelds(),1);
+		
 		
 		
 		
