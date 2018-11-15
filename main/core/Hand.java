@@ -45,6 +45,14 @@ public class Hand {
 		
 		
 	}
+	public Hand(){
+		
+		Hand = new LinkedList<Tile>();
+		
+		}
+		
+		
+	
 	
 	// Copy Constructor
 	public Hand(Hand h){
@@ -73,6 +81,17 @@ public class Hand {
 		
 	}
 	
+	public void makeRun() {
+		
+		this.sortHand(); 
+		
+		
+		
+	}
+	public void add(Tile t) {
+		Hand.add(t); 
+		
+	}
 	// function which tries and make a run in with the players tiles.
 	// when calling initially, tile should be the first tile of the players hand
 	// game is the current game

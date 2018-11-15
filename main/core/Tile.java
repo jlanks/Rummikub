@@ -91,14 +91,14 @@ public class Tile implements Comparable<Tile> {
 
 	public int compareTo(Tile o) {
 		// TODO Auto-generated method stub
-		if(this.valueOf(this.ConvColour()) < o.valueOf(o.ConvColour()) )
+		if(this.getValue() < o.getValue() )
 			return -1;
-		else if (this.valueOf(this.ConvColour()) > o.valueOf(o.ConvColour()) )
+		else if (this.getValue() > o.getValue())
 			return 1; 
 		else {
 			if(this.getValue() > o.getValue())
 				return 1;
-			else if(this.valueOf(this.ConvColour()) < o.valueOf(o.ConvColour()) )
+			else if(this.getValue() < o.getValue() )
 				return -1; 
 			else return 0; 
 			
