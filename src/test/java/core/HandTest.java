@@ -2,6 +2,9 @@ package core;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
+
 import org.junit.Test;
 
 public class HandTest {
@@ -59,6 +62,7 @@ public class HandTest {
 	public void testRuns() {
 		// make a hand 
 		Hand hand = new Hand(); 
+		
 		
 		// testing constructor worked
 		assertEquals(hand.getSize(),0); 

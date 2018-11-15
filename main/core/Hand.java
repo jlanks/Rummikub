@@ -83,9 +83,49 @@ public class Hand {
 	
 	public void makeRun() {
 		
+		// the temporary meld going to be used 
+		ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
+		Tile curr = this.getTile(0);
+		ArrayList index = new ArrayList(); 
 		this.sortHand(); 
+		tempmeld.add(curr); 
+		// adding valid tiles 
+		for(int i =0;i<this.getSize();i++) {
+			if(this.getTile(i).getColour() == curr.getColour() &&
+					this.getTile(i).getValue() == curr.getValue() + 1) {
+				index.add(i); 
+				curr = this.getTile(i);
+				tempmeld.add(curr);
+				
+				
+				
+				
+			}
+			
+			
+		}
+		Meld addmeld = new Meld(tempmeld);
+		
+		if(addmeld.validMeld()) {
+			for(int i=0;i<tempmeld.size();i++) {
+				 // removing cards from hand
+				this.remove(tempmeld.get(i)); 
+			}
+			
+			
+		}
 		
 		
+		
+		
+		
+	}
+	private void remove(Tile tile) {
+		// TODO Auto-generated method stub
+		for(int i =0; i<this.getSize();i++) {
+			if(this.getTile(i).equals(tile))
+				Hand.remove(i); 
+		}
 		
 	}
 	public void add(Tile t) {
