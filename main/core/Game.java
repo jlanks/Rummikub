@@ -47,6 +47,7 @@ public class Game {
 		}
 
 		if (currPlayer.getName() == "Human Player") {
+			currPlayer.sortHand();
 			gameStr += "\nTiles: " + currPlayer.getHand();
 		}
 
