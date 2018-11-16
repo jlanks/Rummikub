@@ -93,10 +93,10 @@ public class Tile implements Comparable<Tile> {
 		// TODO Auto-generated method stub
 		if(this.getValue() < o.getValue() )
 			return -1;
-		else if (this.getValue() > o.getValue())
+		else if (this.getValue() > o.getValue() )
 			return 1; 
 		else {
-			if(this.getValue() > o.getValue())
+			if(this.getValue() > o.getValue() )
 				return 1;
 			else if(this.getValue() < o.getValue() )
 				return -1; 
