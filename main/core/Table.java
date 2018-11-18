@@ -21,6 +21,20 @@ public class Table {
 		p4 = new Player("Player 4");	//dummy player; won't be implemented in game
 	}
 
+	
+	
+	public ArrayList<String> getMeldsString(){
+		
+		ArrayList<String> stringMelds = new ArrayList<String>(); 
+		for(int i=0;i<melds.size();i++) {
+			
+			stringMelds.add(melds.get(i).StringVersion()); 
+			
+		}
+		return stringMelds; 
+		
+		
+	}
 	public int numMelds() {
 		return melds.size();
 	}

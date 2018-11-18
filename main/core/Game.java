@@ -13,6 +13,11 @@ public class Game {
 	public boolean isOver() {
 		return isOver;
 	}
+	public boolean InitGame() {
+		
+		table.init(); 
+		return true; 
+	}
 
 	public Table getTable() {
 		return table;

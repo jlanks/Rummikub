@@ -26,12 +26,30 @@ public class Player {
 		return this.strat.play(g);
 		// return 0;
 	}
+	
 
 	public void ClearHand() {
 
 		hand.clear();
 	}
-
+	public ArrayList<String> getSHand() {
+		ArrayList<String> stringVersion = new ArrayList<String>();
+		int value =0; 
+		String col = ""; 
+		String tile = ""; 
+		this.sortHand(); 
+		for(int i =0; i<hand.size();i++) {
+			value = hand.get(i).getValue(); 
+			col = hand.get(i).ConvColour();
+			tile = col + value;
+			stringVersion.add(tile);
+			
+			
+		}
+		
+		
+		return stringVersion;
+	}
 	public ArrayList<Tile> getHand() {
 
 		return hand;

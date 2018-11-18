@@ -13,6 +13,7 @@ public class Meld {
 		}
 
 	}
+	
 
 	// Constructor for 1 tile
 	Meld(Tile a, boolean first) {
@@ -67,6 +68,22 @@ public class Meld {
 			}
 
 		}
+	}
+	public String StringVersion() {
+		String finalResult = "";
+		String temp ="";
+		String col= "";
+		int value =0; 
+		for(int i = 0;i<meld.size();i++) {
+			
+			col = this.getTile(i).ConvColour(); 
+			value = this.getTile(i).getValue(); 
+			temp = col+value; 
+			finalResult = finalResult + temp +" "; 
+			
+		}
+		return finalResult; 
+		
 	}
 	// *********** TILES NEED TO BE ADDED IN ORDER ************
 

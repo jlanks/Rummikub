@@ -7,7 +7,8 @@ public class CreateMeldView extends Pane{
 	public CreateMeldView() {
 		Pane innerPane = new Pane(); 
 		Label chooseTiles = new Label("Choose Your Tiles: "); 
-		
+		Game game = new Game();
+		game.InitGame();
 		chooseTiles.relocate(10, 10);
 		chooseTiles.setPrefSize(150, 25);
 		
@@ -22,7 +23,7 @@ public class CreateMeldView extends Pane{
 		 exitButton.setPrefSize(150, 25);
 		 
 		 ListView<String> tileList = new ListView<String>();
-		//meldList.setItems(FXCollections.observableArrayList());
+		tileList.setItems(FXCollections.observableArrayList(game.getPlayer().getSHand()));
 		 tileList.relocate(10, 45);
 		 tileList.setPrefSize(150, 150);
 		// Adding elements to the pane 

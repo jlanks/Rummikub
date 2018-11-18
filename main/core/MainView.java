@@ -7,7 +7,14 @@ public class MainView extends Pane {
 	public MainView() {
 	Pane innerPane = new Pane(); 
 	Label meldlabel = new Label("MELDS ON TABLE:"); 
-	
+	Game game = new Game(); 
+	game.InitGame();
+	// give player2 the tiles to play a melds to the table
+	game.nextTurn();
+	game.getPlayer().addTile(new Tile("O10"));
+	game.getPlayer().addTile(new Tile("G10"));
+	game.getPlayer().addTile(new Tile("B10"));
+	game.getPlayer().Play(game); 
 	meldlabel.relocate(10, 10);
 	meldlabel.setPrefSize(150, 25);
 	
@@ -22,8 +29,15 @@ public class MainView extends Pane {
 		 addButtontable.relocate(10, 235);
 		 addButtontable.setPrefSize(150, 25);
 	 
+		 
 	 ListView<String> meldList = new ListView<String>();
-	//meldList.setItems(FXCollections.observableArrayList());
+	 // each row needs to be an array of tile representations
+	 // make a method in meld class which represents
+	 // the meld in a string form. 
+	 // array of melds in string form can then populate
+	 // the listview
+	 // 
+	meldList.setItems(FXCollections.observableArrayList(game.getTable().getMeldsString()));
 	 meldList.relocate(10, 45);
 	 meldList.setPrefSize(150, 150);
 	// Adding elements to the pane 
