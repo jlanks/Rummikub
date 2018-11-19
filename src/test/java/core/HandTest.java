@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 public class HandTest {
+	
 
 	@Test
 	public void testConstructor() {
@@ -73,7 +74,9 @@ public class HandTest {
 		t7 = (new Tile(Colour.Orange, 9));
 		t8 = (new Tile(Colour.Orange, 10));
 		t9 = (new Tile(Colour.Orange, 11));
-		
+		Game game = new Game(); 
+		// testing constructor worked
+		assertEquals(hand.getSize(),0); 
 		//adding tiles to make a run of size 3 
 		hand.add(t5); 
 		hand.add(t6); 
@@ -88,6 +91,26 @@ public class HandTest {
 		// testing the run was played
 		assertEquals(hand.getSize(),0); 
 		
+		// adding tiles to make more than one run
+		hand.add(t5); 
+		hand.add(t6); 
+		hand.add(t7); 
+		hand.add(t7); 
+		hand.add(t8); 
+		hand.add(t9); 
+		
+		// testing constructor worked
+		assertEquals(hand.getSize(),6); 
+		
+		// making multiple runs
+		
+		hand.makeRun(game,t5);
+		
+		
+		
+		// testing the runs were played
+		assertEquals(hand.getSize(),0); 
+		/**/
 		
 		
 	}

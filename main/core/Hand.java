@@ -35,6 +35,7 @@ public class Hand {
 	// deck
 	
 	Deck deck; 
+	
 	// Constructor
 	public Hand(Deck d){
 		this.deck = d; 
