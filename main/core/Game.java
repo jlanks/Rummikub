@@ -1,5 +1,7 @@
 package core;
 
+import java.util.ArrayList;
+
 public class Game {
 	private Table table;
 	private boolean isOver = false;
@@ -18,9 +20,17 @@ public class Game {
 		table.init(); 
 		return true; 
 	}
-
+	public ArrayList<String> getCurrHand() {
+		return currPlayer.getSHand(); 
+	}
 	public Table getTable() {
 		return table;
+	}
+	public int getNumMelds() {
+		return table.numMelds(); 
+	}
+	public ArrayList<String> getMeldsStrings(){
+		return table.getMeldsString(); 
 	}
 
 	public Player getPlayer() {

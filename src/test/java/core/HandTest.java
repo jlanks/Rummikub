@@ -112,7 +112,7 @@ public class HandTest {
 		Game game2 = new Game(); 
 		hand.makeRun(game2,t5);
 		System.out.print(game2.getTable().getMeldsString());
-		//assertEquals(game2.getTable().numMelds(),2); 
+		assertEquals(game2.getTable().numMelds(),3); 
 		
 		// testing the runs were played
 		assertEquals(hand.getSize(),0); 
