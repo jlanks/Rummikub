@@ -5,7 +5,59 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GameTest {
-
+	
+	
+	
+	@Test
+	public void testS1() {
+		
+		Game game = new Game(); 
+		
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Red, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		t14 = (new Tile(Colour.Red, 13));
+		t15 = (new Tile(Colour.Green, 13));
+		t16 = (new Tile(Colour.Blue, 13));
+		
+		game.nextTurn();
+		assertEquals(0,game.getPlayer().getHandSize()); 
+		
+		game.getPlayer().addTile(t5); 
+		game.getPlayer().addTile(t6); 
+		game.getPlayer().addTile(t7); 
+		game.getPlayer().addTile(t8); 
+		game.getPlayer().addTile(t9); 
+		game.getPlayer().addTile(t10); 
+		game.getPlayer().addTile(t11); 
+		game.getPlayer().addTile(t12); 
+		game.getPlayer().addTile(t13); 
+		game.getPlayer().addTile(t14); 
+		game.getPlayer().addTile(t15); 
+		game.getPlayer().addTile(t16); 
+		
+		assertEquals(12,game.getPlayer().getHandSize()); 
+		
+		game.getPlayer().Play(game); 
+		
+		assertEquals(0,game.getPlayer().getHandSize());
+		assertEquals(3,game.getNumMelds());
+		
+	
+		
+		
+		
+		
+		
+	}
+/*
 	@Test
 	public void testinit() {
 		Game game = new Game();
@@ -14,6 +66,7 @@ public class GameTest {
 		Player p1 = table.player2();
 		Player p3 = table.player3();
 
+		
 		assertEquals("Human Player", pHuman.getName()); // StrategyHuman
 		assertEquals("Player 1", p1.getName()); // StrategyOne
 		assertEquals("Player 3", p3.getName()); // StrategyTwo
@@ -83,7 +136,7 @@ public class GameTest {
 		assertEquals(2, table.numMelds());
 
 		game.end();
-		*/
+		
 	}
 	
 	public void testWinFirst() {
@@ -138,7 +191,7 @@ public class GameTest {
 		assertEquals(4, table.numMelds());
 
 		game.end();
-		/**/
+	
 	}
 
 	public void testMeldCombos() {
@@ -250,7 +303,7 @@ public class GameTest {
 		assertEquals(10, table.numMelds());
 
 		game.end();
-		/**/
+		
 	}
 	
 	public void testStrategies() {
@@ -395,7 +448,7 @@ public class GameTest {
 
 		game.end();
 		
-	}/**/
+	}
 	
 	public void testadd30sum() {
 		Game game = new Game();
@@ -481,4 +534,5 @@ public class GameTest {
 		assertEquals(x+2, p1.getHandSize());
 		
 	}
+	*/
 }

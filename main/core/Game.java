@@ -12,6 +12,7 @@ public class Game {
 		currPlayer = table.player1();
 	}
 
+	
 	public boolean isOver() {
 		return isOver;
 	}

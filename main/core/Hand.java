@@ -161,7 +161,7 @@ public class Hand {
 		
 		
 	}
-	private void remove(Tile tile) {
+	public void remove(Tile tile) {
 		// TODO Auto-generated method stub
 		for(int i =0; i<this.getSize();i++) {
 			if(this.getTile(i).equals(tile))
@@ -169,6 +169,14 @@ public class Hand {
 		}
 		
 	}
+	public void remove(int tile) {
+		// TODO Auto-generated method stub
+		
+				Hand.remove(tile); 
+		
+		
+	}
+	
 	public void add(Tile t) {
 		Hand.add(t); 
 		
@@ -277,10 +285,16 @@ public class Hand {
 				
 				
 			
-			
+		
+		}
+		public Tile get(int i) {
+			// TODO Auto-generated method stub
+			return Hand.get(i); 
+		}
+		
+		
+		public void clearHand() {	
+			Hand.clear();
 			
 		}
-	
-	
-
 }

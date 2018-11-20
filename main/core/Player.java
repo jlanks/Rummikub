@@ -8,7 +8,7 @@ public class Player {
 	private String pName;
 	private Play strat;
 	// players hand
-	private ArrayList<Tile> hand = new ArrayList<Tile>();
+	private Hand hand = new Hand();
 	// indicates if player is playing or waiting for their turn
 	private boolean DoneTurn = false;
 
@@ -27,10 +27,11 @@ public class Player {
 		// return 0;
 	}
 	
+	
 
 	public void ClearHand() {
 
-		hand.clear();
+		hand.clearHand();
 	}
 	public ArrayList<String> getSHand() {
 		ArrayList<String> stringVersion = new ArrayList<String>();
@@ -38,7 +39,7 @@ public class Player {
 		String col = ""; 
 		String tile = ""; 
 		this.sortHand(); 
-		for(int i =0; i<hand.size();i++) {
+		for(int i =0; i<hand.getSize();i++) {
 			value = hand.get(i).getValue(); 
 			col = hand.get(i).ConvColour();
 			tile = col + value;
@@ -50,7 +51,7 @@ public class Player {
 		
 		return stringVersion;
 	}
-	public ArrayList<Tile> getHand() {
+	public Hand getHand() {
 
 		return hand;
 	}
@@ -76,11 +77,11 @@ public class Player {
 	}
 
 	public int getHandSize() {
-		return hand.size();
+		return hand.getSize();
 	}
 
 	public boolean RemoveTile(int i) {
-		if (i > hand.size() - 1) {
+		if (i > hand.getSize() - 1) {
 			return false;
 		}
 		hand.remove(i);
@@ -88,9 +89,9 @@ public class Player {
 	}
 
 	public boolean RemoveTile(Tile t) {
-		for (int i = 0; i < hand.size(); i++) {
+		for (int i = 0; i < hand.getSize(); i++) {
 			if (hand.get(i).equals(t)) {
-				hand.remove(i);
+				hand.remove(t);
 				return true;
 			}
 		}
@@ -111,7 +112,7 @@ public class Player {
 		ArrayList<Tile> G = new ArrayList<Tile>();
 		ArrayList<Tile> B = new ArrayList<Tile>();
 		ArrayList<Tile> O = new ArrayList<Tile>();
-		for (int i = 0; i < hand.size(); i++) { // sort tiles into colors
+		for (int i = 0; i < hand.getSize(); i++) { // sort tiles into colors
 			Tile t = hand.get(i);
 			if (t.getColour().equals(Colour.Red)) {
 				R.add(t);
@@ -129,7 +130,7 @@ public class Player {
 		sortByValue(B);
 		sortByValue(O);
 
-		hand.clear();
+		hand.clearHand();
 		for (int i = 0; i < R.size(); i++) {
 			hand.add(R.get(i));
 		}

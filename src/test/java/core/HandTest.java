@@ -68,7 +68,7 @@ public class HandTest {
 		// testing constructor worked
 		assertEquals(hand.getSize(),0); 
 		// making tiles 
-		Tile t5,t6,t7,t8,t9,t10,t11;
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
 		t5 = (new Tile(Colour.Orange, 7));
 		t6 = (new Tile(Colour.Orange, 8));
 		t7 = (new Tile(Colour.Orange, 9));
@@ -76,6 +76,9 @@ public class HandTest {
 		t9 = (new Tile(Colour.Orange, 11));
 		t10 = (new Tile(Colour.Orange, 12));
 		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		
 		Game game = new Game(); 
 		// testing constructor worked
 		assertEquals(hand.getSize(),0); 
@@ -105,19 +108,37 @@ public class HandTest {
 		hand.add(t10); 
 		hand.add(t11); 
 		
+		
 		// testing constructor worked
 		//assertEquals(hand.getSize(),6); 
 		
 		// making multiple runs
 		Game game2 = new Game(); 
 		hand.makeRun(game2,t5);
+		
 		System.out.print(game2.getTable().getMeldsString());
 		assertEquals(game2.getTable().numMelds(),3); 
 		
 		// testing the runs were played
 		assertEquals(hand.getSize(),0); 
 		/**/
-		
+		// making multiple runs and a set
+				Game game3 = new Game();
+				hand.add(t5); 
+				hand.add(t6); 
+				hand.add(t7);
+				hand.add(t5); 
+				hand.add(t6); 
+				hand.add(t7);
+				hand.add(t11); 
+				hand.add(t12); 
+				hand.add(t13); 
+				
+				hand.makeRun(game3,t5);
+				hand.makeSet(game3, t11);
+				System.out.print(game3.getTable().getMeldsString());
+				// testing runs and sets can both be played from same hand
+				assertEquals(game3.getTable().numMelds(),3); 
 		
 	}
 	@Test
