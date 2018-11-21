@@ -209,7 +209,11 @@ public class HandTest {
 		hand.add(t6); 
 		hand.add(t7); 
 		//testing the sum of get runsum is 24
-		assertEquals(hand.getRunSum(),24); 
+		int x =0; 
+		assertEquals(hand.getRunSum(hand,hand.get(0),x),24); 
+		// testing the players hand isnt touched
+		assertEquals(hand.getSize(),3); 
+		
 		
 		
 		
