@@ -214,9 +214,19 @@ public class HandTest {
 		// testing the players hand isnt touched
 		assertEquals(hand.getSize(),3); 
 		
-		
+		hand.clearHand();
+		assertEquals(hand.getSize(),0); 
+		hand.add(t13); 
+		hand.add(t12); 
+		hand.add(t11); 
+		x = 0; 
+		assertEquals(hand.getSetSum(hand,hand.get(0),x),39); 
+		// testing the players hand isnt touched
+				assertEquals(hand.getSize(),3); 
 		
 		
 	}
+	
+	
 
 }
