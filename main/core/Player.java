@@ -3,7 +3,7 @@ package core;
 import java.util.ArrayList;
 
 public class Player {
-
+	private boolean playedf = false;
 	// players name
 	private String pName;
 	private Play strat;
@@ -55,7 +55,13 @@ public class Player {
 
 		return hand;
 	}
-
+	public boolean checkFirst() {
+		return playedf; 
+	}
+	public void playedFirst() {
+		playedf = true; 
+		
+	}
 	public boolean addTile(Tile tile) {
 		hand.add(tile);
 		return true;

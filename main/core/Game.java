@@ -37,7 +37,13 @@ public class Game {
 	public Player getPlayer() {
 		return currPlayer;
 	}
-
+	public boolean checkFirst() {
+		
+		return this.getPlayer().checkFirst();
+	}
+	public void playFirst() {
+		this.getPlayer().playedFirst();
+	}
 	public Player getNextPlayer() {
 		if (currPlayer.getName() == "Human Player") {
 			return table.player2();
