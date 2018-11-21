@@ -208,6 +208,7 @@ public class HandTest {
 		hand.add(t5); 
 		hand.add(t6); 
 		hand.add(t7); 
+		
 		//testing the sum of get runsum is 24
 		int x =0; 
 		assertEquals(hand.getRunSum(hand,hand.get(0),x),24); 

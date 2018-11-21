@@ -338,13 +338,13 @@ public class Hand {
 			
 			// looping through the hand to find the index 
 			
-			for(int i =0; i<Hand.size();i++) {
+			for(int i =0; i<temphand.getSize();i++) {
 				
-				if(i == Hand.size() && Hand.get(i) != t) {
+				if(i == temphand.getSize() && temphand.get(i) != t) {
 					
 					indexof = -1; 
 				}
-				if(Hand.get(i).equals(t)) {
+				if(temphand.get(i).equals(t)) {
 					indexof = i; 
 				}
 			}
@@ -386,4 +386,92 @@ public class Hand {
 			
 		
 		}
+		// call this with the current players hand the current tile of search and the total
+				public int getSetSum(Hand hand, Tile t, int total) {
+					// the list of colours already used
+					ArrayList<Colour> col = new ArrayList<Colour>(); 
+					
+					int sum = 0; 
+					// the temporary meld going to be used 
+					ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
+					// the current tile
+					Tile curr = t;
+					 // making a new hand separate to the players so the players hand is not messed up
+					Hand temphand = new Hand(this); 
+					
+					// indexes of used tiles
+					ArrayList index = new ArrayList(); 
+					// sorting hand in ascending order 
+					this.sortHand(); 
+					// adding the current tile to the temporary meld
+					tempmeld.add(curr); 
+					// adding valid tiles 
+					for(int i=0;i<temphand.getSize();i++)
+					if(temphand.get(i).getValue() == curr.getValue() && 
+							   temphand.get(i).getColour() != curr.getColour() &&
+							   !temphand.get(i).equals(t) &&
+							   !(col.contains(temphand.get(i).getColour()))) {
+								
+								// adding to tile to the temp meld
+								tempmeld.add(temphand.get(i));
+								// adding the colour to the colour meld
+								col.add(temphand.get(i).getColour()); 
+							
+							}
+						
+						
+					
+					// index of current tile
+					int indexof = 0; 
+					
+					// looping through the hand to find the index 
+					
+					for(int i =0; i<Hand.size();i++) {
+						
+						if(i == Hand.size() && Hand.get(i) != t) {
+							
+							indexof = -1; 
+						}
+						if(Hand.get(i).equals(t)) {
+							indexof = i; 
+						}
+					}
+					// meld to be added to the table
+					Meld addmeld = new Meld(tempmeld);
+					// checking to see if the meld is valid
+					if(addmeld.validMeld()) {
+						// if valid then you need to add the sum of the meld to the new total
+						sum += addmeld.getSum(); 
+						// if valid, then it will be played. remove the cards from the hand 
+						for(int i=0;i<tempmeld.size();i++) {
+							 // removing cards from hand
+							temphand.remove(tempmeld.get(i)); 
+						}
+						//game.getTable().addMeld(addmeld);
+						if(temphand.getSize() > 0) 
+						//	makeRun(newgame,temphand); 
+							temphand.getRunSum(temphand , temphand.get(0), total+sum); 
+						
+						if(temphand.getSize() <= 0)
+							return total+sum;
+						
+						
+					}
+					// when the meld is not valid and index is less than hand size
+					if(!addmeld.validMeld() && indexof < temphand.getSize()-1) {
+						
+						
+						temphand.getRunSum(temphand,temphand.get(indexof+1),total);
+					}
+					
+					// when the index is at the last and meld is invalid
+					if(indexof+1 >= Hand.size() && !addmeld.validMeld()) {
+						
+						return total; 
+					}
+					
+					return 0;
+					
+				
+				}
 }
