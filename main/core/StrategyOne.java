@@ -120,12 +120,21 @@ public class StrategyOne implements Play {
 	public int play(Game game) {
 
 		Hand hand = game.getPlayer().getHand();
+		Player player = game.getPlayer();
 		//&& game.playedFirst()
-		if(hand.getSize() >0 )
-			game.getPlayer().getHand().makeRun(game,game.getPlayer().getHand().get(0)); 
-		if(hand.getSize() >0 )
-			game.getPlayer().getHand().makeSet(game,game.getPlayer().getHand().get(0)); 
+		int x = 0; 
+		if(hand.getSize() >0 && hand.getRunSum(hand, hand.get(0),x ) +hand.getSetSum(hand, hand.get(0),x ) > 29) {
+			game.getPlayer().getHand().makeRun(game,game.getPlayer().getHand().get(0));
+			if(hand.getSize() > 2)
+				game.getPlayer().getHand().makeSet(game,game.getPlayer().getHand().get(0)); 
 		
+		}	
+		
+		
+		if(hand.getSize() == 0) {
+			System.out.println(player.getName() + "WINS THE GAME!");
+			return 1;
+		}
 		return 0;
 		
 	}
