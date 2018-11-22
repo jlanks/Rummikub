@@ -28,7 +28,10 @@ public class Player {
 	}
 	
 	
-
+public int getAvailMeldSum() {
+	int x = 0;
+	return hand.getRunSum(this.hand, this.getTile(0),x ) + hand.getSetSum(this.hand, this.getTile(0),x );
+}
 	public void ClearHand() {
 
 		hand.clearHand();

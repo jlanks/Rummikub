@@ -30,6 +30,10 @@ public class Game {
 	public int getNumMelds() {
 		return table.numMelds(); 
 	}
+	public int currHandSize() {
+		
+		return currPlayer.getHandSize();
+	}
 	public ArrayList<String> getMeldsStrings(){
 		return table.getMeldsString(); 
 	}
@@ -43,6 +47,9 @@ public class Game {
 	}
 	public void playFirst() {
 		this.getPlayer().playedFirst();
+	}
+	public int getAvailMeldSum() {
+		return currPlayer.getAvailMeldSum(); 
 	}
 	public Player getNextPlayer() {
 		if (currPlayer.getName() == "Human Player") {
