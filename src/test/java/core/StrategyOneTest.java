@@ -23,7 +23,7 @@ public class StrategyOneTest {
 
 	}
 	@Test
-	public void testPlayFirst() {
+	public void testPlayInvFirst() {
 		
 		Game game = new Game();
 		game.nextTurn();
@@ -52,8 +52,87 @@ public class StrategyOneTest {
 		
 		// testing the meld is not played since it is the first turn and not above 30
 		assertEquals(false,game.getPlayer().checkFirst());
-		//assertEquals(game.getNumMelds(),0);
-		//assertEquals(game.currHandSize(),3); 
+		assertEquals(game.getNumMelds(),0);
+		assertEquals(game.currHandSize(),3); 
+		
+		
+		
+		
+	}
+	
+	@Test
+	public void testPlayValidFirst() {
+		
+		Game game = new Game();
+		game.nextTurn();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		game.getPlayer().addTile(t11); 
+		game.getPlayer().addTile(t12); 
+		game.getPlayer().addTile(t13); 
+		assertEquals(3,game.getPlayer().getHandSize());
+		
+		int sum =0; 
+		
+		sum = game.getAvailMeldSum(); 
+		
+		assertEquals(39,sum); 
+		assertEquals(game.getNumMelds(),0);
+		assertEquals(1,game.getPlayer().Play(game)); 
+		
+		// testing the meld is not played since it is the first turn and not above 30
+		assertEquals(false,game.getPlayer().checkFirst());
+		assertEquals(game.getNumMelds(),1);
+		assertEquals(game.currHandSize(),0); 
+		
+		
+		
+		
+		
+	}
+	
+	@Test
+	public void testPlayAdd() {
+		
+		Game game = new Game();
+		game.nextTurn();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		game.getPlayer().addTile(t5); 
+		game.getPlayer().addTile(t11); 
+		game.getPlayer().addTile(t12); 
+		game.getPlayer().addTile(t13); 
+		
+		assertEquals(4,game.currHandSize());
+		
+		int sum =0; 
+		
+		sum = game.getPlayer().getHand().getSetSum(game.getPlayer().getHand(),game.getPlayer().getHand().get(0), sum);
+		
+		assertEquals(39,sum); 
+		assertEquals(game.getNumMelds(),0);
+		game.getPlayer().Play(game); 
+		
+		// testing the meld is not played since it is the first turn and not above 30
+		assertEquals(false,game.getPlayer().checkFirst());
+		assertEquals(game.getNumMelds(),1);
+		assertEquals(game.currHandSize(),0); 
 		
 		
 		
