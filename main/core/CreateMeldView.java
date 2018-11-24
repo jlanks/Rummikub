@@ -23,7 +23,7 @@ public class CreateMeldView extends Pane{
 		 exitButton.setPrefSize(150, 25);
 		 
 		 ListView<String> tileList = new ListView<String>();
-		tileList.setItems(FXCollections.observableArrayList(game.getCurrHand()));
+		tileList.setItems(FXCollections.observableArrayList(game.getCurrSHand()));
 		 tileList.relocate(10, 45);
 		 tileList.setPrefSize(150, 150);
 		// Adding elements to the pane 

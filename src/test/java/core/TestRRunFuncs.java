@@ -37,7 +37,8 @@ public class TestRRunFuncs {
 				// this means the table will have a meld on it of correct size
 				assertEquals(4, game.getTable().getMeld(0).getSize());
 				
-				P1.getHand().clear();
+				P1.getHand().clearHand();
+				
 				
 				// making sure the players hand is empty
 				assertEquals(0,P1.getHandSize()); 
@@ -67,7 +68,7 @@ public class TestRRunFuncs {
 				// testing that the hand size has been updated
 				assertEquals(5, P1.getHandSize());
 				// resetting hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();;
 				// making sure the players hand is empty
 				assertEquals(0,P1.getHandSize()); 
 				
@@ -94,7 +95,7 @@ public class TestRRunFuncs {
 				// one set available to make
 				
 				// clearing hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();
 				
 				// testing if call was successful
 				assertEquals(0,P1.getHandSize()); 
@@ -127,7 +128,7 @@ public class TestRRunFuncs {
 				//****
 				
 				// clearing hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();
 				
 				// testing if call was successful
 				assertEquals(0,P1.getHandSize()); 
@@ -167,7 +168,7 @@ public class TestRRunFuncs {
 				//********
 				
 				// clearing hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();
 				
 				// testing if call was successful
 				assertEquals(0,P1.getHandSize()); 
@@ -210,7 +211,7 @@ public class TestRRunFuncs {
 				
 				
 				// clearing hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();
 				
 				// testing if call was successful
 				assertEquals(0,P1.getHandSize()); 
@@ -256,7 +257,7 @@ public class TestRRunFuncs {
 				//*****
 				
 				// clearing hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();
 				
 				// testing if call was successful
 				assertEquals(0,P1.getHandSize()); 
@@ -300,7 +301,7 @@ public class TestRRunFuncs {
 				//*****
 				
 				// clearing hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();
 				
 				// testing if call was successful
 				assertEquals(0,P1.getHandSize()); 
@@ -346,7 +347,7 @@ public class TestRRunFuncs {
 				//*****
 				
 				// clearing hand 
-				P1.getHand().clear();
+				P1.getHand().clearHand();
 				
 				// testing if call was successful
 				assertEquals(0,P1.getHandSize()); 

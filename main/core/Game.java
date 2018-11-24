@@ -21,8 +21,11 @@ public class Game {
 		table.init(); 
 		return true; 
 	}
-	public ArrayList<String> getCurrHand() {
+	public ArrayList<String> getCurrSHand() {
 		return currPlayer.getSHand(); 
+	}
+	public Hand getCurrHand() {
+		return currPlayer.getHand(); 
 	}
 	public Table getTable() {
 		return table;
