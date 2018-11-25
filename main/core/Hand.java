@@ -301,6 +301,7 @@ public class Hand {
 		// call this with the current players hand the current tile of search and the total
 		public int getRunSum(Hand hand, Tile t, int total) {
 			
+			
 			int sum = 0; 
 			// the temporary meld going to be used 
 			ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
@@ -364,9 +365,12 @@ public class Hand {
 				//	makeRun(newgame,temphand); 
 					temphand.getRunSum(temphand , temphand.get(0), total+sum); 
 				
-				if(temphand.getSize() <= 0)
-					return total+sum;
-				
+				if(temphand.getSize() <= 0) {
+					int x =0; 
+				x = total+sum; 
+				total = 0; 
+				return x;
+				}
 				
 			}
 			// when the meld is not valid and index is less than hand size
@@ -377,9 +381,12 @@ public class Hand {
 			}
 			
 			// when the index is at the last and meld is invalid
-			if(indexof+1 >= Hand.size() && !addmeld.validMeld()) {
+			if(indexof+1 >= temphand.getSize() && !addmeld.validMeld()) {
 				
-				return total; 
+				int x =0; 
+				x = total+sum; 
+				total = 0; 
+				return x; 
 			}
 			
 			return 0;
@@ -388,32 +395,40 @@ public class Hand {
 		}
 		// call this with the current players hand the current tile of search and the total
 				public int getSetSum(Hand hand, Tile t, int total) {
-					// the list of colours already used
-					ArrayList<Colour> col = new ArrayList<Colour>(); 
-					
+					// total sum
 					int sum = 0; 
-					// the temporary meld going to be used 
-					ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
 					// the current tile
 					Tile curr = t;
-					 // making a new hand separate to the players so the players hand is not messed up
+					// the list of colours already used, adding the current tiles colour
+					ArrayList<Colour> col = new ArrayList<Colour>(); 
+					col.add(curr.getColour());
+					
+					
+					// the temporary meld going to be used 
+					ArrayList<Tile> tempmeld = new ArrayList<Tile>(); 
+					
+					 // making a new hand which is separate to the players 
+					 // so the players hand is not messed up
 					Hand temphand = new Hand(this); 
 					
 					// indexes of used tiles
 					ArrayList index = new ArrayList(); 
+					
 					// sorting hand in ascending order 
-					this.sortHand(); 
+					temphand.sortHand(); 
 					// adding the current tile to the temporary meld
 					tempmeld.add(curr); 
+					
 					// adding valid tiles 
 					for(int i=0;i<temphand.getSize();i++)
-					if(temphand.get(i).getValue() == curr.getValue() && 
+					
+						if(temphand.get(i).getValue() == curr.getValue() && 
 							   temphand.get(i).getColour() != curr.getColour() &&
-							   !temphand.get(i).equals(t) &&
-							   !(col.contains(temphand.get(i).getColour()))) {
+							    !(col.contains(temphand.get(i).getColour()))) {
 								
 								// adding to tile to the temp meld
 								tempmeld.add(temphand.get(i));
+								
 								// adding the colour to the colour meld
 								col.add(temphand.get(i).getColour()); 
 							
@@ -426,13 +441,14 @@ public class Hand {
 					
 					// looping through the hand to find the index 
 					
-					for(int i =0; i<Hand.size();i++) {
+					for(int i =0; i<temphand.getSize();i++) {
 						
-						if(i == Hand.size() && Hand.get(i) != t) {
+						if(i == temphand.getSize() && temphand.get(i) != t) {
 							
 							indexof = -1; 
 						}
-						if(Hand.get(i).equals(t)) {
+						if(temphand.get(i).equals(t)) {
+							  
 							indexof = i; 
 						}
 					}
@@ -452,8 +468,14 @@ public class Hand {
 						//	makeRun(newgame,temphand); 
 							temphand.getRunSum(temphand , temphand.get(0), total+sum); 
 						
-						if(temphand.getSize() <= 0)
-							return total+sum;
+						if(temphand.getSize() <= 0) {
+							int x =0; 
+							x = total+sum; 
+							total = 0; 
+							return x;
+							
+						}
+							
 						
 						
 					}
@@ -465,9 +487,12 @@ public class Hand {
 					}
 					
 					// when the index is at the last and meld is invalid
-					if(indexof+1 >= Hand.size() && !addmeld.validMeld()) {
+					if(indexof+1 >= temphand.getSize() && !addmeld.validMeld()) {
 						
-						return total; 
+						int x =0; 
+						x = total+sum; 
+						total = 0; 
+						return x; 
 					}
 					
 					return 0;

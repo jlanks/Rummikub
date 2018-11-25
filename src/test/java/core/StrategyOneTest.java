@@ -119,7 +119,7 @@ public class StrategyOneTest {
 		game.getPlayer().addTile(t11); 
 		game.getPlayer().addTile(t12);
 		game.getPlayer().addTile(t14); 
-		game.getPlayer().addTile(t13); 
+		//game.getPlayer().addTile(t13); 
 		
 		
 		assertEquals(4,game.currHandSize());
@@ -161,14 +161,14 @@ public class StrategyOneTest {
 		t13 = (new Tile(Colour.Blue, 13));
 		t14 = (new Tile(Colour.Red, 13));
 		//game.getPlayer().addTile(t5); 
-		game.getPlayer().addTile(t6); 
-		game.getPlayer().addTile(t7);
-		game.getPlayer().addTile(t8);
+		hand.add(t6); 
+		hand.add(t7);
+		hand.add(t8);
 		hand.add(t14);
-		game.getPlayer().addTile(t9); 
+		//game.getPlayer().addTile(t9); 
 		
 		
-		assertEquals(5,hand.getSize());
+		assertEquals(4,hand.getSize());
 		
 		int sum = 0;  
 		hand.sortHand();
