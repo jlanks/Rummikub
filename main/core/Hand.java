@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Hand {
 	
@@ -136,6 +137,18 @@ public class Hand {
 			return -1; 
 		
 		
+	}
+	
+	public int IdRuns() {
+		int [] r;
+		int total = 0; 
+		while((r = IdRun()) != null) {
+			
+			List<Tile> l = playRun(r); 
+			System.out.print(l);
+			total += sum(l); 
+		}
+		return total; 
 	}
 	public void makeRun(Game game,Tile t) {
 		
@@ -352,6 +365,12 @@ public class Hand {
 			Hand.clear();
 			
 		}
+		public int sum(List<Tile> tiles) {
+            int total = 0;
+            for (Tile tile : tiles)
+                total += tile.getValue(); 
+            return total;
+        }
 		// call this with the current players hand the current tile of search and the total
 		public int getRunSum(Hand hand, Tile t, int total) {
 			
