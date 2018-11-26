@@ -138,6 +138,33 @@ public class Hand {
 		
 		
 	}
+	public List<Tile> playRun(int[] range){
+		
+		int remove = range[1]-range[0] +1; 
+		List <Tile> run = new ArrayList(); 
+		Tile prev = null; 
+		for (int i =0;i<remove;i++) {
+			if( i !=0) {
+				
+				Tile tile = this.get(range[0]);
+				if(tile.equals(prev)) {
+					prev = this.get(range[0]);
+					this.remove(range[0]); 
+					run.add(prev);
+				}
+				
+				else 
+					range[0]++;
+				}
+				else {
+					prev = this.get(range[0]);
+					this.remove(range[0]);
+					run.add(prev); 
+				}
+			}
+			return run; 
+		
+	}
 	
 	public int IdRuns() {
 		int [] r;

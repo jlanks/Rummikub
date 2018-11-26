@@ -418,7 +418,7 @@ public class HandTest {
 		assertEquals(4,h.getSize());
 		run = h.IdRun();
 		List<Tile> list ; 
-		list = PlayRun(run);
+		list = h.playRun(run);
 				
 		// range so should be of size 2
 		assertEquals(2,run.length);
