@@ -2,6 +2,7 @@ package core;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class Hand {
@@ -82,7 +83,60 @@ public class Hand {
 		return Hand.get(i); 
 		
 	}
-	
+	public int[] IdRun() {
+		
+		if(this.getSize() < 3) {
+			return null; 
+		}
+		
+		int startIndex = 0;
+		int lastIndex = -1; 
+		
+		for(int i = 1; i<this.getSize();i++) {
+			
+			int result = consecutive(i); 
+			
+			if( result == 1 && i-startIndex >1) {
+				
+				lastIndex = i; 
+			}
+			else if(result == -1) {
+				
+				if(lastIndex != 1) {
+					
+					HashSet<String> unq = new HashSet(); 
+					
+					for(int w = startIndex;w<= lastIndex;w++) {
+						
+						String string = this.get(w).toString(); 
+						unq.add(string); 
+						
+					}
+					if(unq.size() >= 3) {
+						
+						return new int[] {startIndex,lastIndex}; 
+					}
+					else startIndex = i;
+				}
+				else startIndex = -1; 
+			}
+			else continue;
+		}
+		return null; 
+	}
+	public int consecutive(int i) {
+		
+		Tile before = this.get(i-1); 
+		Tile current = this.get(i); 
+		if(before.equals(current))
+			return 0;
+		else if(before.getColour() == current.getColour() && before.getValue() == current.getValue() -1)
+			return 1;
+		else 
+			return -1; 
+		
+		
+	}
 	public void makeRun(Game game,Tile t) {
 		
 		// the temporary meld going to be used 

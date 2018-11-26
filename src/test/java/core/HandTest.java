@@ -356,7 +356,7 @@ public class HandTest {
 		h.add(t13);
 		int[] run; 
 		assertEquals(4,h.getSize());
-		run = h.IdRun()
+		run = h.IdRun();
 				
 		// range so should be of size 2
 		assertEquals(2,run.length);
