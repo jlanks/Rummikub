@@ -15,14 +15,12 @@ public class SelectPlayersViewTest extends Application {
 		
 		SelectPlayersView myPannel = new SelectPlayersView(); 
 		primaryStage.setTitle("Rummikub");
-		 primaryStage.setResizable(true);
-		 primaryStage.setScene(new Scene(myPannel, 300,100));
-		 primaryStage.show();
-		 }
-		 public static void main(String[] args) {
-		 launch(args);
-		 
-		
+		primaryStage.setResizable(true);
+		primaryStage.setScene(new Scene(myPannel, 300, 125));
+		primaryStage.show();
+		}
+		public static void main(String[] args) {
+		launch(args);
 	}
 
 }
