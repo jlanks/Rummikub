@@ -84,6 +84,39 @@ public class Hand {
 		return Hand.get(i); 
 		
 	}
+	public int[] IdRun2() {
+		if (this.getSize() < 3)
+            return null;
+        int beginIndex = 0;
+        int endIndex = -1;
+        for (int i = 1; i <this.getSize(); i++) {
+            int result = consecutive(i);
+            if (result == 1 && i - beginIndex > 1) {
+                endIndex = i;
+            }
+            else if (result == -1) {
+                if (endIndex != -1) {
+                    HashSet<String> unique = new HashSet<String>();
+                    for (int j = beginIndex; j <= endIndex; j++) {
+                        String s = this.get(j).toString();
+                        unique.add(s);
+                    }
+                    if (unique.size() >= 3) {
+                        return new int[] {beginIndex, endIndex};
+                    }
+                    else
+                        beginIndex = i;
+                }
+                else
+                    beginIndex = i;
+            }
+            else {
+                continue;
+            }
+        }
+        return null;
+    
+	}
 	public int[] IdRun() {
 		
 		if(this.getSize() < 3) {
@@ -103,7 +136,7 @@ public class Hand {
 			}
 			else if(result == -1) {
 				
-				if(lastIndex != 1) {
+				if(lastIndex != -1) {
 					
 					HashSet<String> unq = new HashSet(); 
 					
@@ -117,11 +150,15 @@ public class Hand {
 						
 						return new int[] {startIndex,lastIndex}; 
 					}
-					else startIndex = i;
+					else 
+						startIndex = i;
 				}
-				else startIndex = -1; 
+				else 
+					startIndex = i; 
 			}
-			else continue;
+			else {
+				continue;
+			}
 		}
 		return null; 
 	}
@@ -131,7 +168,7 @@ public class Hand {
 		Tile current = this.get(i); 
 		if(before.equals(current))
 			return 0;
-		else if(before.getColour() == current.getColour() && before.getValue() == current.getValue() -1)
+		else if(before.getColour() == current.getColour() &&  current.getValue()-before.getValue() ==1)
 			return 1;
 		else 
 			return -1; 
@@ -147,10 +184,11 @@ public class Hand {
 			if( i !=0) {
 				
 				Tile tile = this.get(range[0]);
-				if(tile.equals(prev)) {
+				if(!tile.equals(prev)) {
 					prev = this.get(range[0]);
-					this.remove(range[0]); 
 					run.add(prev);
+					this.remove(range[0]); 
+					
 				}
 				
 				else 
@@ -158,8 +196,9 @@ public class Hand {
 				}
 				else {
 					prev = this.get(range[0]);
-					this.remove(range[0]);
 					run.add(prev); 
+					this.remove(range[0]);
+					
 				}
 			}
 			return run; 
@@ -167,13 +206,16 @@ public class Hand {
 	}
 	
 	public int IdRuns() {
-		int [] r;
+		int[] r;
 		int total = 0; 
+		int times =0; 
+		System.out.print(times);
 		while((r = IdRun()) != null) {
-			
+			System.out.print(times);
 			List<Tile> l = playRun(r); 
-			System.out.print(l);
+			//System.out.print(l);
 			total += sum(l); 
+			times++; 
 		}
 		return total; 
 	}

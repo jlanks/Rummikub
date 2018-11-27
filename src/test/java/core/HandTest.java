@@ -354,8 +354,12 @@ public class HandTest {
 		h.add(t6);
 		h.add(t7);
 		h.add(t13);
+		h.add(t5);
+		h.add(t6);
+		h.add(t7);
+		h.add(t13);
 		int[] run; 
-		assertEquals(4,h.getSize());
+		assertEquals(8,h.getSize());
 		run = h.IdRun();
 				
 		// range so should be of size 2
@@ -366,6 +370,7 @@ public class HandTest {
 		
 		
 	}
+	@Test
 	public void TestIdRuns() {
 		Hand h = new Hand();
 		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
@@ -379,24 +384,35 @@ public class HandTest {
 		t12 = (new Tile(Colour.Green, 13));
 		t13 = (new Tile(Colour.Blue, 13));
 		
+		//
 		h.add(t5);
 		h.add(t6);
 		h.add(t7);
-		h.add(t13);
+		h.add(t8);
+		
 		h.add(t5);
 		h.add(t6);
 		h.add(t7);
+		h.add(t8);
 		h.add(t13);
+		
+		
+		h.sortHand(); 
+		
+		/*
+		*/
 		int run; 
-		assertEquals(8,h.getSize());
+		assertEquals(9,h.getSize());
 		run = h.IdRuns();
-				
+		//assertEquals(1,h.getSize());
 		// sum should be 48
-		assertEquals(48,run);
+		assertEquals(68,run);
 		
 		
 		
 	}
+
+	@Test
 	public void TestPlayRun() {
 		Hand h = new Hand();
 		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
@@ -424,6 +440,102 @@ public class HandTest {
 		assertEquals(2,run.length);
 		// makes sure the run is size 3
 		assertEquals(3,list.size());
+		assertEquals(1,h.getSize());
+		
+	}
+	@Test
+	public void TestIdSet() {
+		
+		Hand h = new Hand();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		
+		
+		h.add(t11);
+		h.add(t12);
+		h.add(t13);
+		List<Integer> set; 
+		assertEquals(3,h.getSize());
+		set = h.IdSet();
+				
+		// size of the set should be 3. 
+		assertEquals(3,set.size());
+		
+		
+		
+		
+	}
+	@Test
+	public void TestIdSets() {
+		Hand h = new Hand();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		
+		//
+		
+		
+		h.add(t11);
+		h.add(t12);
+		h.add(t13);
+		
+		
+		h.sortHand(); 
+		
+		/*
+		*/
+		int set; 
+		assertEquals(3,h.getSize());
+		set = h.IdRuns();
+		//assertEquals(1,h.getSize());
+		// sum should be 48
+		assertEquals(39,set);
+		
+		
+		
+		
+	}
+	@Test 
+	public void TestPlaySet() {
+		Hand h = new Hand();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		
+		
+		h.add(t11);
+		h.add(t12);
+		h.add(t13);
+		
+		List<Integer> ind;
+		List<Integer> set;
+		ind = h.IdSet(); 
+		set = h.playSet(ind);
+		assertEquals(3, set.size());
+		
+		
 		
 		
 	}
