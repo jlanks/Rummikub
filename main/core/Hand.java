@@ -84,38 +84,106 @@ public class Hand {
 		return Hand.get(i); 
 		
 	}
-	public int[] IdRun2() {
-		if (this.getSize() < 3)
-            return null;
-        int beginIndex = 0;
-        int endIndex = -1;
-        for (int i = 1; i <this.getSize(); i++) {
-            int result = consecutive(i);
-            if (result == 1 && i - beginIndex > 1) {
-                endIndex = i;
-            }
-            else if (result == -1) {
-                if (endIndex != -1) {
-                    HashSet<String> unique = new HashSet<String>();
-                    for (int j = beginIndex; j <= endIndex; j++) {
-                        String s = this.get(j).toString();
-                        unique.add(s);
-                    }
-                    if (unique.size() >= 3) {
-                        return new int[] {beginIndex, endIndex};
-                    }
-                    else
-                        beginIndex = i;
-                }
-                else
-                    beginIndex = i;
-            }
-            else {
-                continue;
-            }
-        }
-        return null;
+
     
+	public List<Integer> IdSet(){
+		List<Integer> ind = new ArrayList<Integer>();
+		int[] occ = new int[13];
+		for (int i =0;i<this.getSize();i++) {
+			Tile t = this.getTile(i); 
+			int val = t.getValue();
+			occ[val-1] ++; 
+			
+		}
+		//System.out.print("HI");
+		int max = max(occ); 
+		if(max<3) {
+			//System.out.print("HI");
+			return null;
+		}
+		else {
+			int n =0; 
+			for(int i =0;i<occ.length;i++) 
+				if (occ[i] == max)
+                    n = i + 1;
+			for(int i =0;i<this.getSize();i++) {
+				Tile t = this.getTile(i);
+			
+					
+					       
+				if(t.getValue() == n) {
+					//System.out.print("HI");
+					ind.add(i); 
+				}
+		
+			
+		}
+		HashSet<String> unq= new HashSet<String>(); 
+		for(int i: ind)
+			unq.add(this.getTile(i).toString()); 
+		if(unq.size() >= 3) {
+			
+			List<Integer> out = new ArrayList(); 
+			for(String s:unq) {
+				out.add(this.indexOf(new Tile(s))); 
+			}
+			return out; 
+		}
+		else 
+			return null; 
+			
+		}
+		
+		
+	}
+	public int indexOf(Tile t) {
+		for(int i =0; i<this.getSize();i++) {
+			if(this.getTile(i).equals(t))
+				return i; 
+		}
+		return -1; 
+		
+	}
+	
+	public List<Tile> playSet(List<Integer> ind){
+		HashSet<Integer> unq = new HashSet<Integer>(); 
+		List<Tile> set = new ArrayList<Tile>(); 
+		for(Integer i:ind)
+			unq.add(i);
+		for(int i =this.getSize()-1;i>-1;i--) {
+			if(unq.contains(i)) {
+				set.add(this.getTile(i));
+				this.remove(i); 
+			}
+		}
+		return set; 
+	}
+
+	public int IdSets() {
+		List<Integer> set; 
+		int sum =0; 
+		while((set = IdSet()) != null) {
+			List<Tile> l = playSet(set);
+			System.out.print(l);
+			sum += sum(l); 
+			
+		}
+		return sum;
+		
+	}
+	/**/
+	public int max(int[] arr) {
+		
+		int max = 0; 
+		for(int i =0;i<arr.length;i++) {
+			
+			if(arr[i] > max) {
+				max = arr[i];
+			}
+		}
+			return max; 
+		
+		
 	}
 	public int[] IdRun() {
 		

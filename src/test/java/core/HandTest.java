@@ -462,8 +462,9 @@ public class HandTest {
 		h.add(t11);
 		h.add(t12);
 		h.add(t13);
+		h.add(t13);
 		List<Integer> set; 
-		assertEquals(3,h.getSize());
+		assertEquals(4,h.getSize());
 		set = h.IdSet();
 				
 		// size of the set should be 3. 
@@ -473,6 +474,7 @@ public class HandTest {
 		
 		
 	}
+	
 	@Test
 	public void TestIdSets() {
 		Hand h = new Hand();
@@ -497,11 +499,10 @@ public class HandTest {
 		
 		h.sortHand(); 
 		
-		/*
-		*/
+		
 		int set; 
 		assertEquals(3,h.getSize());
-		set = h.IdRuns();
+		set = h.IdSets();
 		//assertEquals(1,h.getSize());
 		// sum should be 48
 		assertEquals(39,set);
@@ -510,6 +511,7 @@ public class HandTest {
 		
 		
 	}
+	/**/
 	@Test 
 	public void TestPlaySet() {
 		Hand h = new Hand();
@@ -530,7 +532,7 @@ public class HandTest {
 		h.add(t13);
 		
 		List<Integer> ind;
-		List<Integer> set;
+		List<Tile> set;
 		ind = h.IdSet(); 
 		set = h.playSet(ind);
 		assertEquals(3, set.size());
