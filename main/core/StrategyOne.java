@@ -11,7 +11,42 @@ public class StrategyOne implements Play {
 
 
 	
-	
+	public int play(Game game) {
+
+		Hand hand = game.getPlayer().getHand();
+		Player player = game.getPlayer();
+		//&& game.playedFirst()
+		int x = 0; 
+		System.out.println(hand.getSize());
+		//x = hand.IdRuns() + hand.IdSets(); 
+		//return x;
+		
+		if(hand.getSize() > 0 && hand.IdSets() + hand.IdRuns()  > 29)
+		    {
+			System.out.print((int)hand.getSize());
+			//System.out.println(hand.IdSets() + hand.IdRuns());
+			
+			
+			
+			hand.sortHand();
+			game.getPlayer().getHand().makeRun(game,game.getPlayer().getHand().get(0));
+			
+			 if(hand.getSize() > 2) {
+				 System.out.println("!!!");
+				 hand.sortHand();
+				game.getPlayer().getHand().makeSet(game,game.getPlayer().getHand().get(0)); 
+			 }
+		}	
+		
+		
+		if(hand.getSize() == 0) {
+			System.out.println(player.getName() + " WINS THE GAME!");
+			game.end(); 
+			return 1;
+		}
+		return 0;
+		/**/
+	}
 
 	
 
@@ -26,6 +61,7 @@ public class StrategyOne implements Play {
 			
 			return; 
 		}
+		
 		
 		// if the search has ended
 		
@@ -117,25 +153,5 @@ public class StrategyOne implements Play {
 	}
 	
 
-	public int play(Game game) {
-
-		Hand hand = game.getPlayer().getHand();
-		Player player = game.getPlayer();
-		//&& game.playedFirst()
-		int x = 0; 
-		if(hand.getSize() >0 && hand.getRunSum(hand, hand.get(0),x ) +hand.getSetSum(hand, hand.get(0),x ) > 29) {
-			game.getPlayer().getHand().makeRun(game,game.getPlayer().getHand().get(0));
-			if(hand.getSize() > 2)
-				game.getPlayer().getHand().makeSet(game,game.getPlayer().getHand().get(0)); 
-		
-		}	
-		
-		
-		if(hand.getSize() == 0) {
-			System.out.println(player.getName() + "WINS THE GAME!");
-			return 1;
-		}
-		return 0;
-		
-	}
+	
 }

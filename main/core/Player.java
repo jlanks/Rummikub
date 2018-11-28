@@ -27,11 +27,22 @@ public class Player {
 		// return 0;
 	}
 	
-	
+/*	
 public int getAvailMeldSum() {
 	int x = 0;
-	return hand.getRunSum(this.hand, this.getTile(0),x ) + hand.getSetSum(this.hand, this.getTile(0),x );
+	int y = 0;
+	int z =0; 
+	z = hand.getRunSum(this.hand, this.getTile(0),x ); 
+	hand.sortHand();
+	int w = 0; 
+	w = hand.getSetSum(this.hand, this.getTile(0),y );
+	return   w+z;
 }
+*/
+	public int getAvailMeldSum() {
+		
+		return   hand.IdRuns() + hand.IdSets();
+	}
 	public void ClearHand() {
 
 		hand.clearHand();

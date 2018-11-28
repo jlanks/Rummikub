@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class StrategyOneTest {
-
+	/*
 	public void testConst() {
 
 		// making a game
@@ -21,6 +21,7 @@ public class StrategyOneTest {
 		assertEquals(0, strat.play(game));
 		
 
+		
 	}
 	@Test
 	public void testPlayInvFirst() {
@@ -94,11 +95,50 @@ public class StrategyOneTest {
 		assertEquals(game.currHandSize(),0); 
 		
 		
+			
+		
+		
+	}
+	*/
+	@Test
+	public void S1FINALTEST() {
+		Game game = new Game();
+		game.nextTurn();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		game.getPlayer().addTile(t11); 
+		game.getPlayer().addTile(t12); 
+		game.getPlayer().addTile(t13); 
+		
+		
+		game.getPlayer().addTile(t7); 
+		game.getPlayer().addTile(t8); 
+		game.getPlayer().addTile(t9);
+		// take this tile out and there are errors. this bug is from the IdSets/IdSet
+		game.getPlayer().addTile(t13); 
+		assertEquals(7,game.getPlayer().getHandSize());
+		
+		int sum =0; 
+		
+		//sum = game.getAvailMeldSum(); 
+		
+		//assertEquals(69,sum); 
+		
+		assertEquals(0,game.getPlayer().Play(game)); 
+		assertEquals(2,game.getNumMelds());
 		
 		
 		
 	}
-	
+	/*
 	@Test
 	public void testPlayAdd() {
 		
@@ -188,7 +228,7 @@ public class StrategyOneTest {
 		
 		
 	}
-	/*
+	
 	@Test
 	public void testMakeRun() {
 

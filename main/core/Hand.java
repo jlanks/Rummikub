@@ -148,12 +148,14 @@ public class Hand {
 	public List<Tile> playSet(List<Integer> ind){
 		HashSet<Integer> unq = new HashSet<Integer>(); 
 		List<Tile> set = new ArrayList<Tile>(); 
+		Hand h = new Hand(); 
+		h = this; 
 		for(Integer i:ind)
 			unq.add(i);
-		for(int i =this.getSize()-1;i>-1;i--) {
+		for(int i =h.getSize()-1;i>-1;i--) {
 			if(unq.contains(i)) {
-				set.add(this.getTile(i));
-				this.remove(i); 
+				set.add(h.getTile(i));
+				h.remove(i); 
 			}
 		}
 		return set; 
@@ -247,15 +249,17 @@ public class Hand {
 		
 		int remove = range[1]-range[0] +1; 
 		List <Tile> run = new ArrayList(); 
+		Hand h = new Hand(); 
+		h =this; 
 		Tile prev = null; 
 		for (int i =0;i<remove;i++) {
 			if( i !=0) {
 				
-				Tile tile = this.get(range[0]);
+				Tile tile = h.get(range[0]);
 				if(!tile.equals(prev)) {
-					prev = this.get(range[0]);
+					prev = h.get(range[0]);
 					run.add(prev);
-					this.remove(range[0]); 
+					h.remove(range[0]); 
 					
 				}
 				
@@ -263,9 +267,9 @@ public class Hand {
 					range[0]++;
 				}
 				else {
-					prev = this.get(range[0]);
+					prev = h.get(range[0]);
 					run.add(prev); 
-					this.remove(range[0]);
+					h.remove(range[0]);
 					
 				}
 			}
