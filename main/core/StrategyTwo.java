@@ -9,7 +9,8 @@ public class StrategyTwo implements Play {
 	}
 
 	public int play(Game game) {
-		game.getTable().drawTile(game.getPlayer());
+		
+		game.getCurrHand().makeSet(game, game.getCurrHand().getTile(0));
 		return 0;
 	}
 
