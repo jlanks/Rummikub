@@ -10,13 +10,10 @@ public class SelectPlayersViewTest extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
-		
-		
 		SelectPlayersView myPannel = new SelectPlayersView(); 
 		primaryStage.setTitle("Rummikub");
 		primaryStage.setResizable(true);
-		primaryStage.setScene(new Scene(myPannel, 300, 125));
+		primaryStage.setScene(new Scene(myPannel, 575, 325));
 		primaryStage.show();
 		}
 		public static void main(String[] args) {

@@ -14,7 +14,7 @@ public class InitPlayerViewTest extends Application {
 		InitPlayerView myPannel = new InitPlayerView(); 
 		primaryStage.setTitle("Rummikub");
 		primaryStage.setResizable(true);
-		primaryStage.setScene(new Scene(myPannel, 475 ,50));
+		primaryStage.setScene(new Scene(myPannel, 575 ,50));
 		primaryStage.show();
 		}
 		public static void main(String[] args) {
