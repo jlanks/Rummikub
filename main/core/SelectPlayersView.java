@@ -45,6 +45,10 @@ public class SelectPlayersView extends Pane {
 		    	playerBox.setDisable(true);
 		    	nextButton.setDisable(true);
 		    	
+		    	if(playerBox.getValue() == null) {
+		    		System.exit(0);
+		    	}
+		    	
 		        int numPlayers = Integer.parseInt((String) playerBox.getValue());
 		        Pane initPane = new Pane();
 		        initPane.getChildren().clear();

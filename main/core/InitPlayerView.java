@@ -22,6 +22,7 @@ public class InitPlayerView extends Pane {
 
 		nameField.relocate(100, 10);
 		nameField.setPrefSize(150, 25);
+		nameField.setText("Player #");
 
 		stratBox.setPromptText("Choose Player's Strategy:");
 		stratBox.relocate(260, 10);
@@ -37,12 +38,15 @@ public class InitPlayerView extends Pane {
 		// *** EVENT HANDLERS ***//
 		nextButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent me) {
-				String name = nameField.getText();
-				String strat = stratBox.getSelectionModel().getSelectedItem().toString();
-				// TODO CREATE NEW PLAYER
-				nameField.setEditable(false);
-				stratBox.setDisable(true);
-				nextButton.setDisable(true);
+				if (stratBox.getSelectionModel().getSelectedItem() != null) {
+					String name = nameField.getText();
+					String strat = stratBox.getSelectionModel().getSelectedItem().toString();
+					// TODO CREATE NEW PLAYER
+					nameField.setEditable(false);
+					stratBox.setDisable(true);
+					nextButton.setDisable(true);
+				}
+
 			}
 		});
 	}
