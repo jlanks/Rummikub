@@ -100,7 +100,7 @@ public class StrategyOneTest {
 		
 	}
 	*/
-	@Test
+	//@Test
 	public void test2() {
 		
 		Game game = new Game();
@@ -143,7 +143,7 @@ public class StrategyOneTest {
 		assertEquals(2,game.getNumMelds());
 		System.out.print(game.getMeldsStrings());
 	}
-	//@Test
+	@Test
 	public void test() {
 		
 		Game game = new Game();
@@ -162,21 +162,31 @@ public class StrategyOneTest {
 		game.getPlayer().addTile(t12); 
 		game.getPlayer().addTile(t13); 
 		
-		game.getPlayer().addTile(t11); 
-		game.getPlayer().addTile(t12); 
-		game.getPlayer().addTile(t13); 
-		game.getPlayer().addTile(t13); 
-		/*
-		game.getPlayer().addTile(t7); 
-		game.getPlayer().addTile(t8); 
-		game.getPlayer().addTile(t9);
-		*/
+		
+		
+		game.getPlayer().addTile(t5); 
+		game.getPlayer().addTile(t6); 
+		game.getPlayer().addTile(t7);
+		
 		// take this tile out and there are errors. this bug is from the IdSets/IdSet
-		game.getPlayer().addTile(t13); 
-		assertEquals(8,game.getPlayer().getHandSize());
+		//game.getPlayer().addTile(t13); 
+		assertEquals(6,game.getPlayer().getHandSize());
 		game.getPlayer().Play(game); 
-		assertEquals(2,game.getPlayer().getHandSize());
+		assertEquals(0,game.getPlayer().getHandSize());
 		assertEquals(2,game.getNumMelds());
+		
+		Game g = new Game(); 
+		g.nextTurn();
+		
+		g.getPlayer().addTile(t5); 
+		g.getPlayer().addTile(t6); 
+		g.getPlayer().addTile(t7);
+		
+		assertEquals(3,g.getPlayer().getHandSize());
+		game.getPlayer().Play(g); 
+		assertEquals(3,g.getPlayer().getHandSize());
+		assertEquals(0,g.getNumMelds());
+		
 		
 	}
 	//@Test

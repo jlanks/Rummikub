@@ -227,7 +227,7 @@ public class HandTest {
 		hand.add(t6); // 8
 		hand.add(t7); // 9
 		//hand.add(t8); // 10
-		hand.add(t5);
+		//hand.add(t5);
 		// x = 0;
 		hand.sortHand(); //SORT THE PLAYER'S HAND. WE CAN ASSUME TILES ARE IN ASCENDING ORDER BY COLOUR!
 		h = new Hand(hand);

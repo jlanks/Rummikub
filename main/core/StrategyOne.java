@@ -15,11 +15,21 @@ public class StrategyOne implements Play {
 
 		Hand hand = game.getPlayer().getHand();
 		Player player = game.getPlayer();
-		hand.sortHand();
-		hand.makeRun(game, player.getTile(0));
-		hand.sortHand();
-		hand.makeSet(game, player.getTile(0));
-		//hand.makeSet(game, player.getTile(0));
+		Hand temp = new Hand(hand); 
+		if(game.checkFirst()){
+			hand.makeSet(game, player.getTile(0));
+			hand.makeRun(game, player.getTile(0));
+			
+		}
+		else if(temp.IdRuns() + temp.IdSets() > 29 && !game.checkFirst()) {
+			hand.makeSet(game, player.getTile(0));
+			hand.makeRun(game, player.getTile(0));
+			game.playFirst();
+			
+		}
+		
+		
+		
 		return 0;
 		/*
 		//&& game.playedFirst()
