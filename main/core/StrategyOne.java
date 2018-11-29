@@ -15,6 +15,13 @@ public class StrategyOne implements Play {
 
 		Hand hand = game.getPlayer().getHand();
 		Player player = game.getPlayer();
+		hand.sortHand();
+		hand.makeRun(game, player.getTile(0));
+		hand.sortHand();
+		hand.makeSet(game, player.getTile(0));
+		//hand.makeSet(game, player.getTile(0));
+		return 0;
+		/*
 		//&& game.playedFirst()
 		int x = 0; 
 		System.out.println(hand.getSize());

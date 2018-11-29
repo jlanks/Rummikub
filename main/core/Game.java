@@ -64,7 +64,10 @@ public class Game {
 			return table.player1();
 		}
 	}
-
+	public Hand fakeHand() {
+		Hand hand = new Hand(this.currPlayer.getHand());
+		return hand; 
+	}
 	public void nextTurn() {
 		table.drawTile(currPlayer);
 		currPlayer = this.getNextPlayer();

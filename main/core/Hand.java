@@ -60,7 +60,7 @@ public class Hand {
 	
 	// Copy Constructor
 	public Hand(Hand h){
-		this.deck = h.deck;
+		
 		Hand = new LinkedList<Tile>();
 		for(int i =0;i<h.getSize();i++) {
 			Hand.add(h.getTile(i));
@@ -146,33 +146,27 @@ public class Hand {
 	}
 	
 	public List<Tile> playSet(List<Integer> ind){
-		HashSet<Integer> unq = new HashSet<Integer>(); 
-		List<Tile> set = new ArrayList<Tile>(); 
-		Hand h = new Hand(); 
-		h = this; 
-		for(Integer i:ind)
-			unq.add(i);
-		for(int i =h.getSize()-1;i>-1;i--) {
-			if(unq.contains(i)) {
-				set.add(h.getTile(i));
-				h.remove(i); 
-			}
-		}
-		return set; 
-	}
+		HashSet<Integer> unique = new HashSet<Integer>();
+        List<Tile> set = new ArrayList<Tile>();
+        for (Integer i : ind)
+            unique.add(i);
+        for (int i = this.getSize() - 1; i > -1; i--)
+            if (unique.contains(i))
+                set.add(this.remove(i));
+        return set;
+    }
+    
 
 	public int IdSets() {
-		List<Integer> set; 
-		int sum =0; 
-		while((set = IdSet()) != null) {
-			List<Tile> l = playSet(set);
-			System.out.print(l);
-			sum += sum(l); 
-			
-		}
-		return sum;
-		
-	}
+		List<Integer> set;
+        int sum = 0;
+        while ((set = IdSet()) != null) {
+            List<Tile> l = playSet(set);
+            System.out.println(l);
+            sum += sum(l);
+        }
+        return sum;
+    }
 	/**/
 	public int max(int[] arr) {
 		
@@ -247,50 +241,70 @@ public class Hand {
 	}
 	public List<Tile> playRun(int[] range){
 		
-		int remove = range[1]-range[0] +1; 
-		List <Tile> run = new ArrayList(); 
-		Hand h = new Hand(); 
-		h =this; 
-		Tile prev = null; 
-		for (int i =0;i<remove;i++) {
-			if( i !=0) {
-				
-				Tile tile = h.get(range[0]);
-				if(!tile.equals(prev)) {
-					prev = h.get(range[0]);
-					run.add(prev);
-					h.remove(range[0]); 
-					
-				}
-				
-				else 
-					range[0]++;
-				}
-				else {
-					prev = h.get(range[0]);
-					run.add(prev); 
-					h.remove(range[0]);
-					
-				}
-			}
-			return run; 
-		
-	}
+		int removals = range[1] - range[0] + 1;
+        List<Tile> run = new ArrayList<Tile>();
+        Tile last = null;
+        for (int i = 0; i < removals; i++) {
+            if (i != 0) {
+                Tile t = this.get(range[0]);
+                if (!t.equals(last)) {
+                    last = this.remove(range[0]);
+                    run.add(last);
+                }
+                else
+                    range[0]++;
+            }
+            else {
+                last = this.remove(range[0]);
+                run.add(last);
+            }
+        }
+        return run;
+    }
 	
 	public int IdRuns() {
-		int[] r;
-		int total = 0; 
-		int times =0; 
-		System.out.print(times);
-		while((r = IdRun()) != null) {
-			System.out.print(times);
-			List<Tile> l = playRun(r); 
-			//System.out.print(l);
-			total += sum(l); 
-			times++; 
-		}
-		return total; 
-	}
+	     int[] run;
+         int sum = 0;
+         while ((run = detectRun()) != null) {
+             List<Tile> l = playRun(run);
+             System.out.println(l);
+             sum += sum(l);
+         }
+         return sum;
+     }
+
+     public int[] detectRun() {
+         if (this.getSize() < 3)
+             return null;
+         int beginIndex = 0;
+         int endIndex = -1;
+         for (int i = 1; i < this.getSize(); i++) {
+             int result = consecutive(i);
+             if (result == 1 && i - beginIndex > 1) {
+                 endIndex = i;
+             }
+             else if (result == -1) {
+                 if (endIndex != -1) {
+                     HashSet<String> unique = new HashSet<String>();
+                     for (int j = beginIndex; j <= endIndex; j++) {
+                         String s = this.get(j).toString();
+                         unique.add(s);
+                     }
+                     if (unique.size() >= 3) {
+                         return new int[] {beginIndex, endIndex};
+                     }
+                     else
+                         beginIndex = i;
+                 }
+                 else
+                     beginIndex = i;
+             }
+             else {
+                 continue;
+             }
+         }
+         return null;
+     }
 	public void makeRun(Game game,Tile t) {
 		
 		// the temporary meld going to be used 
@@ -355,8 +369,8 @@ public class Hand {
 		// when the meld is not valid and index is less than hand size
 		if(!addmeld.validMeld() && indexof < Hand.size()-1) {
 			
-			
-			makeSet(game,Hand.get(indexof+1));
+			//****** this was make set
+			makeRun(game,Hand.get(indexof+1));
 		}
 		
 		// when the index is at the last and meld is invalid
@@ -378,11 +392,12 @@ public class Hand {
 		}
 		
 	}
-	public void remove(int tile) {
+	public Tile remove(int tile) {
 		// TODO Auto-generated method stub
-		
+			Tile t = Hand.get(tile);
+			
 				Hand.remove(tile); 
-		
+				return t; 
 		
 	}
 	
@@ -522,19 +537,20 @@ public class Hand {
 			// the current tile
 			Tile curr = t;
 			 // making a new hand separate to the players so the players hand is not messed up
-			Hand temphand = new Hand(this); 
+			
+			Hand temphand = hand; 
 			
 			// indexes of used tiles
 			ArrayList index = new ArrayList(); 
 			// sorting hand in ascending order 
-			this.sortHand(); 
+			temphand.sortHand(); 
 			// adding the current tile to the temporary meld
 			tempmeld.add(curr); 
 			// adding valid tiles 
-			for(int i =0;i<this.getSize();i++) {
+			for(int i =0;i<temphand.getSize();i++) {
 				// adding all the valid tiles to the temporary meld
-				if(this.getTile(i).getColour() == curr.getColour() &&
-						this.getTile(i).getValue() == curr.getValue() + 1) {
+				if(temphand.getTile(i).getColour() == curr.getColour() &&
+						temphand.getTile(i).getValue() == curr.getValue() + 1) {
 					// adding the index
 					index.add(i); 
 					// updating the tile which needs to be compared
