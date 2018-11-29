@@ -11,6 +11,7 @@ public class StrategyTwo implements Play {
 	public int play(Game game) {
 		
 		game.getCurrHand().makeSet(game, game.getCurrHand().getTile(0));
+		game.getCurrHand().makeRunx(game, game.getCurrHand().getTile(0));
 		return 0;
 	}
 
