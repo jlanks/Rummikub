@@ -84,6 +84,7 @@ Methods:
 - playerx where 1<x<4 returns Player number x.
 - remMeld removes a Meld from the table. Melds can be removed by reference 
   (compares the Tiles in each Meld) or by index (removes Meld at index i)
+- getMeldList
 --------------------------------------------------------------------------------
 Game.java
 - table which the game is played (Table)
