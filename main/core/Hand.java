@@ -455,7 +455,7 @@ public class Hand {
 
 		// adding the tile argument to the meld array
 		tempmeld.add(t);
-
+		this.sortHand();
 		// adding tiles with all the same value
 
 		// loops through all the tiles in the players hand
@@ -742,7 +742,7 @@ public class Hand {
 		return 0;
 
 	}
-
+/*
 	public boolean addToExistingMeld(Tile t){
 		// the temporary meld to hold the new possibly valid meld
 
@@ -779,7 +779,7 @@ public class Hand {
 		return found;
 		
 	}
-	
+	*/
 	public String toString() {
 		String result = "";
 		for (int i = 0; i < Hand.size(); i++) {
