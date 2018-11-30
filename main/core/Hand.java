@@ -435,6 +435,14 @@ public class Hand {
 		Hand.add(t);
 
 	}
+	public int getSum() {
+		int x = 0; 
+		for(int i=0;i<Hand.size();i++) {
+			x += Hand.get(i).getValue();
+			
+		}
+		return x; 
+	}
 	// function which tries and make a run in with the players tiles.
 	// when calling initially, tile should be the first tile of the players hand
 	// game is the current game

@@ -66,6 +66,9 @@ public int getAvailMeldSum() {
 
 		return hand;
 	}
+	public int getSum() {
+		return hand.getSum(); 
+	}
 	public boolean checkFirst() {
 		return playedf; 
 	}

@@ -13,7 +13,11 @@ public class StrategyTwo implements Play {
 		if(game.getNumMelds() < 1) {
 			
 			return -1; 
+		}/*
+		else if(temp.IdRuns() + temp.IdSets() == game.getCurrHand().ge) {
+			
 		}
+		*/
 		
 		else if(temp.IdRuns()+temp.IdSets() > 29 && !game.getPlayer().checkFirst()) {
 			
