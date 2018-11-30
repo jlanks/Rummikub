@@ -103,4 +103,8 @@ public class Table {
 		return melds.get(i);
 	}
 
+	public Meld getMeldList() {
+		return melds;
+	}
+
 }

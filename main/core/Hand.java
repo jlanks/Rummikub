@@ -639,6 +639,7 @@ public class Hand {
 
 	}
 
+
 	// call this with the current players hand the current tile of search and the
 	// total
 	public int getSetSum(Hand hand, Tile t, int total) {
@@ -695,7 +696,8 @@ public class Hand {
 				indexof = i;
 			}
 		}
-		// meld to be added to the table
+		
+		// add a tile to an existing meld
 		Meld addmeld = new Meld(tempmeld);
 		// checking to see if the meld is valid
 		if (addmeld.validMeld()) {
@@ -720,6 +722,8 @@ public class Hand {
 			}
 
 		}
+
+
 		// when the meld is not valid and index is less than hand size
 		if (!addmeld.validMeld() && indexof < temphand.getSize() - 1) {
 
@@ -738,6 +742,7 @@ public class Hand {
 		return 0;
 
 	}
+
 
 	public String toString() {
 		String result = "";
