@@ -126,6 +126,7 @@ public void testPlaystowin() {
 	game.getTable().addMeld(m);
 	assertEquals(1,game.getNumMelds());
 	assertEquals(4,game.currHandSize());
+	game.playFirst();
 	game.Play(); 
 	assertEquals(4,game.currHandSize());
 	assertEquals(1,game.getNumMelds());
