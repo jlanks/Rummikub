@@ -12,7 +12,9 @@ public class Game {
 		currPlayer = table.player1();
 	}
 
-	
+	public void Play() {
+		currPlayer.Play(this);
+	}
 	
 	public boolean isOver() {
 		return isOver;
