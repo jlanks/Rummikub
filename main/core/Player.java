@@ -39,10 +39,7 @@ public int getAvailMeldSum() {
 	return   w+z;
 }
 */
-	public int getAvailMeldSum() {
-		
-		return   hand.IdRuns() + hand.IdSets();
-	}
+	
 	public void ClearHand() {
 
 		hand.clearHand();

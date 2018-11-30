@@ -81,6 +81,14 @@ public void testCantPlay() {
 	game.Play(); 
 	 
 	assertEquals(3,game.currHandSize());
+	// adding a meld to the table
+	Meld m = new Meld(t5,t6,t7,false);
+	game.getTable().addMeld(m);
+	assertEquals(1,game.getNumMelds());
+	assertEquals(3,game.currHandSize());
+	game.Play(); 
+	assertEquals(0,game.currHandSize());
+	assertEquals(2,game.getNumMelds());
 	
 	
 	

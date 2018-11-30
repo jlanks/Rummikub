@@ -55,7 +55,7 @@ public class Game {
 		this.getPlayer().playedFirst();
 	}
 	public int getAvailMeldSum() {
-		return currPlayer.getAvailMeldSum(); 
+		return currPlayer.getHand().IdRuns() + currPlayer.getHand().IdSets();
 	}
 	public Player getNextPlayer() {
 		if (currPlayer.getName() == "Human Player") {
