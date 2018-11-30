@@ -743,7 +743,43 @@ public class Hand {
 
 	}
 
+	public boolean addToExistingMeld(Tile t){
+		// the temporary meld to hold the new possibly valid meld
 
+		// the current games meld
+		ArrayList<Tile> currentMelds = game.getTable().getMeldList();
+		boolean found = false;
+
+		for(int i=0; i < currentMelds.size(); i++){
+			tempmeld = currentMelds.getMeld(i);
+			if(tempmeld.addFirst(t).validMeld()){ //if adding the tile to the first positino of the meld is valid
+				//add the tile
+				tempmeld.addFirst(t);
+
+				//find that tile in the actual game, then add the card - now that we know it'd work
+				for(int i=0; i<game.getTable().getMeldList().size(); i++){
+					if(game.getTable().getMeld(i).equals(tempmeld))
+						game.getTable().getMeld(i).addFirst(t);
+				}
+				found = true;
+
+			}else if(tempmeld.add(tempmeld.size()-1, t).validMeld()){ //if adding the tile to the last position of the meld is valid
+				//add the tile
+				tempmeld.add(tempmeld.size()-1, t);
+
+				//find that tile in the actual game, then add the card - now that we know it'd work
+				for(int i=0; i<game.getTable().getMeldList().size(); i++){
+					if(game.getTable().getMeld(i).equals(tempmeld))
+						game.getTable().getMeld(i).add(tempmeld.size()-1, t);
+				}
+				found = true;
+
+			}
+		}
+		return found;
+		
+	}
+	
 	public String toString() {
 		String result = "";
 		for (int i = 0; i < Hand.size(); i++) {
