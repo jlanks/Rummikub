@@ -48,6 +48,10 @@ public class StrategyTwo implements Play {
 			}
 			return 0; 
 		}
+		else if(temp.IdRuns() + temp.IdSets() != game.getHandsum()) {
+			
+			game.getTable().drawTile(game.getPlayer());
+		}
 		
 		
 		return -1;

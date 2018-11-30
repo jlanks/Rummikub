@@ -128,8 +128,9 @@ public void testPlaystowin() {
 	assertEquals(4,game.currHandSize());
 	game.playFirst();
 	game.Play(); 
-	assertEquals(4,game.currHandSize());
+	assertEquals(5,game.currHandSize());
 	assertEquals(1,game.getNumMelds());
+	
 	
 	
 	
