@@ -27,6 +27,9 @@ public class StrategyOne implements Play {
 			game.playFirst();
 			
 		}
+		else {
+			game.getTable().drawTile(player); 
+		}
 		
 		
 		

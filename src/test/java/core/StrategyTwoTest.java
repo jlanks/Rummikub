@@ -32,21 +32,21 @@ public void testPlayGameRunSet() {
 	game.getPlayer().addTile(t12); 
 	
 	// random tiles for more game like testing
-	/*
+	
 	
 	game.getPlayer().addTile(t10); 
 	game.getPlayer().addTile(t13); 
-*/
+	/**/
 	game.getPlayer().addTile(t5); 
 	game.getPlayer().addTile(t6); 
 	game.getPlayer().addTile(t7); 
 	game.getPlayer().addTile(t7); 
 	//game.getCurrHand().sortHand();
-	assertEquals(8,game.currHandSize());
+	assertEquals(10,game.currHandSize());
 	assertEquals("Player 3",game.getPlayer().getName());
 	
 	game.getPlayer().Play(game);
-	assertEquals(1,game.currHandSize());
+	assertEquals(3,game.currHandSize());
 	assertEquals("Player 3",game.getPlayer().getName());
 	assertEquals(2,game.getNumMelds());
 	
@@ -54,4 +54,5 @@ public void testPlayGameRunSet() {
 	
 	
 	
-	}	}
+	}	
+}

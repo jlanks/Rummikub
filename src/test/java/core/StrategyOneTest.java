@@ -142,8 +142,27 @@ public class StrategyOneTest {
 		assertEquals(2,game.getPlayer().getHandSize());
 		assertEquals(2,game.getNumMelds());
 		System.out.print(game.getMeldsStrings());
+		
 	}
 	@Test
+	public void testcantplayy() {
+		Game game = new Game();
+		game.nextTurn();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		game.getPlayer().addTile(t5); 
+		game.getPlayer().addTile(t6); 
+		game.getPlayer().addTile(t7);
+		
+		
+		assertEquals(3,game.getPlayer().getHandSize());
+		game.getPlayer().Play(game); 
+		assertEquals(4,game.getPlayer().getHandSize());
+		
+	}
+	//@Test
 	public void test() {
 		
 		Game game = new Game();
@@ -184,7 +203,7 @@ public class StrategyOneTest {
 		
 		assertEquals(3,g.getPlayer().getHandSize());
 		game.getPlayer().Play(g); 
-		assertEquals(3,g.getPlayer().getHandSize());
+		assertEquals(4,g.getPlayer().getHandSize());
 		assertEquals(0,g.getNumMelds());
 		
 		
