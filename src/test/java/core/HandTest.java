@@ -523,5 +523,68 @@ public class HandTest {
 		assertEquals(3, set.size());
 
 	}
+	
+	public void TestAddToExistingMeld() {
+		// make a hand
+		Hand hand = new Hand();
+
+		// testing constructor worked
+		assertEquals(hand.getSize(), 0);
+		// making tiles
+		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t11 = (new Tile(Colour.Orange, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+
+		Game game = new Game();
+		
+		// testing constructor worked
+		assertEquals(hand.getSize(), 0);
+		
+		// adding tiles to make a run of size 3
+		hand.add(t6);
+		hand.add(t7);
+		hand.add(t8);
+		
+		// testing constructor worked
+		assertEquals(hand.getSize(), 3);
+
+		// making a run
+		hand.makeRun(game, t6);
+
+		// testing the run was played
+		assertEquals(hand.getSize(), 0);
+		assertEquals(game.getTable().numMelds(), 1);
+		
+		
+		
+		//--PART 1
+		// test adding a tile to the front of a meld already on the table
+		game.getTable().getMeld(0).addFirst(t5);
+		
+		// verify that it still is a meld
+		assertTrue(game.getTable().getMeld(0).validMeld());
+		
+		// remove the tile just added
+		game.getTable().getMeld(0).removeTile(t5);
+		
+		
+		//--PART 2
+		// test adding a tile to the back of a meld already on the table
+		game.getTable().getMeld(0).addTile(t9);
+		// I don't have to verify it's still a meld, because that's done in the addTile function
+		
+		// To TEST this, I will remove tile 6, so remaining will be t7, t8, t9 which should be valid
+		game.getTable().getMeld(0).removeTile(t6);
+		
+		// verify that it still is a meld
+		assertTrue(game.getTable().getMeld(0).validMeld());
+	}
 
 }
