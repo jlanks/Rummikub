@@ -239,6 +239,22 @@ public void addLast(Tile t) {
 		meld.add(meld.size(),t);
 		
 	}
+public boolean CheckFront(Tile t) {
+	
+	if(t.getValue() == meld.get(0).getValue() -1 && t.getColour() == meld.get(0).getColour()) {
+		return true;	
+	}
+	return false; 
+}
+
+public boolean CheckBack(Tile t) {
+	if(t.getValue() == meld.get(meld.size()).getValue() +1 && t.getColour() == meld.get(0).getColour()) {
+		return true; 
+	
+		
+	}
+	return false; 
+}
 	public void addTile(Tile tile) {
 
 		// checking to see if the add will be valid: checking for a run
@@ -267,6 +283,12 @@ public void addLast(Tile t) {
 			}
 		}
 		return false;
+	}
+	public boolean NotRun() {
+		if(meld.get(0).getValue() == meld.get(1).getValue())
+			return true; 
+		
+		return false; 
 	}
 
 	public void removeIndex(int index) {
