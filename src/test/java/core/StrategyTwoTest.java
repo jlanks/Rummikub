@@ -131,9 +131,5 @@ public void testPlaystowin() {
 	assertEquals(5,game.currHandSize());
 	assertEquals(1,game.getNumMelds());
 	
-	
-	
-	
-	
 }
 }
