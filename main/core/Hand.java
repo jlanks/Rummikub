@@ -791,9 +791,79 @@ public class Hand {
 		
 
 		
+public int getTotalAddSum(ArrayList<Meld> melds, Hand h) {
+	int total = 0; 
+	for(Meld m:melds) {
+		total += h.getBackValue(m); 
+		total += h.getFrontValue(m);
+		total += h.getSetValue(m); 
+	}
+	
+	return total; 
+}
+	
+public int getBackValue(Meld m) {
+	int total = 0; 
+	if(!m.NotRun()) {
+		
+		for(Tile t:Hand)
+			if(m.CheckFront(t)){ 
+			total += t.getValue(); 
+			m.addFirst(t);	
+			Hand.remove(t); 
+			}
+	}
 	
 	
-
+	
+	
+	return total; 
+}
+public int getFrontValue(Meld m) {
+	
+	int total = 0; 
+	
+	for(Tile t:Hand)
+		if(m.CheckBack(t)){ 
+			total += t.getValue();
+		m.addLast(t);	
+		Hand.remove(t); 
+		}
+	
+	
+	return total; 
+}
+public int getSetValue(Meld m) {
+	
+	int total = 0; 
+	Meld currMeld = m; 
+	
+	
+	// setting the indexes to default
+	int[] indexes = {-1,-1};
+	// going through each tile in each meld
+	for(int i =0;i<Hand.size();i++) {
+		Tile t = Hand.get(i);
+		// checking to see if a set can be added to
+		if(currMeld.getSize() == 3) {
+			// checking if meld is a set
+			if(currMeld.getTile(0).getValue() == t.getValue()&& 
+			   currMeld.getTile(1).getValue() == t.getValue() && 
+			   currMeld.getTile(0).getColour() != t.getColour() &&
+			   currMeld.getTile(1).getColour() != t.getColour() &&
+			   currMeld.getTile(2).getColour() != t.getColour()) {
+				
+				// this means it is a valid set to add to, add to the meld
+				 
+				m.addTile(t);
+				Hand.remove(t); 
+				return t.getValue();
+			}
+		}
+	}
+	
+	return 0; 
+}
 
 
 

@@ -100,7 +100,7 @@ public class HandTest {
 		hand.add(t9);
 		
 		assertEquals(2,game.getCurrHand().getSize());
-		assertEquals(18,game.getCurrHand().getAddSum());
+		assertEquals(18,game.getCurrHand().getTotalAddSum(game.getFakeMelds(),game.fakeHand()));
 		
 		
 		

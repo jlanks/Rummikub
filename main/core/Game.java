@@ -39,6 +39,13 @@ public class Game {
 	public ArrayList<Meld> getMelds(){
 		return table.getMeldList();
 	}
+	public ArrayList<Meld> getFakeMelds(){
+		ArrayList<Meld> m  = new ArrayList<Meld>(); 
+		for(Meld mel:table.getMeldList()) {
+			m.add(mel);
+		}
+		return m;
+	}
 	public int getNumMelds() {
 		return table.numMelds(); 
 	}
