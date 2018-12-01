@@ -14,7 +14,7 @@ public class HandTest {
 
 		
 		// making tiles
-		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13;
+		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13, t14;
 		t5 = (new Tile(Colour.Orange, 7));
 		t6 = (new Tile(Colour.Orange, 8));
 		t7 = (new Tile(Colour.Orange, 9));
@@ -24,6 +24,7 @@ public class HandTest {
 		t11 = (new Tile(Colour.Orange, 13));
 		t12 = (new Tile(Colour.Green, 13));
 		t13 = (new Tile(Colour.Blue, 13));
+		t14 = (new Tile(Colour.Red, 13));
 
 		Game game = new Game();
 		game.nextTurn();
@@ -32,15 +33,15 @@ public class HandTest {
 		assertEquals(hand.getSize(), 0);
 		
 		// adding tiles to make a run of size 3
-		hand.add(t6);
-		hand.add(t7);
-		hand.add(t8);
+		hand.add(t11);
+		hand.add(t12);
+		hand.add(t13);
 		
 		// testing constructor worked
 		assertEquals(hand.getSize(), 3);
 
 		// making a run
-		hand.makeRun(game, t6);
+		hand.makeSet(game, t11);
 
 		// testing the run was played
 		assertEquals(hand.getSize(), 0);
@@ -49,10 +50,10 @@ public class HandTest {
 		
 		
 		assertEquals(0,game.getCurrHand().getSize());
-		hand.add(t5);
+		hand.add(t14);
 		//hand.add(t8);
 		assertEquals(1,game.getCurrHand().getSize());
-		hand.addToExisting(game.getMelds()); 
+		hand.addToExisting(game.getMelds().get(0)); 
 		assertEquals(0,game.getCurrHand().getSize());
 		assertEquals(4,game.getMelds().get(0).getSize());
 	}

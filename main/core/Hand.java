@@ -751,61 +751,68 @@ public class Hand {
 
 	}
 	public void AddAllPossible(ArrayList<Meld> melds) {
+		for(Meld m:melds) {
+			addToExisting(m); 
+		}
 		
 		
 	}
-	public void addToExisting(ArrayList<Meld> melds){
-		Meld currMeld = melds.get(0);
+	public void addToExisting(Meld m){
+		Meld currMeld = m; 
 		
-		// going through each meld
-		for(int i = 0;i<melds.size();i++ ) {
-			// setting the indexes to default
-			int[] indexes = {-1,-1};
-			// going through each tile in each meld
-			for(Tile t:Hand) {
-				// checking to see if a set can be added to
-				if(currMeld.getSize() == 3) {
-					// checking if meld is a set
-					if(currMeld.getTile(0).getValue() == t.getValue()&& 
-					   currMeld.getTile(1).getValue() == t.getValue()) {
-						// this means it is a set, add to the meld
-						indexes[0] = Hand.indexOf(t); 
-						break; 
-					}
-					else if(!currMeld.NotRun()) {
-						
-						if(currMeld.CheckFront(t)) {
-							indexes[0] = Hand.indexOf(t);
-							
-						}
-						if(currMeld.CheckBack(t)) {
-							indexes[1] = Hand.indexOf(t);
-							
-						}
-						
-						
+		
+		// setting the indexes to default
+		int[] indexes = {-1,-1};
+		// going through each tile in each meld
+		for(Tile t:Hand) {
+			// checking to see if a set can be added to
+			if(currMeld.getSize() == 3) {
+				// checking if meld is a set
+				if(currMeld.getTile(0).getValue() == t.getValue()&& 
+				   currMeld.getTile(1).getValue() == t.getValue() && 
+				   currMeld.getTile(0).getColour() != t.getColour() &&
+				   currMeld.getTile(1).getColour() != t.getColour() &&
+				   currMeld.getTile(2).getColour() != t.getColour()) {
+					
+					// this means it is a valid set to add to, add to the meld
+					m.addTile(t);
+					Hand.remove(t); 
+					return; 
+				}
+				else if(!currMeld.NotRun()) {
+					
+					if(currMeld.CheckFront(t)) {
+						indexes[0] = Hand.indexOf(t);
 						
 					}
-				
-					// here remove the indexes and add to the meld
-					if(indexes[0] != -1) {
-						melds.get(i).addFirst(Hand.get(indexes[0]));
-						Hand.remove(indexes[0]);
+					if(currMeld.CheckBack(t)) {
+						indexes[1] = Hand.indexOf(t);
 						
 					}
-					if(indexes[1] != -1) {
-						melds.get(i).addFirst(Hand.get(indexes[1]));
-						Hand.remove(indexes[1]);
-						
-					}
-			
+					
+					
+					
 				}
 			
-			}
+				// here remove the indexes and add to the meld
+				if(indexes[0] != -1) {
+					m.addFirst(Hand.get(indexes[0]));
+					Hand.remove(indexes[0]);
+					
+				}
+				if(indexes[1] != -1) {
+					m.addFirst(Hand.get(indexes[1]));
+					Hand.remove(indexes[1]);
+					
+				}
+		
 			
-		}	
-	
-	}
+		
+		}
+		
+	}	
+
+}
 	
 	public String toString() {
 		String result = "";
