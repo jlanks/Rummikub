@@ -53,7 +53,7 @@ public class HandTest {
 		hand.add(t14);
 		//hand.add(t8);
 		assertEquals(1,game.getCurrHand().getSize());
-		hand.addToExisting(game.getMelds().get(0)); 
+		hand.addToExistingSet(game.getMelds().get(0)); 
 		assertEquals(0,game.getCurrHand().getSize());
 		assertEquals(4,game.getMelds().get(0).getSize());
 	}
@@ -103,7 +103,7 @@ public class HandTest {
 		hand.add(t9);
 		
 		assertEquals(2,game.getCurrHand().getSize());
-		hand.addToExisting(game.getMelds().get(0)); 
+		hand.addToExistingRun(game.getMelds().get(0)); 
 		assertEquals(0,game.getCurrHand().getSize());
 		assertEquals(5,game.getMelds().get(0).getSize());
 	}

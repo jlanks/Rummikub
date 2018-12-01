@@ -248,7 +248,7 @@ public boolean CheckFront(Tile t) {
 }
 
 public boolean CheckBack(Tile t) {
-	if(t.getValue() == meld.get(meld.size()).getValue() +1 && t.getColour() == meld.get(0).getColour()) {
+	if(t.getValue() == meld.get(meld.size()-1).getValue() +1 && t.getColour() == meld.get(0).getColour()) {
 		return true; 
 	
 		

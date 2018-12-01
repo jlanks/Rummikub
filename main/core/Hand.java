@@ -752,19 +752,60 @@ public class Hand {
 	}
 	public void AddAllPossible(ArrayList<Meld> melds) {
 		for(Meld m:melds) {
-			addToExisting(m); 
+			addToExistingSet(m); 
+			addToExistingRun(m); 
 		}
 		
 		
 	}
-	public void addToExisting(Meld m){
+	public void addToExistingRun(Meld m) {
+		
+		addToFrontRun(m);
+		addToBackRun(m); 
+	}
+	public void addToFrontRun(Meld m) {
+		for(Tile t:Hand)
+			if(m.CheckBack(t)){ 
+				
+			m.addLast(t);	
+			Hand.remove(t); 
+			}
+		
+		
+	}
+	
+	public void addToBackRun(Meld m) {
+		
+	
+	
+	if(!m.NotRun()) {
+		
+		for(Tile t:Hand)
+			if(m.CheckFront(t)){ 
+				
+			m.addFirst(t);	
+			Hand.remove(t); 
+			}
+	}
+}		
+		
+
+		
+	
+	
+
+
+
+
+	public void addToExistingSet(Meld m){
 		Meld currMeld = m; 
 		
 		
 		// setting the indexes to default
 		int[] indexes = {-1,-1};
 		// going through each tile in each meld
-		for(Tile t:Hand) {
+		for(int i =0;i<Hand.size();i++) {
+			Tile t = Hand.get(i);
 			// checking to see if a set can be added to
 			if(currMeld.getSize() == 3) {
 				// checking if meld is a set
@@ -779,38 +820,8 @@ public class Hand {
 					Hand.remove(t); 
 					return; 
 				}
-				else if(!currMeld.NotRun()) {
-					
-					if(currMeld.CheckFront(t)) {
-						indexes[0] = Hand.indexOf(t);
-						
-					}
-					if(currMeld.CheckBack(t)) {
-						indexes[1] = Hand.indexOf(t);
-						
-					}
-					
-					
-					
-				}
-			
-				// here remove the indexes and add to the meld
-				if(indexes[0] != -1) {
-					m.addFirst(Hand.get(indexes[0]));
-					Hand.remove(indexes[0]);
-					
-				}
-				if(indexes[1] != -1) {
-					m.addFirst(Hand.get(indexes[1]));
-					Hand.remove(indexes[1]);
-					
-				}
-		
-			
-		
+			}
 		}
-		
-	}	
 
 }
 	
