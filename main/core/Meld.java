@@ -234,6 +234,11 @@ public class Meld {
 		meld.add(0,t);
 		
 	}
+public void addLast(Tile t) {
+		
+		meld.add(meld.size(),t);
+		
+	}
 	public void addTile(Tile tile) {
 
 		// checking to see if the add will be valid: checking for a run

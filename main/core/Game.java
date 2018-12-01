@@ -36,6 +36,9 @@ public class Game {
 	public int getHandsum() {
 		return currPlayer.getSum(); 
 	}
+	public ArrayList<Meld> getMelds(){
+		return table.getMeldList();
+	}
 	public int getNumMelds() {
 		return table.numMelds(); 
 	}
