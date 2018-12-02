@@ -22,7 +22,9 @@ public class Tile implements Comparable<Tile> {
 		TColour = colour;
 	}
 
-	
+	public Tile() {
+		
+	}
 	// Tile constructor
 	public Tile(String input) {
 

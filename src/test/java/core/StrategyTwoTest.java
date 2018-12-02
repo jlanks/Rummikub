@@ -19,7 +19,8 @@ public class StrategyTwoTest {
 		t8 = (new Tile(Colour.Orange, 10));
 		t9 = (new Tile(Colour.Orange, 11));
 		t10 = (new Tile(Colour.Orange, 12));
-		t14 = (new Tile(Colour.Orange, 13));
+		t14 = (new Tile(Colour.Orange, 6));
+		
 		t11 = (new Tile(Colour.Red, 13));
 		t12 = (new Tile(Colour.Green, 13));
 		t13 = (new Tile(Colour.Blue, 13));
@@ -44,9 +45,14 @@ public class StrategyTwoTest {
 		p.addTile(t14);
 		p.addTile(t8);
 		
-		p.Play(game);
-		
-		assertEquals(0,game.getCurrHand()); 
+		//
+		 
+		assertEquals(true,m.CheckBack(t8)); 
+		assertEquals(false,m.CheckBack(t14)); 
+		assertEquals(true,m.CheckFront(t14)); 
+		//h.AddAllPossible(game.getMelds());
+		assertEquals(4,p.Play(game));
+		assertEquals(0,h.getSize()); 
 		
 		}	
 
