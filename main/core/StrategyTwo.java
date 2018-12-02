@@ -29,9 +29,11 @@ public class StrategyTwo implements Play {
 			
 				game.getCurrHand().makeRun(game, game.getCurrHand().getTile(0));
 			}
+			game.playFirst();
 			
 		return 0;
 		}
+		
 		
 		// if a player can win with the current hand, they win
 		else if(temp.IdRuns() + temp.IdSets() == game.getHandsum()) {
@@ -48,9 +50,21 @@ public class StrategyTwo implements Play {
 			}
 			return 0; 
 		}
+		
+		// if the player can add a card to the table and he has played his first meld 
+		// then add the cards to the melds on the table
+		// && game.getPlayer().checkFirst() && game.getCurrHand().getSize() >0 && game.getNumMelds()>0
+		 if(temp.getTotalAddSum(game.getFakeMelds(), game.fakeHand())>0 ) {
+			System.out.print("jsc");
+			game.getCurrHand().AddAllPossible(game.getMelds());
+			return 0; 
+			
+		}
+		// if the player cant win, draw a card
 		else if(temp.IdRuns() + temp.IdSets() != game.getHandsum()) {
 			
 			game.getTable().drawTile(game.getPlayer());
+			return 0; 
 		}
 		
 		

@@ -6,7 +6,49 @@ import org.junit.Test;
 
 public class StrategyTwoTest {
 
+	@Test
+	public void testPlayGameAdd() {
 
+		Game game = new Game();
+		game.nextTurn();
+		game.nextTurn();
+		Tile t5,t6,t7,t8,t9,t10,t11,t12,t13,t14;
+		t5 = (new Tile(Colour.Orange, 7));
+		t6 = (new Tile(Colour.Orange, 8));
+		t7 = (new Tile(Colour.Orange, 9));
+		t8 = (new Tile(Colour.Orange, 10));
+		t9 = (new Tile(Colour.Orange, 11));
+		t10 = (new Tile(Colour.Orange, 12));
+		t14 = (new Tile(Colour.Orange, 13));
+		t11 = (new Tile(Colour.Red, 13));
+		t12 = (new Tile(Colour.Green, 13));
+		t13 = (new Tile(Colour.Blue, 13));
+		
+		Player p = game.getPlayer();
+		Hand h = game.getCurrHand();
+		Table t = game.getTable(); 
+		
+		
+		Meld m = new Meld(t5,t6,t7,false); 
+		t.addMeld(m);
+		assertEquals(1,game.getNumMelds()); 
+		
+		p.addTile(t11);
+		p.addTile(t12);
+		p.addTile(t13);
+		
+		p.Play(game);
+		
+		assertEquals(2,game.getNumMelds()); 
+		
+		p.addTile(t14);
+		p.addTile(t8);
+		
+		p.Play(game);
+		
+		assertEquals(0,game.getCurrHand()); 
+		
+		}	
 
 //@Test
 public void testPlayGameRunSet() {
@@ -56,7 +98,7 @@ public void testPlayGameRunSet() {
 	
 	}	
 
-@Test
+//@Test
 public void testCantPlay() {
 	
 	Game game = new Game();
@@ -95,7 +137,7 @@ public void testCantPlay() {
 	
 }
 
-@Test
+//@Test
 public void testPlaystowin() {
 	
 	Game game = new Game();
