@@ -37,14 +37,18 @@ public class StrategyTwoTest {
 		p.addTile(t11);
 		p.addTile(t12);
 		p.addTile(t13);
-		
+		System.out.print(game.getMeldsStrings()); 
 		p.Play(game);
 		
 		assertEquals(2,game.getNumMelds()); 
 		
+		//p.addTile(t10);
 		p.addTile(t10);
 		p.addTile(t14);
 		p.addTile(t8);
+		
+		
+		h.sortHand();
 		
 		
 		//
@@ -69,7 +73,9 @@ public class StrategyTwoTest {
 		 */
 		
 		assertEquals(4,p.Play(game));
-		assertEquals(0,game.getCurrHand().getSize()); 
+		System.out.print(game.getMeldsStrings() + "\n"); 
+		System.out.print(game.getCurrHand()); 
+		assertEquals(0,game.getCurrHand()); 
 		
 		}	
 

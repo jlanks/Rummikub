@@ -273,10 +273,10 @@ public class Hand {
 		int currRunSize = 0;
 		int currRunValue = 0;
 		for (int i = 0; i < this.getSize() - 1; i++) {
-			System.out.println("Value of hand[" + i + "] = " + this.get(i).getValue() + " Value of hand[" + (i+1) + "] = " + this.get(i+1).getValue() );
+			//System.out.println("Value of hand[" + i + "] = " + this.get(i).getValue() + " Value of hand[" + (i+1) + "] = " + this.get(i+1).getValue() );
 			if (this.get(i).getValue() == this.get(i + 1).getValue() - 1 && this.get(i).getColour() == this.get(i + 1).getColour()) {
 				// Tile i & Tile i+1 are consecutive
-				System.out.println("CONSECUTIVE");
+				//System.out.println("CONSECUTIVE");
 				if (currRunSize == 0) {
 					currRunSize++;
 					currRunValue += this.get(i).getValue();
@@ -289,11 +289,11 @@ public class Hand {
 					sum += currRunValue;
 				}
 			} else {
-				System.out.println("NOT CONSECUTIVE");
+				//System.out.println("NOT CONSECUTIVE");
 				
 				if(currRunSize >= 3) {
 					sum += currRunValue;
-					System.out.println("Sum = " + sum);
+					//System.out.println("Sum = " + sum);
 				}
 				currRunValue = 0;
 				currRunSize = 0;
@@ -415,9 +415,11 @@ public class Hand {
 	
 	public void AddAllTiles(Game g, Meld m) {
 			
-				System.out.println("HI");
+				//System.out.println("HI");
 				// keeps track of cols
 				ArrayList<Colour> col = new ArrayList();
+				ArrayList<Integer> indexs = new ArrayList();
+				
 				
 				// sorting hand in ascending order
 				this.sortHand();
@@ -433,8 +435,9 @@ public class Hand {
 							
 						if(!col.contains(this.get(i).getColour())){
 							
-							m.addTile(this.getTile(i));
-							this.remove(i); 
+							m.addTile(Hand.get(i));
+							Hand.remove(i); 
+									
 							
 							
 							// on the last meld, return
@@ -444,22 +447,22 @@ public class Hand {
 								return; 
 							
 							// call the function with the updated info
-							AddAllTiles(g,g.getTable().getNext(m)); 
+							this.AddAllTiles(g,g.getTable().getNext(m)); 
 						}	
 					}
 					
 					// now check for runs 
 					else if (m.CheckFront(this.getTile(i)) ){
-						m.addLast(this.getTile(i));
-						this.remove(i); 
-						AddAllTiles(g,m); 
+						m.addFirst(Hand.get(i));
+						Hand.remove(i) ;
+						this.AddAllTiles(g,m); 
 						
 					}
 
 	
 					else if (m.CheckBack(this.getTile(i))){
-						m.addFirst(this.getTile(i));
-						this.remove(i); 
+						m.addLast(Hand.get(i));
+						Hand.remove(i) ;
 						
 						
 						// on the last meld, return
@@ -469,7 +472,7 @@ public class Hand {
 							return; 
 						
 						// call the function with the updated info
-						AddAllTiles(g,g.getTable().getNext(m)); 
+						this.AddAllTiles(g,g.getTable().getNext(m)); 
 						
 					}
 				
@@ -492,7 +495,9 @@ public class Hand {
 		}
 
 	}
-
+	public void  RemoveT(int i) {
+		this.Hand.remove(); 
+	}
 	public Tile remove(int tile) {
 		// TODO Auto-generated method stub
 		Tile t = Hand.get(tile);
@@ -878,7 +883,7 @@ public int getBackValue(Meld m) {
 	if(!m.NotRun()) {
 		
 		for(Tile t:Hand)
-			if(m.CheckFront(t)){ 
+			if(m.CheckBack(t)){ 
 			total += t.getValue(); 
 			m.addFirst(t);	
 			Hand.remove(t); 
@@ -895,7 +900,7 @@ public int getFrontValue(Meld m) {
 	int total = 0; 
 	
 	for(Tile t:Hand)
-		if(m.CheckBack(t)){ 
+		if(m.CheckFront(t)){ 
 			total += t.getValue();
 		m.addLast(t);	
 		Hand.remove(t); 
