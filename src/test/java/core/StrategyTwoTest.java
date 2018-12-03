@@ -41,9 +41,10 @@ public class StrategyTwoTest {
 		p.Play(game);
 		
 		assertEquals(2,game.getNumMelds()); 
-		
+		p.addTile(t8);
 		p.addTile(t10);
-		//p.addTile(t8);
+		p.addTile(t14);
+		
 		
 		//
 		 /*
@@ -52,7 +53,7 @@ public class StrategyTwoTest {
 		assertEquals(true,m.CheckFront(t14)); 
 		//h.AddAllPossible(game.getMelds());
 		 * */
-		 p.getHand().AddAllTiles(game, game.getMelds().get(0));
+		 p.Play(game);
 		//assertEquals(4,p.Play(game));
 		assertEquals(0,h.getSize()); 
 		

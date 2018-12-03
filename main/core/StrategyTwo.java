@@ -59,7 +59,7 @@ public class StrategyTwo implements Play {
 		else if(temp.getTotalAddSum(game.getFakeMelds(), game.fakeHand())>0 ) {
 			//System.out.print("jsc");
 			Hand handy = game.getCurrHand(); 
-			handy.AddAllPossible(game.getMelds());
+			handy.AddAllTiles(game,game.getMelds().get(0));
 			return 4; 
 			
 		}

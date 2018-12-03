@@ -425,7 +425,7 @@ public class Hand {
 				for (int i = 0; i < this.getSize(); i++) {
 					
 					if(m.NotRun() && m.getSize() == 3) {
-						System.out.println("HI");
+						
 						for(int e =0; e < m.getSize(); e++) 
 							
 							col.add(m.getTile(e).getColour()); 
@@ -446,20 +446,40 @@ public class Hand {
 							AddAllTiles(g,g.getTable().getNext(m)); 
 						}	
 					}
-					AddAllTiles(g,g.getTable().getNext(m)); 
-					/*
+					
+					// now check for runs 
 					if (m.CheckBack(this.getTile(i)) ){
+						m.addTile(this.getTile(i));
+						this.remove(i); 
+						AddAllTiles(g,m); 
 						
 					}
 
-
-					if (m.CheckFront(this.getTile(i))){
+/*	*/
+					else if (m.CheckFront(this.getTile(i))){
+						m.addTile(this.getTile(i));
+						this.remove(i); 
+						
+						
+						// on the last meld, return
+						
+						if(g.getTable().getNext(m) == null)
+							
+							return; 
+						
+						// call the function with the updated info
+						AddAllTiles(g,g.getTable().getNext(m)); 
 						
 					}
+				
 		
-		*/
 		
+					
 				}	
+				if(g.getTable().getNext(m) == null)
+					return; 
+				else
+					AddAllTiles(g,g.getTable().getNext(m)); 
 		
 	}
 
