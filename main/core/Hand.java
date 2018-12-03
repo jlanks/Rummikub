@@ -412,6 +412,56 @@ public class Hand {
 		}
 
 	}
+	
+	public void AddAllTiles(Game g, Meld m) {
+				System.out.println("HI");
+				// keeps track of cols
+				ArrayList<Colour> col = new ArrayList();
+				
+				// sorting hand in ascending order
+				this.sortHand();
+				
+				// looping through hand
+				for (int i = 0; i < this.getSize(); i++) {
+					
+					if(m.NotRun() && m.getSize() == 3) {
+						System.out.println("HI");
+						for(int e =0; e < m.getSize(); e++) 
+							
+							col.add(m.getTile(e).getColour()); 
+							
+						if(!col.contains(this.get(i).getColour())){
+							
+							m.addTile(this.getTile(i));
+							this.remove(i); 
+							
+							
+							// on the last meld, return
+							
+							if(g.getTable().getNext(m) == null)
+								
+								return; 
+							
+							// call the function with the updated info
+							AddAllTiles(g,g.getTable().getNext(m)); 
+						}	
+					}
+					AddAllTiles(g,g.getTable().getNext(m)); 
+					/*
+					if (m.CheckBack(this.getTile(i)) ){
+						
+					}
+
+
+					if (m.CheckFront(this.getTile(i))){
+						
+					}
+		
+		*/
+		
+				}	
+		
+	}
 
 	public void remove(Tile tile) {
 		// TODO Auto-generated method stub

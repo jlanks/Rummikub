@@ -72,7 +72,15 @@ public class Table {
 	public Player player4() {
 		return p4;
 	};
-
+	public Meld getNext(Meld m) {
+		if(melds.indexOf(m) +1 < melds.size() ) {
+			return melds.get(melds.indexOf(m)+1); 
+		}
+		return null; 
+		
+		
+		
+	}
 	public void remMeld(Meld m) {
 
 		for (int i = 0; i < melds.size(); i++) {
