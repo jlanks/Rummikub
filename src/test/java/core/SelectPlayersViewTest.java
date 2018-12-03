@@ -13,7 +13,7 @@ public class SelectPlayersViewTest extends Application {
 		SelectPlayersView myPannel = new SelectPlayersView(); 
 		primaryStage.setTitle("Rummikub");
 		primaryStage.setResizable(true);
-		primaryStage.setScene(new Scene(myPannel, 575, 325));
+		primaryStage.setScene(new Scene(myPannel, 600, 325)); //Keep the X value consistent with the X value of the MainView
 		primaryStage.show();
 		}
 		public static void main(String[] args) {
