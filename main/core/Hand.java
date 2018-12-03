@@ -414,6 +414,7 @@ public class Hand {
 	}
 	
 	public void AddAllTiles(Game g, Meld m) {
+			
 				System.out.println("HI");
 				// keeps track of cols
 				ArrayList<Colour> col = new ArrayList();
@@ -448,16 +449,16 @@ public class Hand {
 					}
 					
 					// now check for runs 
-					if (m.CheckBack(this.getTile(i)) ){
-						m.addTile(this.getTile(i));
+					else if (m.CheckFront(this.getTile(i)) ){
+						m.addLast(this.getTile(i));
 						this.remove(i); 
 						AddAllTiles(g,m); 
 						
 					}
 
-/*	*/
-					else if (m.CheckFront(this.getTile(i))){
-						m.addTile(this.getTile(i));
+	
+					else if (m.CheckBack(this.getTile(i))){
+						m.addFirst(this.getTile(i));
 						this.remove(i); 
 						
 						
@@ -475,7 +476,7 @@ public class Hand {
 		
 		
 					
-				}	
+			}
 				if(g.getTable().getNext(m) == null)
 					return; 
 				else

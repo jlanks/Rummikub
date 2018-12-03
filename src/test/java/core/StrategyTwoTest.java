@@ -41,9 +41,10 @@ public class StrategyTwoTest {
 		p.Play(game);
 		
 		assertEquals(2,game.getNumMelds()); 
-		p.addTile(t8);
+		
 		p.addTile(t10);
 		p.addTile(t14);
+		p.addTile(t8);
 		
 		
 		//
@@ -51,11 +52,24 @@ public class StrategyTwoTest {
 		assertEquals(true,m.CheckBack(t8)); 
 		assertEquals(false,m.CheckBack(t14)); 
 		assertEquals(true,m.CheckFront(t14)); 
-		//h.AddAllPossible(game.getMelds());
+		
 		 * */
-		 p.Play(game);
-		//assertEquals(4,p.Play(game));
-		assertEquals(0,h.getSize()); 
+		// p.Play(game);
+		//
+		//h.AddAllPossible(game.getMelds());
+		
+		// this works 
+		// *** h.AddAllTiles(game, game.getMelds().get(0));
+		
+		//h.AddAllTiles(game, game.getMelds().get(0));
+		
+		/*
+		 * 	But this Does not work, idk why - assertEquals(4,p.Play(game));
+		 *	StrategyTwo, line 61
+		 */
+		
+		assertEquals(4,p.Play(game));
+		assertEquals(0,game.getCurrHand().getSize()); 
 		
 		}	
 

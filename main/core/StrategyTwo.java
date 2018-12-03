@@ -9,7 +9,7 @@ public class StrategyTwo implements Play {
 	}
 
 	public int play(Game game) {
-		
+		Hand h =game.getCurrHand(); 
 		Hand temp = game.fakeHand();
 		
 		// do nothing if no melds have been played
@@ -56,10 +56,11 @@ public class StrategyTwo implements Play {
 		// if the player can add a card to the table and he has played his first meld 
 		// then add the cards to the melds on the table
 		// && game.getPlayer().checkFirst() && game.getCurrHand().getSize() >0 && game.getNumMelds()>0
-		else if(temp.getTotalAddSum(game.getFakeMelds(), game.fakeHand())>0 ) {
-			//System.out.print("jsc");
-			Hand handy = game.getCurrHand(); 
-			handy.AddAllTiles(game,game.getMelds().get(0));
+		else if(temp.getTotalAddSum(game.getFakeMelds(), game.fakeHand())>0 && game.getPlayer().checkFirst()) {
+			System.out.print("jsc\n");
+			
+			h.AddAllTiles(game,game.getMelds().get(0));
+			
 			return 4; 
 			
 		}
