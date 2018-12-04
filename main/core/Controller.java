@@ -58,10 +58,14 @@ public class Controller {
 		s += game.getTable().player2().getName() + "\'s hand:\n" + game.getTable().player2().getHand() + "\n\n";
 		s += game.getTable().player3().getName() + "\'s hand:\n" + game.getTable().player3().getHand() + "\n\n\n";
 		
-		s += "Your hand: " + game.getCurrHand() + "\n\n";
+		s += "Hand:\n" + game.getCurrHand() + "\n\n";
 		
-		s += "Updated melds on table:\n" + game.getTable().getMeldList();
-		
+		s += "Updated melds on table:\n";
+		ArrayList<Meld> ar = game.getTable().getMeldList();
+		for(int i = 0; i < ar.size(); i++) {
+			s += " [" + ar.get(i) + "] ";
+		}
+
 		return s;
 	}
 	
@@ -102,5 +106,10 @@ public class Controller {
 			newHand.add(new Tile(handStr.get(i)));
 		}
 		game.getPlayer().updateHand(newHand);
+	}
+	
+	public void nextTurn() {
+		game.getPlayer().Play(game);
+		game.nextTurn();
 	}
 }

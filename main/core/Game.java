@@ -70,7 +70,7 @@ public class Game {
 	public Player getNextPlayer() {
 		if (currPlayer.getName() == "Human Player") {
 			return table.player2();
-		} else if (currPlayer.getName() == "Player 1") {
+		} else if (currPlayer.getName() == "S1") {
 			return table.player3();
 		} else {
 			return table.player1();
