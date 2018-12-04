@@ -201,7 +201,7 @@ public class Hand {
 		int sum = 0;
 		while ((set = IdSet()) != null) {
 			List<Tile> l = playSet(set);
-			System.out.println(l);
+			//System.out.println(l);
 			sum += sum(l);
 		}
 		return sum;
@@ -472,25 +472,30 @@ public class Hand {
 	//TODO this this
 	//NOTE changed many g.getTable().getNext(m) to just m
 	// instead of this.Hand (LinkedList) do this (Hand) ??
+	
+	
+	
+	
 	public void AddAllTiles(Game g, Meld m) {
-		System.out.println("\n----- HAND CLASS -----");
+		//System.out.println("\n----- HAND CLASS -----");
 		// System.out.println("HI");
 		// keeps track of cols
 		ArrayList<Colour> col = new ArrayList();
 		ArrayList<Integer> indexs = new ArrayList();
+		Tile t = null; 
 
 		// sorting hand in ascending order
 		this.sortHand();
-		System.out.println("this:" + this);
+		//System.out.println("this:" + this);
 
 		// looping through hand
 		for (int i = 0; i < this.getSize(); i++) {
-			System.out.println("Checking tile " + i + ": " + this.Hand.get(i));
+			//System.out.println("Checking tile " + i + ": " + this.Hand.get(i));
 
 			// check for sets
-			System.out.println("Checking for possible sets and runs...");
+			//System.out.println("Checking for possible sets and runs...");
 			if (m.NotRun() && m.getSize() == 3) { //m is a set of size 3
-				System.out.println("Found set: " + m);
+				//System.out.println("Found set: " + m);
 
 				for (int e = 0; e < m.getSize(); e++)
 
@@ -499,45 +504,57 @@ public class Hand {
 				if (!col.contains(this.get(i).getColour())) { //if we have a tile with a colour which is not in the meld already, add the tile to the meld
 
 					m.addTile(Hand.get(i));
-					this.remove(i);	// added reference to this
+					t = Hand.get(i);
 
-					// on the last meld, return
-//					if (g.getTable().getNext(m) == null)
-//						return;
-
-					// call the function with the updated info
-					this.AddAllTiles(g, m);
+				
 				}
+			}
+			else if (m.CheckBack(this.getTile(i))) {  //can Tile i go at the back of m?
+				//System.out.println("Found run (back): " + m);
+				m.addLast(Hand.get(i));
+				t = Hand.get(i);
+
+				
 			}
 
 			// now check for runs
 			else if (m.CheckFront(this.getTile(i))) { //can Tile i go at the front of m?
-				System.out.println("Found run (front): " + m);
+				//System.out.println("Found run (front): " + m);
 				m.addFirst(Hand.get(i));
-				this.remove(i);	//this
-				this.AddAllTiles(g, m);
+				t = Hand.get(i);
+				
 			}
 
-			else if (m.CheckBack(this.getTile(i))) {  //can Tile i go at the back of m?
-				System.out.println("Found run (back): " + m);
-				m.addLast(Hand.get(i));
-				this.remove(i);	//this
-
-				// if we are on the last meld, return
-//				if (g.getTable().getNext(m) == null)
-//					return;
-
-				// call the function with the updated info
-				this.AddAllTiles(g, m);
-			}
-
+			
 		}
-//		if (g.getTable().getNext(m) == null)
-//			return;
-//		else
-//			AddAllTiles(g, g.getTable().getNext(m));
+		if (g.getTable().getNext(m) == null) {
+			if(t != null)
+				this.remove(t); 
+			return;
+		}
+		else {
+			if(t != null)
+				this.remove(t); 
+			AddAllTiles(g, g.getTable().getNext(m));
+		}
 	}
+		
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void remove(Tile tile) {
 		for (int i = 0; i < this.getSize(); i++) {
 			if (this.getTile(i).equals(tile))

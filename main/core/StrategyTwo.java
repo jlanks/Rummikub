@@ -58,14 +58,14 @@ public class StrategyTwo implements Play {
 		// && game.getPlayer().checkFirst() && game.getCurrHand().getSize() >0 && game.getNumMelds()>0
 		else if(temp.getTotalAddSum(game.getFakeMelds(), game.fakeHand())>0 && game.getPlayer().checkFirst()) {
 			//System.out.print("jsc\n");
-			
+			//int[game.getNumMelds()] numtiles; 
 			//h.AddAllTiles(game, game.getMelds().get(0));
 			
 			//Try adding tiles for every meld on the table
 			Meld currMeld;
 			for(int i = 0; i < game.getNumMelds(); i++) {
 				currMeld = game.getTable().getMeld(i);
-				System.out.println("Checking meld " + i + ": " + currMeld);
+				//System.out.println("Checking meld " + i + ": " + currMeld);
 				game.getCurrHand().AddAllTiles(game, currMeld);
 			}
 			
