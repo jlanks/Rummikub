@@ -28,7 +28,7 @@ public class StrategyTwoTest {
 
 		//p3
 		Player p = game.getPlayer();
-		//Hand h = game.getCurrHand();	Don't do this, h will hold an old reference to the hand. Use p.getHand
+		///Hand h = game.getCurrHand();	//Don't do this, h will hold an old reference to the hand. Use p.getHand
 		Table t = game.getTable();
 
 		Meld m = new Meld(t5, t6, t7, false);
@@ -40,18 +40,19 @@ public class StrategyTwoTest {
 		p.addTile(t13);	
 		p.addTile(td);	//dummy tile so doesn't win
 		//R1 R13 G13 B13 
-		//System.out.print(game.getMeldsStrings());
+		
 		
 		p.Play(game);
+		System.out.print(game.getMeldsStrings() + "\n");
 		assertEquals(2, game.getNumMelds());
 		assertEquals(1, p.getHand().getSize());
 
-		p.addTile(t10);
-		p.addTile(t14);
-		p.addTile(t8);
-		//R1 O6 O10 O13
+		p.addTile(t10); //	O13
+		p.addTile(t14); //  O6
+		p.addTile(t8); //   O10
+		
 
-		p.getHand().sortHand();
+		//p.getHand().sortHand();
 
 		//
 		/*
@@ -66,7 +67,7 @@ public class StrategyTwoTest {
 		// this works
 		// *** h.AddAllTiles(game, game.getMelds().get(0));
 
-		// h.AddAllTiles(game, game.getMelds().get(0));
+		// 
 
 		/*
 		 * But this Does not work, idk why - assertEquals(4,p.Play(game)); StrategyTwo,
@@ -74,15 +75,15 @@ public class StrategyTwoTest {
 		 */
 		
 		assertEquals(4, p.getHand().getSize());
-		System.out.print("Melds: " + game.getMeldsStrings() + "\n");
-		System.out.print("CurrHand: " + game.getCurrHand() + "\n");
-		
-		System.out.print("PLAYING...\n");
+		//System.out.print("Melds: " + game.getMeldsStrings() + "\n");
+		//System.out.print("CurrHand: " + game.getCurrHand() + "\n");
+		//h.AddAllTiles(game, game.getMelds().get(0));
+		//System.out.print("PLAYING...\n");
 		p.Play(game);
-		System.out.print("DONE\n");
-		
-		System.out.print("Melds: " + game.getMeldsStrings() + "\n");
-		System.out.print("CurrHand: " + game.getCurrHand() + "\n");
+		//System.out.print("DONE\n");
+		System.out.print(game.getMeldsStrings());
+		//System.out.print("Melds: " + game.getMeldsStrings() + "\n");
+		//System.out.print("CurrHand: " + game.getCurrHand() + "\n");
 		
 		assertEquals(1, game.getCurrHand().getSize());
 

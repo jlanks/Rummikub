@@ -231,26 +231,36 @@ public class Meld {
 
 	public void addFirst(Tile t) {
 
-		meld.add(0, t);
+		meld.add(meld.size(),t);
 
 	}
 
 	public void addLast(Tile t) {
+		meld.add(0, t);
+		
 
-		meld.add(meld.size(), t);
+	}
+	public void addFirstM(Tile t, Hand h) {
+
+		meld.add(meld.size(), h.remove(h.indexOf(t)));
 
 	}
 
+	public void addLastM(Tile t, Hand h) {
+		meld.add(0, t);
+	}
+
+
 	public boolean CheckFront(Tile t) {
 		//Can t be inserted in position 0?
-		if (t.getValue() == meld.get(0).getValue() - 1 && t.getColour() == meld.get(0).getColour()) {
+		if (t.getValue() == meld.get(0).getValue() - 1 && t.getColour() == meld.get(0).getColour() && !meld.contains(t)) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean CheckBack(Tile t) {
-		if (t.getValue() == meld.get(meld.size() - 1).getValue() + 1 && t.getColour() == meld.get(0).getColour()) {
+		if (t.getValue() == meld.get(meld.size() - 1).getValue() + 1 && t.getColour() == meld.get(0).getColour()&&!meld.contains(t)) {
 			return true;
 
 		}
