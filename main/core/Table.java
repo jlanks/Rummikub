@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 public class Table {
 	private Deck deck;
-	private Player p1;
-	private Player p2;
-	private Player p3;
-	private Player p4;
+	private Player p1 = null;
+	private Player p2 = null;
+	private Player p3 = null;
+	//private Player p4;
 	private ArrayList<Meld> melds = new ArrayList<Meld>();
 	private StrategyOne s1 = new StrategyOne();
 	private StrategyTwo s2 = new StrategyTwo();
@@ -16,12 +16,20 @@ public class Table {
 	public Table() {
 		deck = new Deck();
 		p1 = new Player("Human Player", sh);
-		p2 = new Player("Player 1", s1);
-		p3 = new Player("Player 3", s2);
-		p4 = new Player("Player 4");	//dummy player; won't be implemented in game
+		p2 = new Player("S1", s1);
+		p3 = new Player("S2", s2);
+		//p4 = new Player("Player 4");
 	}
 
-	
+	public void initPlayerN(Player p) {	//Sequentially initializes three players. VERY UNSTABLE.
+		if(p1.getName().equals("Human Player")) {
+			p1 = p;
+		} else if (p2.getName().equals("S1")){
+			p2 = p;
+		} else if (p3.getName().equals("S2")) {
+			p3 = p;
+		}
+	}
 	
 	public ArrayList<String> getMeldsString(){
 		
@@ -45,6 +53,7 @@ public class Table {
 
 	public void drawTile(Player p) {
 		p.addTile(deck.getTopTile());
+		p.getHand().sortHand();
 	}
 
 	public void init() {
@@ -53,8 +62,11 @@ public class Table {
 			p1.addTile(deck.getTopTile());
 			p2.addTile(deck.getTopTile());
 			p3.addTile(deck.getTopTile());
-			p4.addTile(deck.getTopTile());
+			//p4.addTile(deck.getTopTile());
 		}
+		p1.getHand().sortHand();
+		p2.getHand().sortHand();
+		p3.getHand().sortHand();
 	}
 
 	public Player player1() {
@@ -69,9 +81,6 @@ public class Table {
 		return p3;
 	}
 
-	public Player player4() {
-		return p4;
-	}
 	
 	public Meld getNext(Meld m) {
 		if(melds.indexOf(m)+1 < melds.size() ) {
@@ -98,7 +107,6 @@ public class Table {
 		}
 	}
 	public void clearMT() {
-		
 		melds.clear(); 
 	}
 

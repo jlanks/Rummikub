@@ -71,7 +71,7 @@ public class StrategyTwo implements Play {
 			
 			return 4; 
 		}
-		// if the player cant win, draw a card
+		// if the player can't win, draw a card
 		else if(temp.IdRuns() + temp.IdSets() != game.getHandsum()) {
 			
 			game.getTable().drawTile(game.getPlayer());

@@ -23,14 +23,14 @@ public class TableTest extends TestCase {
 		assertEquals(0, table.player1().getHandSize());
 		assertEquals(0, table.player2().getHandSize());
 		assertEquals(0, table.player3().getHandSize());
-		assertEquals(0, table.player4().getHandSize());
+		//assertEquals(0, table.player4().getHandSize());
 		assertEquals(0, table.numMelds());
 
 		table.init();
 		assertEquals(14, table.player1().getHandSize());
 		assertEquals(14, table.player2().getHandSize());
 		assertEquals(14, table.player3().getHandSize());
-		assertEquals(14, table.player4().getHandSize());
+		//assertEquals(14, table.player4().getHandSize());
 		assertEquals(0, table.numMelds());
 	}
 	public void testPlay() {
@@ -79,8 +79,8 @@ public class TableTest extends TestCase {
 		table.drawTile(table.player3());
 		assertEquals(15, table.player3().getHandSize());
 
-		table.drawTile(table.player4());
-		assertEquals(15, table.player4().getHandSize());
+		//table.drawTile(table.player4());
+		//assertEquals(15, table.player4().getHandSize());
 	}
 	/**/
 }

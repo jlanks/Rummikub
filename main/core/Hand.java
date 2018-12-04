@@ -62,10 +62,64 @@ public class Hand {
 	}
 
 	// sorting method
-
+//
+//	public void sortHand() {
+//		Collections.sort(this.Hand);
+//		
+//	}
 	public void sortHand() {
-		Collections.sort(this.Hand);
+		ArrayList<Tile> R = new ArrayList<Tile>();
+		ArrayList<Tile> G = new ArrayList<Tile>();
+		ArrayList<Tile> B = new ArrayList<Tile>();
+		ArrayList<Tile> O = new ArrayList<Tile>();
+		for (int i = 0; i < Hand.size(); i++) { // sort tiles into colors
+			Tile t = Hand.get(i);
+			if (t.getColour().equals(Colour.Red)) {
+				R.add(t);
+			} else if (t.getColour().equals(Colour.Green)) {
+				G.add(t);
+			} else if (t.getColour().equals(Colour.Blue)) {
+				B.add(t);
+			} else {
+				O.add(t);
+			}
+		}
 
+		sortByValue(R);
+		sortByValue(G);
+		sortByValue(B);
+		sortByValue(O);
+
+		Hand.clear();
+		for (int i = 0; i < R.size(); i++) {
+			Hand.add(R.get(i));
+		}
+		for (int i = 0; i < G.size(); i++) {
+			Hand.add(G.get(i));
+		}
+		for (int i = 0; i < B.size(); i++) {
+			Hand.add(B.get(i));
+		}
+		for (int i = 0; i < O.size(); i++) {
+			Hand.add(O.get(i));
+		}
+	}
+
+	public void sortByValue(ArrayList<Tile> a) {
+		for (int i = 0; i < a.size(); i++) {
+			Tile smallestTile = a.get(i);
+			int smallestIndex = i;
+			for (int j = i; j < a.size(); j++) {
+				if (a.get(j).getValue() < smallestTile.getValue()) {
+					smallestTile = a.get(j);
+					smallestIndex = j;
+				}
+			}
+			// swap
+			Tile temp = a.get(i);
+			a.set(i, smallestTile);
+			a.set(smallestIndex, temp);
+		}
 	}
 
 	public int getSize() {

@@ -8,13 +8,14 @@ public class Player {
 	private String pName;
 	private Play strat;
 	// players hand
-	private Hand hand = new Hand();
+	private Hand hand;
 	// indicates if player is playing or waiting for their turn
 	private boolean DoneTurn = false;
 
 	public Player(String PName, Play s) {
 		this.strat = s;
 		pName = PName;
+		hand = new Hand();
 	}
 
 	public Player(String PName) {
@@ -55,8 +56,6 @@ public int getAvailMeldSum() {
 			col = hand.get(i).ConvColour();
 			tile = col + value;
 			stringVersion.add(tile);
-			
-			
 		}
 		
 		
@@ -65,6 +64,9 @@ public int getAvailMeldSum() {
 	public Hand getHand() {
 
 		return hand;
+	}
+	public void updateHand(Hand h) {
+		hand = h;
 	}
 	public int getSum() {
 		return hand.getSum(); 

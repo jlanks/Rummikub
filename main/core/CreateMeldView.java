@@ -15,12 +15,12 @@ public class CreateMeldView extends Pane {
 	ListView<String> tileList = new ListView<String>();
 	Button OKButton = new Button("OK");
 	
-	Game game = new Game();
-	Controller controller = new Controller(game);
+	Game game;
 
-	public CreateMeldView() {
-		game.InitGame(); //Resets the game whenever the "Create New Meld" button is pressed in MainView
-		Pane innerPane = new Pane();
+	public CreateMeldView(final Controller controller) {
+		//game.InitGame(); //Resets the game whenever the "Create New Meld" button is pressed in MainView
+		game = controller.getGame();
+		final Pane innerPane = new Pane();
 
 		Label meldTypeLabel = new Label("Are you making a set or run? ");
 		meldTypeLabel.relocate(10, 10);
@@ -59,18 +59,37 @@ public class CreateMeldView extends Pane {
 				
 				int meldSize = indexList.size();
 				ArrayList<String> meldStr = new ArrayList<String>();
+				ArrayList<String> newHand = handList;
 				for(int i = 0; i < meldSize; i++) {
-					meldStr.add(handList.get(indexList.get(i)));
+					String tile = handList.get(indexList.get(i));
+					meldStr.add(tile);
+					//newHand.remove(tile);
 				}
-				System.out.println(meldTypeStr + " : " + meldStr);
+				for(int i = 0; i < meldSize; i++) {
+					String tile = handList.get(indexList.get(i));
+					//meldStr.add(tile);
+					newHand.remove(tile);
+				}
+				//System.out.println(meldTypeStr + " : " + meldStr);
 				
 				if(meldTypeStr.equals("Set")) {
 					//TODO safety check, create set
+					
 				}
 				else if(meldTypeStr.equals("Run")) {
 					//TODO safety check, create set
 					//meldStr will be in increasing order, already in run format (because the hand is sorted & we assume no invalid moves)
 				}
+				
+				controller.updateHand(newHand);
+				controller.addMeld(meldStr);		//TODO meldStr wrong
+				
+				innerPane.getChildren().clear();
+				GameInfoView giv = new GameInfoView(controller);
+				Pane infoPane = new Pane();
+				infoPane.getChildren().add(giv);
+				infoPane.relocate(0, 0);
+				innerPane.getChildren().add(infoPane);
 			}
 		});
 	}

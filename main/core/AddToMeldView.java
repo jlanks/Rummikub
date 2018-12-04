@@ -18,15 +18,17 @@ public class AddToMeldView extends Pane {
 	Button addButton = new Button("ADD");
 	Button doneButton = new Button("DONE");
 
-	Game game = new Game();
-	Controller controller = new Controller(game);
+	Game game;
+	final ArrayList<String> newHand;
 
-	public AddToMeldView(String meldStr) {
-		game.InitGame();
-		Pane innerPane = new Pane();
+	public AddToMeldView(final Controller controller, String meldStr) {
+		//game.InitGame();	//Resets the game whenever the "Create New Meld" button is pressed in MainView
+		game = controller.getGame();
+		final Pane innerPane = new Pane();
 		final ArrayList<String> oldMeld = new ArrayList<String>(Arrays.asList(meldStr.split(" "))); //Casts meldStr to ArrayList of Tiles (in String representation)
 		final ArrayList<String> newMeld = oldMeld;
-		final ArrayList<String> newHand = controller.getCurrHand();
+		final int meldIndex = controller.indexOfMeld(meldStr);
+		newHand = controller.getCurrHand();
 		
 		Label originalMeldLabel = new Label("Original Meld: ");
 		originalMeldLabel.relocate(10, 10);
@@ -80,11 +82,22 @@ public class AddToMeldView extends Pane {
 				newMeldTF.setText(newMeld.toString());
 				newHand.remove(tile);
 				positionLabel.setText("Position to insert in new meld:\n( 0-" + newMeld.size() + ", inclusive )");
+				ObservableList<String> newHandOL = FXCollections.observableArrayList(newHand);
+				selectionBox = new ComboBox(newHandOL);
 			}
 		});
 		doneButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent me) {
 				//TODO update the player's real Hand and the real Meld through the controller
+				controller.updateHand(newHand);
+				System.out.println();
+				controller.updateMeld(meldIndex, newMeld);
+				innerPane.getChildren().clear();
+				GameInfoView giv = new GameInfoView(controller);
+				Pane infoPane = new Pane();
+				infoPane.getChildren().add(giv);
+				infoPane.relocate(0, 0);
+				innerPane.getChildren().add(infoPane);
 			}
 		});
 	}
