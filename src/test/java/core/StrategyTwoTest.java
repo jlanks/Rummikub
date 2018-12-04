@@ -12,6 +12,7 @@ public class StrategyTwoTest {
 		Game game = new Game();
 		game.nextTurn();
 		game.nextTurn(); //p3 turn
+		
 		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, td;
 		t5 = (new Tile(Colour.Orange, 7));
 		t6 = (new Tile(Colour.Orange, 8));
@@ -30,7 +31,7 @@ public class StrategyTwoTest {
 		Player p = game.getPlayer();
 		///Hand h = game.getCurrHand();	//Don't do this, h will hold an old reference to the hand. Use p.getHand
 		Table t = game.getTable();
-
+		//assertEquals("Player 3", p.getName());
 		Meld m = new Meld(t5, t6, t7, false);
 		t.addMeld(m);
 		assertEquals(1, game.getNumMelds());
