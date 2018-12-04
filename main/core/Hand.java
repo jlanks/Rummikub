@@ -419,7 +419,7 @@ public class Hand {
 	//NOTE changed many g.getTable().getNext(m) to just m
 	// instead of this.Hand (LinkedList) do this (Hand) ??
 	public void AddAllTiles(Game g, Meld m) {
-		System.out.println("----- HAND CLASS -----");
+		System.out.println("\n----- HAND CLASS -----");
 		// System.out.println("HI");
 		// keeps track of cols
 		ArrayList<Colour> col = new ArrayList();
@@ -427,7 +427,7 @@ public class Hand {
 
 		// sorting hand in ascending order
 		this.sortHand();
-		System.out.println("this:" + this + "\n");
+		System.out.println("this:" + this);
 
 		// looping through hand
 		for (int i = 0; i < this.getSize(); i++) {
@@ -445,7 +445,7 @@ public class Hand {
 				if (!col.contains(this.get(i).getColour())) { //if we have a tile with a colour which is not in the meld already, add the tile to the meld
 
 					m.addTile(Hand.get(i));
-					this.Hand.remove(i);	// added reference to this
+					this.remove(i);	// added reference to this
 
 					// on the last meld, return
 //					if (g.getTable().getNext(m) == null)
@@ -460,14 +460,14 @@ public class Hand {
 			else if (m.CheckFront(this.getTile(i))) { //can Tile i go at the front of m?
 				System.out.println("Found run (front): " + m);
 				m.addFirst(Hand.get(i));
-				this.Hand.remove(i);	//this
+				this.remove(i);	//this
 				this.AddAllTiles(g, m);
 			}
 
 			else if (m.CheckBack(this.getTile(i))) {  //can Tile i go at the back of m?
 				System.out.println("Found run (back): " + m);
 				m.addLast(Hand.get(i));
-				this.Hand.remove(i);	//this
+				this.remove(i);	//this
 
 				// if we are on the last meld, return
 //				if (g.getTable().getNext(m) == null)

@@ -20,7 +20,6 @@ public class Game {
 		return isOver;
 	}
 	public boolean InitGame() {
-		
 		table.init(); 
 		return true; 
 	}
@@ -50,7 +49,6 @@ public class Game {
 		return table.numMelds(); 
 	}
 	public int currHandSize() {
-		
 		return currPlayer.getHandSize();
 	}
 	public ArrayList<String> getMeldsStrings(){
@@ -61,7 +59,6 @@ public class Game {
 		return currPlayer;
 	}
 	public boolean checkFirst() {
-		
 		return this.getPlayer().checkFirst();
 	}
 	public void playFirst() {
