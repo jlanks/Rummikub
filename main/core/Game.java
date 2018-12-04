@@ -84,7 +84,8 @@ public class Game {
 		return hand; 
 	}
 	public void nextTurn() {
-		table.drawTile(currPlayer);
+		//table.drawTile(currPlayer);  Don't think this should be here so commented it out. May or may not be important. -Noah
+		// ^could be an issue if our AI no longer have a method of drawing a tile. -N
 		currPlayer = this.getNextPlayer();
 	}
 

@@ -59,28 +59,27 @@ public class Table {
 
 	public Player player1() {
 		return p1;
-	};
+	}
 
 	public Player player2() {
 		return p2;
-	};
+	}
 
 	public Player player3() {
 		return p3;
-	};
+	}
 
 	public Player player4() {
 		return p4;
-	};
+	}
+	
 	public Meld getNext(Meld m) {
-		if(melds.indexOf(m) +1 < melds.size() ) {
+		if(melds.indexOf(m)+1 < melds.size() ) {
 			return melds.get(melds.indexOf(m)+1); 
 		}
 		return null; 
-		
-		
-		
 	}
+	
 	public void remMeld(Meld m) {
 
 		for (int i = 0; i < melds.size(); i++) {

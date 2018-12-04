@@ -9,9 +9,11 @@ import org.junit.Test;
 
 public class HandTest {
 	
+	//TODO TestAddAllTiles()  ??
+
 	@Test
 	public void TestAddAll() {
-		
+
 		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13, t14;
 		t5 = (new Tile(Colour.Orange, 7));
 		t6 = (new Tile(Colour.Orange, 8));
@@ -29,12 +31,12 @@ public class HandTest {
 		Hand hand = game.getCurrHand();
 		// testing constructor worked
 		assertEquals(hand.getSize(), 0);
-		
+
 		// adding tiles to make a run of size 3
 		hand.add(t6);
 		hand.add(t7);
 		hand.add(t8);
-		
+
 		// testing constructor worked
 		assertEquals(hand.getSize(), 3);
 
@@ -44,26 +46,23 @@ public class HandTest {
 		// testing the run was played
 		assertEquals(hand.getSize(), 0);
 		assertEquals(game.getTable().numMelds(), 1);
-		
-		
-		
-		assertEquals(0,game.getCurrHand().getSize());
+
+		assertEquals(0, game.getCurrHand().getSize());
 		hand.add(t5);
 		hand.add(t9);
-		
-		assertEquals(2,game.getCurrHand().getSize());
-		assertEquals(18,game.getCurrHand().getTotalAddSum(game.getFakeMelds(),game.fakeHand()));
-		assertEquals(2,game.getCurrHand().getSize());
+
+		assertEquals(2, game.getCurrHand().getSize());
+		assertEquals(18, game.getCurrHand().getTotalAddSum(game.getFakeMelds(), game.fakeHand()));
+		assertEquals(2, game.getCurrHand().getSize());
 		/**/
 		hand.AddAllPossible(game.getMelds());
-		assertEquals(0,game.getCurrHand().getSize());
-		
-	}
-	//@Test
-	public void TestAddToExistingMeldFunc() {
-		
+		assertEquals(0, game.getCurrHand().getSize());
 
-		
+	}
+
+	// @Test
+	public void TestAddToExistingMeldFunc() {
+
 		// making tiles
 		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13, t14;
 		t5 = (new Tile(Colour.Orange, 7));
@@ -82,12 +81,12 @@ public class HandTest {
 		Hand hand = game.getCurrHand();
 		// testing constructor worked
 		assertEquals(hand.getSize(), 0);
-		
+
 		// adding tiles to make a run of size 3
 		hand.add(t11);
 		hand.add(t12);
 		hand.add(t13);
-		
+
 		// testing constructor worked
 		assertEquals(hand.getSize(), 3);
 
@@ -97,20 +96,19 @@ public class HandTest {
 		// testing the run was played
 		assertEquals(hand.getSize(), 0);
 		assertEquals(game.getTable().numMelds(), 1);
-		
-		
-		
-		assertEquals(0,game.getCurrHand().getSize());
+
+		assertEquals(0, game.getCurrHand().getSize());
 		hand.add(t14);
-		//hand.add(t8);
-		assertEquals(1,game.getCurrHand().getSize());
-		hand.addToExistingSet(game.getMelds().get(0)); 
-		assertEquals(0,game.getCurrHand().getSize());
-		assertEquals(4,game.getMelds().get(0).getSize());
+		// hand.add(t8);
+		assertEquals(1, game.getCurrHand().getSize());
+		hand.addToExistingSet(game.getMelds().get(0));
+		assertEquals(0, game.getCurrHand().getSize());
+		assertEquals(4, game.getMelds().get(0).getSize());
 	}
-	//@Test
+
+	// @Test
 	public void TestGetAddSum() {
-		
+
 		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13, t14;
 		t5 = (new Tile(Colour.Orange, 7));
 		t6 = (new Tile(Colour.Orange, 8));
@@ -128,12 +126,12 @@ public class HandTest {
 		Hand hand = game.getCurrHand();
 		// testing constructor worked
 		assertEquals(hand.getSize(), 0);
-		
+
 		// adding tiles to make a run of size 3
 		hand.add(t6);
 		hand.add(t7);
 		hand.add(t8);
-		
+
 		// testing constructor worked
 		assertEquals(hand.getSize(), 3);
 
@@ -143,27 +141,20 @@ public class HandTest {
 		// testing the run was played
 		assertEquals(hand.getSize(), 0);
 		assertEquals(game.getTable().numMelds(), 1);
-		
-		
-		
-		assertEquals(0,game.getCurrHand().getSize());
+
+		assertEquals(0, game.getCurrHand().getSize());
 		hand.add(t5);
 		hand.add(t9);
-		
-		assertEquals(2,game.getCurrHand().getSize());
-		assertEquals(18,game.getCurrHand().getTotalAddSum(game.getFakeMelds(),game.fakeHand()));
-		assertEquals(2,game.getCurrHand().getSize());
-		
-		
-		
-		
-		
-	}
-	//@Test
-	public void TestAddToExistingRun() {
-		
 
-		
+		assertEquals(2, game.getCurrHand().getSize());
+		assertEquals(18, game.getCurrHand().getTotalAddSum(game.getFakeMelds(), game.fakeHand()));
+		assertEquals(2, game.getCurrHand().getSize());
+
+	}
+
+	// @Test
+	public void TestAddToExistingRun() {
+
 		// making tiles
 		Tile t5, t6, t7, t8, t9, t10, t11, t12, t13, t14;
 		t5 = (new Tile(Colour.Orange, 7));
@@ -182,12 +173,12 @@ public class HandTest {
 		Hand hand = game.getCurrHand();
 		// testing constructor worked
 		assertEquals(hand.getSize(), 0);
-		
+
 		// adding tiles to make a run of size 3
 		hand.add(t6);
 		hand.add(t7);
 		hand.add(t8);
-		
+
 		// testing constructor worked
 		assertEquals(hand.getSize(), 3);
 
@@ -197,19 +188,18 @@ public class HandTest {
 		// testing the run was played
 		assertEquals(hand.getSize(), 0);
 		assertEquals(game.getTable().numMelds(), 1);
-		
-		
-		
-		assertEquals(0,game.getCurrHand().getSize());
+
+		assertEquals(0, game.getCurrHand().getSize());
 		hand.add(t5);
 		hand.add(t9);
-		
-		assertEquals(2,game.getCurrHand().getSize());
-		hand.addToExistingRun(game.getMelds().get(0)); 
-		assertEquals(0,game.getCurrHand().getSize());
-		assertEquals(5,game.getMelds().get(0).getSize());
+
+		assertEquals(2, game.getCurrHand().getSize());
+		hand.addToExistingRun(game.getMelds().get(0));
+		assertEquals(0, game.getCurrHand().getSize());
+		assertEquals(5, game.getMelds().get(0).getSize());
 	}
-	//@Test
+
+	// @Test
 	public void TestAddToExistingMeld() {
 		// make a hand
 		Hand hand = new Hand();
@@ -229,15 +219,15 @@ public class HandTest {
 		t13 = (new Tile(Colour.Blue, 13));
 
 		Game game = new Game();
-		
+
 		// testing constructor worked
 		assertEquals(hand.getSize(), 0);
-		
+
 		// adding tiles to make a run of size 3
 		hand.add(t6);
 		hand.add(t7);
 		hand.add(t8);
-		
+
 		// testing constructor worked
 		assertEquals(hand.getSize(), 3);
 
@@ -247,35 +237,30 @@ public class HandTest {
 		// testing the run was played
 		assertEquals(hand.getSize(), 0);
 		assertEquals(game.getTable().numMelds(), 1);
-		
-		
-		
-		//--PART 1
+
+		// --PART 1
 		// test adding a tile to the front of a meld already on the table
 		game.getTable().getMeld(0).addFirst(t5);
 		game.getTable().getMeld(0).addLast(t9);
 		// verify that it still is a meld
-		assertEquals(true,game.getTable().getMeld(0).validMeld());
-		
+		assertEquals(true, game.getTable().getMeld(0).validMeld());
+
 		// remove the tile just added
-		//game.getTable().getMeld(0).removeTile(t5);
-		
+		// game.getTable().getMeld(0).removeTile(t5);
+
 		/*
-		//--PART 2
-		// test adding a tile to the back of a meld already on the table
-		game.getTable().getMeld(0).addTile(t9);
-		// I don't have to verify it's still a meld, because that's done in the addTile function
-		
-		// To TEST this, I will remove tile 6, so remaining will be t7, t8, t9 which should be valid
-		game.getTable().getMeld(0).removeTile(t6);
-		
-		// verify that it still is a meld
-		assertTrue(game.getTable().getMeld(0).validMeld());
-		*/
-		
+		 * //--PART 2 // test adding a tile to the back of a meld already on the table
+		 * game.getTable().getMeld(0).addTile(t9); // I don't have to verify it's still
+		 * a meld, because that's done in the addTile function
+		 * 
+		 * // To TEST this, I will remove tile 6, so remaining will be t7, t8, t9 which
+		 * should be valid game.getTable().getMeld(0).removeTile(t6);
+		 * 
+		 * // verify that it still is a meld
+		 * assertTrue(game.getTable().getMeld(0).validMeld());
+		 */
+
 	}
-
-
 
 	// @Test
 	public void testConstructor() {
@@ -450,7 +435,7 @@ public class HandTest {
 
 	}
 
-	//@Test
+	// @Test
 	public void testMeldInHandSum() {
 		// make a hand
 		Hand hand = new Hand();
@@ -494,10 +479,10 @@ public class HandTest {
 		hand.add(t5); // 7
 		hand.add(t6); // 8
 		hand.add(t7); // 9
-		//hand.add(t8); // 10
-		//hand.add(t5);
+		// hand.add(t8); // 10
+		// hand.add(t5);
 		// x = 0;
-		hand.sortHand(); //SORT THE PLAYER'S HAND. WE CAN ASSUME TILES ARE IN ASCENDING ORDER BY COLOUR!
+		hand.sortHand(); // SORT THE PLAYER'S HAND. WE CAN ASSUME TILES ARE IN ASCENDING ORDER BY COLOUR!
 		h = new Hand(hand);
 		System.out.println(hand);
 		assertEquals(24, h.IdRuns());
@@ -790,6 +775,5 @@ public class HandTest {
 		set = h.playSet(ind);
 		assertEquals(3, set.size());
 	}
-	}
-	
-	
+
+}

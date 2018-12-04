@@ -273,27 +273,29 @@ public class Hand {
 		int currRunSize = 0;
 		int currRunValue = 0;
 		for (int i = 0; i < this.getSize() - 1; i++) {
-			//System.out.println("Value of hand[" + i + "] = " + this.get(i).getValue() + " Value of hand[" + (i+1) + "] = " + this.get(i+1).getValue() );
-			if (this.get(i).getValue() == this.get(i + 1).getValue() - 1 && this.get(i).getColour() == this.get(i + 1).getColour()) {
+			// System.out.println("Value of hand[" + i + "] = " + this.get(i).getValue() + "
+			// Value of hand[" + (i+1) + "] = " + this.get(i+1).getValue() );
+			if (this.get(i).getValue() == this.get(i + 1).getValue() - 1
+					&& this.get(i).getColour() == this.get(i + 1).getColour()) {
 				// Tile i & Tile i+1 are consecutive
-				//System.out.println("CONSECUTIVE");
+				// System.out.println("CONSECUTIVE");
 				if (currRunSize == 0) {
 					currRunSize++;
 					currRunValue += this.get(i).getValue();
 				}
-				
+
 				currRunSize++;
-				currRunValue += this.get(i+1).getValue();
-				
-				if(i == this.getSize()-2) {
+				currRunValue += this.get(i + 1).getValue();
+
+				if (i == this.getSize() - 2) {
 					sum += currRunValue;
 				}
 			} else {
-				//System.out.println("NOT CONSECUTIVE");
-				
-				if(currRunSize >= 3) {
+				// System.out.println("NOT CONSECUTIVE");
+
+				if (currRunSize >= 3) {
 					sum += currRunValue;
-					//System.out.println("Sum = " + sum);
+					// System.out.println("Sum = " + sum);
 				}
 				currRunValue = 0;
 				currRunSize = 0;
@@ -412,94 +414,89 @@ public class Hand {
 		}
 
 	}
-	
-	public void AddAllTiles(Game g, Meld m) {
-			
-				//System.out.println("HI");
-				// keeps track of cols
-				ArrayList<Colour> col = new ArrayList();
-				ArrayList<Integer> indexs = new ArrayList();
-				
-				
-				// sorting hand in ascending order
-				this.sortHand();
-				
-				// looping through hand
-				for (int i = 0; i < this.getSize(); i++) {
-					
-					if(m.NotRun() && m.getSize() == 3) {
-						
-						for(int e =0; e < m.getSize(); e++) 
-							
-							col.add(m.getTile(e).getColour()); 
-							
-						if(!col.contains(this.get(i).getColour())){
-							
-							m.addTile(Hand.get(i));
-							Hand.remove(i); 
-									
-							
-							
-							// on the last meld, return
-							
-							if(g.getTable().getNext(m) == null)
-								
-								return; 
-							
-							// call the function with the updated info
-							this.AddAllTiles(g,g.getTable().getNext(m)); 
-						}	
-					}
-					
-					// now check for runs 
-					else if (m.CheckFront(this.getTile(i)) ){
-						m.addFirst(Hand.get(i));
-						Hand.remove(i) ;
-						this.AddAllTiles(g,m); 
-						
-					}
 
-	
-					else if (m.CheckBack(this.getTile(i))){
-						m.addLast(Hand.get(i));
-						Hand.remove(i) ;
-						
-						
-						// on the last meld, return
-						
-						if(g.getTable().getNext(m) == null)
-							
-							return; 
-						
-						// call the function with the updated info
-						this.AddAllTiles(g,g.getTable().getNext(m)); 
-						
-					}
-				
-		
-		
-					
+	//TODO this this
+	//NOTE changed many g.getTable().getNext(m) to just m
+	// instead of this.Hand (LinkedList) do this (Hand) ??
+	public void AddAllTiles(Game g, Meld m) {
+		System.out.println("----- HAND CLASS -----");
+		// System.out.println("HI");
+		// keeps track of cols
+		ArrayList<Colour> col = new ArrayList();
+		ArrayList<Integer> indexs = new ArrayList();
+
+		// sorting hand in ascending order
+		this.sortHand();
+		System.out.println("this:" + this + "\n");
+
+		// looping through hand
+		for (int i = 0; i < this.getSize(); i++) {
+			System.out.println("Checking tile " + i + ": " + this.Hand.get(i));
+
+			// check for sets
+			System.out.println("Checking for possible sets and runs...");
+			if (m.NotRun() && m.getSize() == 3) { //m is a set of size 3
+				System.out.println("Found set: " + m);
+
+				for (int e = 0; e < m.getSize(); e++)
+
+					col.add(m.getTile(e).getColour());
+
+				if (!col.contains(this.get(i).getColour())) { //if we have a tile with a colour which is not in the meld already, add the tile to the meld
+
+					m.addTile(Hand.get(i));
+					this.Hand.remove(i);	// added reference to this
+
+					// on the last meld, return
+//					if (g.getTable().getNext(m) == null)
+//						return;
+
+					// call the function with the updated info
+					this.AddAllTiles(g, m);
+				}
 			}
-				if(g.getTable().getNext(m) == null)
-					return; 
-				else
-					AddAllTiles(g,g.getTable().getNext(m)); 
-		
+
+			// now check for runs
+			else if (m.CheckFront(this.getTile(i))) { //can Tile i go at the front of m?
+				System.out.println("Found run (front): " + m);
+				m.addFirst(Hand.get(i));
+				this.Hand.remove(i);	//this
+				this.AddAllTiles(g, m);
+			}
+
+			else if (m.CheckBack(this.getTile(i))) {  //can Tile i go at the back of m?
+				System.out.println("Found run (back): " + m);
+				m.addLast(Hand.get(i));
+				this.Hand.remove(i);	//this
+
+				// if we are on the last meld, return
+//				if (g.getTable().getNext(m) == null)
+//					return;
+
+				// call the function with the updated info
+				this.AddAllTiles(g, m);
+			}
+
+		}
+//		if (g.getTable().getNext(m) == null)
+//			return;
+//		else
+//			AddAllTiles(g, g.getTable().getNext(m));
 	}
 
 	public void remove(Tile tile) {
-		// TODO Auto-generated method stub
 		for (int i = 0; i < this.getSize(); i++) {
 			if (this.getTile(i).equals(tile))
 				Hand.remove(i);
 		}
 
 	}
-	public void  RemoveT(int i) {
-		this.Hand.remove(); 
+
+	public void RemoveT(int i) {
+		this.Hand.remove();
 	}
+
 	public Tile remove(int tile) {
-		// TODO Auto-generated method stub
 		Tile t = Hand.get(tile);
 
 		Hand.remove(tile);
@@ -511,13 +508,14 @@ public class Hand {
 		Hand.add(t);
 
 	}
+
 	public int getSum() {
-		int x = 0; 
-		for(int i=0;i<Hand.size();i++) {
+		int x = 0;
+		for (int i = 0; i < Hand.size(); i++) {
 			x += Hand.get(i).getValue();
-			
+
 		}
-		return x; 
+		return x;
 	}
 	// function which tries and make a run in with the players tiles.
 	// when calling initially, tile should be the first tile of the players hand
@@ -614,7 +612,6 @@ public class Hand {
 	}
 
 	public Tile get(int i) {
-		// TODO Auto-generated method stub
 		return Hand.get(i);
 	}
 
@@ -723,7 +720,6 @@ public class Hand {
 
 	}
 
-
 	// call this with the current players hand the current tile of search and the
 	// total
 	public int getSetSum(Hand hand, Tile t, int total) {
@@ -780,7 +776,7 @@ public class Hand {
 				indexof = i;
 			}
 		}
-		
+
 		// add a tile to an existing meld
 		Meld addmeld = new Meld(tempmeld);
 		// checking to see if the meld is valid
@@ -807,7 +803,6 @@ public class Hand {
 
 		}
 
-
 		// when the meld is not valid and index is less than hand size
 		if (!addmeld.validMeld() && indexof < temphand.getSize() - 1) {
 
@@ -826,151 +821,140 @@ public class Hand {
 		return 0;
 
 	}
+
 	public void AddAllPossible(ArrayList<Meld> melds) {
-		for(Meld m:melds) {
-			addToExistingSet(m); 
-			addToExistingRun(m); 
+		for (Meld m : melds) {
+			addToExistingSet(m);
+			addToExistingRun(m);
 		}
-		
-		
+
 	}
+
 	public void addToExistingRun(Meld m) {
-		
+
 		addToFrontRun(m);
-		addToBackRun(m); 
+		addToBackRun(m);
 	}
+
 	public void addToFrontRun(Meld m) {
-		for(Tile t:Hand)
-			if(m.CheckBack(t)){ 
-				
-			m.addLast(t);	
-			Hand.remove(t); 
+		for (Tile t : Hand)
+			if (m.CheckBack(t)) {
+
+				m.addLast(t);
+				Hand.remove(t);
 			}
-		
-		
+
 	}
-	
+
 	public void addToBackRun(Meld m) {
-		
-	
-	
-	if(!m.NotRun()) {
-		
-		for(Tile t:Hand)
-			if(m.CheckFront(t)){ 
-				
-			m.addFirst(t);	
-			Hand.remove(t); 
-			}
-	}
-}		
-		
 
-		
-public int getTotalAddSum(ArrayList<Meld> melds, Hand h) {
-	int total = 0; 
-	for(Meld m:melds) {
-		total += h.getBackValue(m); 
-		total += h.getFrontValue(m);
-		total += h.getSetValue(m); 
-	}
-	
-	return total; 
-}
-	
-public int getBackValue(Meld m) {
-	int total = 0; 
-	if(!m.NotRun()) {
-		
-		for(Tile t:Hand)
-			if(m.CheckBack(t)){ 
-			total += t.getValue(); 
-			m.addFirst(t);	
-			Hand.remove(t); 
-			}
-	}
-	
-	
-	
-	
-	return total; 
-}
-public int getFrontValue(Meld m) {
-	
-	int total = 0; 
-	
-	for(Tile t:Hand)
-		if(m.CheckFront(t)){ 
-			total += t.getValue();
-		m.addLast(t);	
-		Hand.remove(t); 
-		}
-	
-	
-	return total; 
-}
-public int getSetValue(Meld m) {
-	
-	int total = 0; 
-	Meld currMeld = m; 
-	
-	
-	// setting the indexes to default
-	int[] indexes = {-1,-1};
-	// going through each tile in each meld
-	for(int i =0;i<Hand.size();i++) {
-		Tile t = Hand.get(i);
-		// checking to see if a set can be added to
-		if(currMeld.getSize() == 3) {
-			// checking if meld is a set
-			if(currMeld.getTile(0).getValue() == t.getValue()&& 
-			   currMeld.getTile(1).getValue() == t.getValue() && 
-			   currMeld.getTile(0).getColour() != t.getColour() &&
-			   currMeld.getTile(1).getColour() != t.getColour() &&
-			   currMeld.getTile(2).getColour() != t.getColour()) {
-				
-				// this means it is a valid set to add to, add to the meld
-				 
-				m.addTile(t);
-				Hand.remove(t); 
-				return t.getValue();
-			}
+		if (!m.NotRun()) {
+
+			for (Tile t : Hand)
+				if (m.CheckFront(t)) {
+
+					m.addFirst(t);
+					Hand.remove(t);
+				}
 		}
 	}
-	
-	return 0; 
-}
 
+	public int getTotalAddSum(ArrayList<Meld> melds, Hand h) {
+		int total = 0;
+		for (Meld m : melds) {
+			total += h.getBackValue(m);
+			total += h.getFrontValue(m);
+			total += h.getSetValue(m);
+		}
 
+		return total;
+	}
 
-	public void addToExistingSet(Meld m){
-		Meld currMeld = m; 
-		
-		
+	public int getBackValue(Meld m) {
+		int total = 0;
+		if (!m.NotRun()) {
+
+			for (Tile t : Hand)
+				if (m.CheckBack(t)) {
+					total += t.getValue();
+					m.addFirst(t);
+					Hand.remove(t);
+				}
+		}
+
+		return total;
+	}
+
+	public int getFrontValue(Meld m) {
+
+		int total = 0;
+
+		for (Tile t : Hand)
+			if (m.CheckFront(t)) {
+				total += t.getValue();
+				m.addLast(t);
+				Hand.remove(t);
+			}
+
+		return total;
+	}
+
+	public int getSetValue(Meld m) {
+
+		int total = 0;
+		Meld currMeld = m;
+
 		// setting the indexes to default
-		int[] indexes = {-1,-1};
+		int[] indexes = { -1, -1 };
 		// going through each tile in each meld
-		for(int i =0;i<Hand.size();i++) {
+		for (int i = 0; i < Hand.size(); i++) {
 			Tile t = Hand.get(i);
 			// checking to see if a set can be added to
-			if(currMeld.getSize() == 3) {
+			if (currMeld.getSize() == 3) {
 				// checking if meld is a set
-				if(currMeld.getTile(0).getValue() == t.getValue()&& 
-				   currMeld.getTile(1).getValue() == t.getValue() && 
-				   currMeld.getTile(0).getColour() != t.getColour() &&
-				   currMeld.getTile(1).getColour() != t.getColour() &&
-				   currMeld.getTile(2).getColour() != t.getColour()) {
-					
+				if (currMeld.getTile(0).getValue() == t.getValue() && currMeld.getTile(1).getValue() == t.getValue()
+						&& currMeld.getTile(0).getColour() != t.getColour()
+						&& currMeld.getTile(1).getColour() != t.getColour()
+						&& currMeld.getTile(2).getColour() != t.getColour()) {
+
 					// this means it is a valid set to add to, add to the meld
+
 					m.addTile(t);
-					Hand.remove(t); 
-					return; 
+					Hand.remove(t);
+					return t.getValue();
 				}
 			}
 		}
 
-}
-	
+		return 0;
+	}
+
+	public void addToExistingSet(Meld m) {
+		Meld currMeld = m;
+
+		// setting the indexes to default
+		int[] indexes = { -1, -1 };
+		// going through each tile in each meld
+		for (int i = 0; i < Hand.size(); i++) {
+			Tile t = Hand.get(i);
+			// checking to see if a set can be added to
+			if (currMeld.getSize() == 3) {
+				// checking if meld is a set
+				if (currMeld.getTile(0).getValue() == t.getValue() && currMeld.getTile(1).getValue() == t.getValue()
+						&& currMeld.getTile(0).getColour() != t.getColour()
+						&& currMeld.getTile(1).getColour() != t.getColour()
+						&& currMeld.getTile(2).getColour() != t.getColour()) {
+
+					// this means it is a valid set to add to, add to the meld
+					m.addTile(t);
+					Hand.remove(t);
+					return;
+				}
+			}
+		}
+
+	}
+
 	public String toString() {
 		String result = "";
 		for (int i = 0; i < Hand.size(); i++) {

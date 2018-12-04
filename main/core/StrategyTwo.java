@@ -9,7 +9,7 @@ public class StrategyTwo implements Play {
 	}
 
 	public int play(Game game) {
-		Hand h =new Hand(game.getCurrHand()); 
+		//Hand h = game.getCurrHand(); //TODO CREATING A NEW INSTANCE HERE!!!
 		Hand temp = game.fakeHand();
 		
 		// do nothing if no melds have been played
@@ -59,10 +59,17 @@ public class StrategyTwo implements Play {
 		else if(temp.getTotalAddSum(game.getFakeMelds(), game.fakeHand())>0 && game.getPlayer().checkFirst()) {
 			//System.out.print("jsc\n");
 			
-			h.AddAllTiles(game,game.getMelds().get(0));
+			//h.AddAllTiles(game, game.getMelds().get(0));
+			
+			//Try adding tiles for every meld on the table
+			Meld currMeld;
+			for(int i = 0; i < game.getNumMelds(); i++) {
+				currMeld = game.getTable().getMeld(i);
+				System.out.println("Checking meld " + i + ": " + currMeld);
+				game.getCurrHand().AddAllTiles(game, currMeld);
+			}
 			
 			return 4; 
-			
 		}
 		// if the player cant win, draw a card
 		else if(temp.IdRuns() + temp.IdSets() != game.getHandsum()) {

@@ -13,6 +13,8 @@ public class MainView extends Pane {
 	Button createNewButton = new Button("Create New Meld");
 	ListView<String> meldList = new ListView<String>();
 
+	//TODO add a pane that displays the game to be shown in between adding/editing melds
+	// have to make panes close after ok/done is pressed
 
 	public MainView() {
 		Label meldlabel = new Label("MELDS ON TABLE:");
