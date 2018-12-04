@@ -11,11 +11,10 @@ public class MainView extends Pane {
 	Pane innerPane = new Pane();
 	Button addToButton = new Button("Add To Meld");
 	Button createNewButton = new Button("Create New Meld");
-	Button endTurnButton = new Button("Done Turn");
+	Button endTurnButton = new Button("NEXT TURN");
 	ListView<String> meldList = new ListView<String>();
 	Label meldlabel = new Label("MELDS ON TABLE:");
 
-	//TODO add a pane that displays the game to be shown in between adding/editing melds <- do this in the views after their button is pressed
 
 	public MainView(final Controller c) {
 		Game game = c.getGame();
@@ -58,7 +57,7 @@ public class MainView extends Pane {
 				innerPane.getChildren().clear();
 				innerPane.getChildren().addAll(meldlabel, addToButton, createNewButton, meldList, endTurnButton);
 				String meldStr = meldList.getSelectionModel().getSelectedItem();
-				System.out.println(meldStr);
+				//System.out.println(meldStr);
 				AddToMeldView atv = new AddToMeldView(c, meldStr);
 				atv.relocate(200, 0);
 				innerPane.getChildren().add(atv);
@@ -77,6 +76,7 @@ public class MainView extends Pane {
 		
 		endTurnButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent me) {
+				c.nextTurn();
 				innerPane.getChildren().clear();
 				innerPane.getChildren().addAll(meldlabel, addToButton, createNewButton, meldList, endTurnButton);
 				meldList.setItems(FXCollections.observableArrayList(c.getTable().getMeldsString()));

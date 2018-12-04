@@ -30,16 +30,16 @@ public class AddToMeldView extends Pane {
 		final int meldIndex = controller.indexOfMeld(meldStr);
 		newHand = controller.getCurrHand();
 		
-		Label originalMeldLabel = new Label("Original Meld: ");
+		final Label originalMeldLabel = new Label("Original Meld: ");
 		originalMeldLabel.relocate(10, 10);
 		originalMeldLabel.setPrefSize(150, 25);
-		TextField oMeldTF = new TextField();
+		final TextField oMeldTF = new TextField();
 		oMeldTF.setText(oldMeld.toString());
 		oMeldTF.setEditable(false);
 		oMeldTF.relocate(170, 10);
 		oMeldTF.setPrefSize(220, 25);
 		
-		Label newMeldLabel = new Label("New Meld: ");
+		final Label newMeldLabel = new Label("New Meld: ");
 		newMeldLabel.relocate(10, 45);
 		newMeldLabel.setPrefSize(150, 35);
 		final TextField newMeldTF = new TextField();
@@ -48,7 +48,7 @@ public class AddToMeldView extends Pane {
 		newMeldTF.relocate(170, 45);
 		newMeldTF.setPrefSize(220, 25);
 
-		Label handLabel = new Label("Select tile from hand: ");
+		final Label handLabel = new Label("Select tile from hand: ");
 		handLabel.relocate(10, 100);
 		handLabel.setPrefSize(200, 25);
 		ObservableList<String> newHandOL = FXCollections.observableArrayList(newHand);
@@ -84,6 +84,10 @@ public class AddToMeldView extends Pane {
 				positionLabel.setText("Position to insert in new meld:\n( 0-" + newMeld.size() + ", inclusive )");
 				ObservableList<String> newHandOL = FXCollections.observableArrayList(newHand);
 				selectionBox = new ComboBox(newHandOL);
+				selectionBox.relocate(210, 100);
+				selectionBox.setPrefSize(100, 25);
+				innerPane.getChildren().clear();
+				innerPane.getChildren().addAll(originalMeldLabel, oMeldTF, newMeldLabel, newMeldTF, handLabel, positionLabel, positionTF, selectionBox, addButton, doneButton);
 			}
 		});
 		doneButton.setOnMousePressed(new EventHandler<MouseEvent>() {

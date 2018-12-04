@@ -12,30 +12,7 @@ public class StrategyHuman implements Play {
 	}
 
 	public int play(Game game) {
-		System.out.println("\n\n0: Draw a tile \n1: Play a meld \n2: Play multiple melds");
-		System.out.print("Enter a choice: ");
-		int choice = scanner.nextInt();
-		//System.out.println(choice);
-
-		switch (choice) {
-		case 0:
-			game.getTable().drawTile(game.getPlayer());
-			return 0;
-		case 1:
-			Meld meld = buildMeld(game.getPlayer());
-			game.getTable().addMeld(meld);
-			return 0;
-		case 2:
-			System.out.print("Enter # of melds: ");
-			int numMelds = scanner.nextInt();
-			System.out.println("You will now create " + numMelds + " melds...");
-			for (int i = 0; i < numMelds; i++) {
-				Meld meldn = buildMeld(game.getPlayer());
-				game.getTable().addMeld(meldn);
-			}
-			System.out.println("\n" + game.getPlayer().getName() + "\'s turn over.");
-			return 0;
-		}
+		
 		return 0;
 	}
 
