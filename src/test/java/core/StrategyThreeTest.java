@@ -31,7 +31,7 @@ public class StrategyThreeTest {
 		Player p = game.getPlayer();
 		///Hand h = game.getCurrHand();	//Don't do this, h will hold an old reference to the hand. Use p.getHand
 		Table t = game.getTable();
-		//assertEquals("Player 3", p.getName());
+		assertEquals("S3", p.getName());
 		Meld m = new Meld(t5, t6, t7, false);
 		t.addMeld(m);
 		assertEquals(1, game.getNumMelds());

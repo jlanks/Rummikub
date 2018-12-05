@@ -7,10 +7,13 @@ public class Table {
 	private Player p1 = null;
 	private Player p2 = null;
 	private Player p3 = null;
+	private Player p4 = null;
+	
 	//private Player p4;
 	private ArrayList<Meld> melds = new ArrayList<Meld>();
 	private StrategyOne s1 = new StrategyOne();
 	private StrategyTwo s2 = new StrategyTwo();
+	private StrategyThree s3 = new StrategyThree();
 	private StrategyHuman sh = new StrategyHuman();
 
 	public Table() {
@@ -18,6 +21,7 @@ public class Table {
 		p1 = new Player("Human Player", sh);
 		p2 = new Player("S1", s1);
 		p3 = new Player("S2", s2);
+		p4 = new Player("S3", s3);
 		//p4 = new Player("Player 4");
 	}
 
@@ -28,6 +32,8 @@ public class Table {
 			p2 = p;
 		} else if (p3.getName().equals("S2")) {
 			p3 = p;
+		}else if (p4.getName().equals("S3")) {
+			p4 = p;
 		}
 	}
 	
@@ -79,6 +85,9 @@ public class Table {
 
 	public Player player3() {
 		return p3;
+	}
+	public Player player4() {
+		return p4;
 	}
 
 	

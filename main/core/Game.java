@@ -72,8 +72,11 @@ public class Game {
 			return table.player2();
 		} else if (currPlayer.getName() == "S1") {
 			return table.player3();
-		} else {
-			return table.player1();
+		} else if (currPlayer.getName() == "S2"){
+			return table.player4();
+		}
+		else {
+			return table.player1(); 
 		}
 	}
 	public Hand fakeHand() {
