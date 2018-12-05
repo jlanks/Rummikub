@@ -23,14 +23,12 @@ public class Table {
 		p2 = new Player("S1", s1);
 		p3 = new Player("S2", s2);
 		p4 = new Player("S3", s3);
-<<<<<<< HEAD
 		//p4 = new Player("Player 4");
 		player.add(p1); 
 		player.add(p2); 
 		player.add(p3); 
 		player.add(p4); 
-=======
->>>>>>> a0ce8138516053972e998d5cd620a1248c851c4b
+
 	}
 
 	public void initPlayerN(Player p) {	//Sequentially initializes four players. VERY UNSTABLE.
