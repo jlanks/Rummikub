@@ -15,14 +15,16 @@ public class StrategyOne implements Play {
 		Player player = game.getPlayer();
 		Hand temp = new Hand(hand);
 		if (game.checkFirst()) {
-			hand.makeSet(game, player.getTile(0));
-			hand.makeRun(game, player.getTile(0));
-
+			if (temp.IdRuns() + temp.IdSets() < 3) { // minimum score for meld is 3
+				game.getTable().drawTile(player);
+			} else {
+				hand.makeSet(game, player.getTile(0));
+				hand.makeRun(game, player.getTile(0));
+			}
 		} else if (temp.IdRuns() + temp.IdSets() > 29 && !game.checkFirst()) {
 			hand.makeSet(game, player.getTile(0));
 			hand.makeRun(game, player.getTile(0));
 			game.playFirst();
-
 		} else {
 			game.getTable().drawTile(player);
 		}
@@ -138,7 +140,8 @@ public class StrategyOne implements Play {
 		// call the function with updated values
 
 		// call the function
-		makeAdditions(game, game.getTable().getMeld(MELD), game.getPlayer().getTile(TILE + 1), STOPM, STOPT, TILE + 1, MELD);
+		makeAdditions(game, game.getTable().getMeld(MELD), game.getPlayer().getTile(TILE + 1), STOPM, STOPT, TILE + 1,
+				MELD);
 
 	}
 

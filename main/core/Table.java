@@ -13,7 +13,7 @@ public class Table {
 	private ArrayList<Meld> melds = new ArrayList<Meld>();
 	private StrategyOne s1 = new StrategyOne();
 	private StrategyTwo s2 = new StrategyTwo();
-	private StrategyOne s3 = new StrategyOne();	//CHANGE THIS LINE WHEN S3 IS DONE
+	private StrategyTwo s3 = new StrategyTwo();	//CHANGE THIS LINE WHEN S3 IS DONE
 	private StrategyHuman sh = new StrategyHuman();
 
 	public Table() {
@@ -62,6 +62,8 @@ public class Table {
 	}
 
 	public void init() {
+		deck.Shuffle();
+		deck.Shuffle();	//three times for good randomness
 		deck.Shuffle();
 		for (int i = 0; i < 14; i++) {
 			p1.addTile(deck.getTopTile());

@@ -29,6 +29,15 @@ public class Controller {
 		return game.getCurrSHand();
 	}
 	
+	public void nextTurn() {
+		game.getPlayer().Play(game);
+		game.nextTurn();
+	}
+	
+	public void giveTile() {
+		game.getTable().drawTile(game.getPlayer());
+	}
+	
 	public int indexOfMeld(String meldStr) {
 		meldStr.trim();	//get rid of trailing whitespace
 		ArrayList<String> meldAR = new ArrayList<String>(Arrays.asList(meldStr.split(" ")));
@@ -107,10 +116,5 @@ public class Controller {
 			newHand.add(new Tile(handStr.get(i)));
 		}
 		game.getPlayer().updateHand(newHand);
-	}
-	
-	public void nextTurn() {
-		game.getPlayer().Play(game);
-		game.nextTurn();
 	}
 }
