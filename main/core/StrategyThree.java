@@ -14,18 +14,25 @@ public class StrategyThree implements Play {
 		Hand hand = game.getPlayer().getHand();
 		Player player = game.getPlayer();
 		Hand temp = new Hand(hand);
-		
-		
 		if(temp.IdRuns() + temp.IdSets() > 29 && !game.checkFirst()) {
+			System.out.print("n");
 			hand.makeSet(game, player.getTile(0));
 			hand.makeRun(game, player.getTile(0));
 			game.playFirst();	
 		}
-		else if(temp.IdRuns() + temp.IdSets() == game.getHandsum()) {
-			hand.makeSet(game, player.getTile(0));
-			hand.makeRun(game, player.getTile(0));
+		
+		else if(temp.IdRuns() + temp.IdSets() == game.getHandsum() && game.checkFirst()) {
+			System.out.print("l");
+			if(hand.getSize()>0) {
+				System.out.print("l");
+				hand.makeRun(game, player.getTile(0));
+				hand.makeSet(game, player.getTile(0));
 			
+			}
 		}
+		
+		
+		
 		else {
 			
 			

@@ -39,7 +39,8 @@ public class StrategyThreeTest {
 		p.addTile(t11); 
 		p.addTile(t12);
 		p.addTile(t13);	
-		p.addTile(td);	//dummy tile so doesn't win
+		p.addTile(t5);
+		//p.addTile(td);	//dummy tile so doesn't win
 		//R1 R13 G13 B13 
 		
 		
@@ -52,13 +53,15 @@ public class StrategyThreeTest {
 		game.nextTurn();
 		game.nextTurn();
 		
-		p.addTile(t11); 
-		p.addTile(t12);
-		p.addTile(t13);	
-		
+		p.addTile(t6); 
+		p.addTile(t7);
+		p.addTile(t8);	
+		assertEquals(4, p.getHand().getSize());
+		assertEquals(34, p.getSum());
 		p.Play(game);
 		System.out.print(game.getMeldsStrings() + "\n");
-		assertEquals(2, game.getNumMelds());
+		
+		assertEquals(3, game.getNumMelds());
 		assertEquals(1, p.getHand().getSize());
 	
 		
