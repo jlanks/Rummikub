@@ -231,15 +231,15 @@ public class Meld {
 
 	public void addFirst(Tile t) {
 
-		meld.add(meld.size(),t);
+		meld.add(meld.size(), t);
 
 	}
 
 	public void addLast(Tile t) {
 		meld.add(0, t);
-		
 
 	}
+
 	public void addFirstM(Tile t, Hand h) {
 
 		meld.add(meld.size(), h.remove(h.indexOf(t)));
@@ -250,19 +250,44 @@ public class Meld {
 		meld.add(0, t);
 	}
 
-
 	public boolean CheckFront(Tile t) {
-		//Can t be inserted in position 0?
-		if (t.getValue() == meld.get(0).getValue() - 1 && t.getColour() == meld.get(0).getColour() && !meld.contains(t)) {
+		// For set
+		if (t.getValue() == meld.get(0).getValue() && meld.get(0).getValue() == meld.get(1).getValue() && !meld.contains(t)) { //True iff meld is a set
+			if(meld.size() >= 4) {
+				return false;
+			}
+			for (int i = 0; i < meld.size(); i++) {
+				if (t.getColour().equals(meld.get(i).getColour())) {
+					return false;
+				}
+			}
+			return true;
+		}
+
+		// For run
+		if (t.getValue() == meld.get(0).getValue() - 1 && t.getColour() == meld.get(0).getColour()
+				&& !meld.contains(t)) {
 			return true;
 		}
 		return false;
 	}
 
 	public boolean CheckBack(Tile t) {
-		if (t.getValue() == meld.get(meld.size() - 1).getValue() + 1 && t.getColour() == meld.get(0).getColour()&&!meld.contains(t)) {
+		if (t.getValue() == meld.get(meld.size()-1).getValue() && meld.get(meld.size()-1).getValue() == meld.get(meld.size()-2).getValue() && !meld.contains(t)) { //True iff meld is a set
+			if(meld.size() >= 4) {
+				return false;
+			}
+			for (int i = 0; i < meld.size(); i++) {
+				if (t.getColour().equals(meld.get(i).getColour())) {
+					return false;
+				}
+			}
 			return true;
-
+		}
+		
+		if (t.getValue() == meld.get(meld.size() - 1).getValue() + 1 && t.getColour() == meld.get(0).getColour()
+				&& !meld.contains(t)) {
+			return true;
 		}
 		return false;
 	}

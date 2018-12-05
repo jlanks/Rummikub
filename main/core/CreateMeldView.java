@@ -80,9 +80,10 @@ public class CreateMeldView extends Pane {
 					//TODO safety check, create set
 					//meldStr will be in increasing order, already in run format (because the hand is sorted & we assume no invalid moves)
 				}
+				tileList.setItems(FXCollections.observableArrayList(controller.getCurrHand()));
 				
 				controller.updateHand(newHand);
-				controller.addMeld(meldStr);		//TODO meldStr wrong
+				controller.addMeld(meldStr);
 				
 				innerPane.getChildren().clear();
 				GameInfoView giv = new GameInfoView(controller);
