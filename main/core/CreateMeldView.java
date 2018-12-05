@@ -56,8 +56,7 @@ public class CreateMeldView extends Pane {
 				//innerPane.getChildren().clear();
 				//innerPane.getChildren().addAll(meldTypeLabel, selectionBox, tileList, OKButton, tileSelectionLabel);
 				
-				//TODO only returns ONE index!!!
-				System.out.println(tileList.getSelectionModel().getSelectedIndices());
+				//System.out.println(tileList.getSelectionModel().getSelectedIndices());
 				ObservableList<Integer> indexList = tileList.getSelectionModel().getSelectedIndices();
 				ArrayList<String> handList = controller.getCurrHand();
 				
@@ -72,17 +71,18 @@ public class CreateMeldView extends Pane {
 					//newHand.remove(tile);
 				}
 				
-				for(int i = 0; i < meldSize; i++) {
-					String tile = handList.get(indexList.get(i));
+				for(int i = 0; i < meldStr.size(); i++) { //don't know why the -1 but it goes one index out of bounds sometimes otherwise -noah
+					String tile = meldStr.get(i);
 					//meldStr.add(tile);
 					newHand.remove(tile);
+					controller.updateHand(newHand);
 				}
 				//System.out.println(meldTypeStr + " : " + meldStr);
 				
 
 				//tileList.setItems(FXCollections.observableArrayList(controller.getCurrHand()));
 				
-				controller.updateHand(newHand);
+				//controller.updateHand(newHand);
 				controller.addMeld(meldStr);
 				
 				

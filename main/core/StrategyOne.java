@@ -14,6 +14,7 @@ public class StrategyOne implements Play {
 		Hand hand = game.getPlayer().getHand();
 		Player player = game.getPlayer();
 		Hand temp = new Hand(hand);
+		//Changed this a little bit so that they draw tiles -N
 		if (game.checkFirst()) {
 			if (temp.IdRuns() + temp.IdSets() < 3) { // minimum score for meld is 3
 				game.getTable().drawTile(player);
@@ -22,8 +23,10 @@ public class StrategyOne implements Play {
 				hand.makeRun(game, player.getTile(0));
 			}
 		} else if (temp.IdRuns() + temp.IdSets() > 29 && !game.checkFirst()) {
-			hand.makeSet(game, player.getTile(0));
-			hand.makeRun(game, player.getTile(0));
+			if(hand.getSize()>2)
+				hand.makeRun(game, player.getTile(0));
+			if(hand.getSize()>2)
+				hand.makeSet(game, player.getTile(0));
 			game.playFirst();
 		} else {
 			game.getTable().drawTile(player);

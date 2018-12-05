@@ -8,7 +8,8 @@ public class Table {
 	private Player p2 = null;
 	private Player p3 = null;
 	private Player p4 = null;
-	
+	private ArrayList<Player> player = new ArrayList<Player>();
+	//this.player.add(p1); 
 	//private Player p4;
 	private ArrayList<Meld> melds = new ArrayList<Meld>();
 	private StrategyOne s1 = new StrategyOne();
@@ -22,6 +23,11 @@ public class Table {
 		p2 = new Player("S1", s1);
 		p3 = new Player("S2", s2);
 		p4 = new Player("S3", s3);
+		//p4 = new Player("Player 4");
+		player.add(p1); 
+		player.add(p2); 
+		player.add(p3); 
+		player.add(p4); 
 	}
 
 	public void initPlayerN(Player p) {	//Sequentially initializes four players. VERY UNSTABLE.
@@ -35,7 +41,9 @@ public class Table {
 			p4 = p;
 		}
 	}
-	
+	public ArrayList<Player> getPlayers(){
+		return player; 
+	}
 	public ArrayList<String> getMeldsString(){
 		
 		ArrayList<String> stringMelds = new ArrayList<String>(); 

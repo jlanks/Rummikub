@@ -32,37 +32,49 @@ public class StrategyThreeTest {
 		///Hand h = game.getCurrHand();	//Don't do this, h will hold an old reference to the hand. Use p.getHand
 		Table t = game.getTable();
 		assertEquals("S3", p.getName());
+		
 		Meld m = new Meld(t5, t6, t7, false);
 		t.addMeld(m);
+		
 		assertEquals(1, game.getNumMelds());
 
-		p.addTile(t11); 
-		p.addTile(t12);
-		p.addTile(t13);	
-		p.addTile(t5);
+		game.getPlayer().addTile(t11); 
+		game.getPlayer().addTile(t12);
+		game.getPlayer().addTile(t13);	
+		game.getPlayer().addTile(t5);
 		//p.addTile(td);	//dummy tile so doesn't win
 		//R1 R13 G13 B13 
 		
 		
-		p.Play(game);
-		System.out.print(game.getMeldsStrings() + "\n");
+		game.getPlayer().Play(game);
+		
+		System.out.print(game.getCurrHand() + "\n");
+		
 		assertEquals(2, game.getNumMelds());
-		assertEquals(1, p.getHand().getSize());
+		assertEquals(1, game.getPlayer().getHand().getSize());
 
 		game.nextTurn();
 		game.nextTurn();
 		game.nextTurn();
+		game.nextTurn();
 		
-		p.addTile(t6); 
-		p.addTile(t7);
-		p.addTile(t8);	
-		assertEquals(4, p.getHand().getSize());
-		assertEquals(34, p.getSum());
-		p.Play(game);
+		assertEquals("S3", game.getPlayer().getName());
+		
+		game.getPlayer().addTile(t6); 
+		game.getPlayer().addTile(t7);
+		game.getPlayer().addTile(t8);	
+		
+		assertEquals(4, game.getPlayer().getHand().getSize());
+		assertEquals(34, game.getPlayer().getSum());
+		System.out.print(game.getCurrHand() + "\n");
+		System.out.print("About to play"+ "\n");
+		System.out.print(game.getCurrSHand() + "\n");
+		game.getPlayer().Play(game);
+		System.out.print(game.getCurrSHand() + "\n");
 		System.out.print(game.getMeldsStrings() + "\n");
 		
 		assertEquals(3, game.getNumMelds());
-		assertEquals(1, p.getHand().getSize());
+		assertEquals(0, p.getHand().getSize());
 	
 		
 	}
@@ -107,7 +119,8 @@ public class StrategyThreeTest {
 		System.out.print(game.getMeldsStrings() + "\n");
 		assertEquals(2, game.getNumMelds());
 		assertEquals(0, p.getHand().getSize());
-
+		
+		//System.out.print(game.getTable().getPlayers());
 		
 		
 		
