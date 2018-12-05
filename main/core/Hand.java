@@ -46,9 +46,7 @@ public class Hand {
 	}
 
 	public Hand() {
-
-		Hand = new LinkedList<Tile>();
-
+		this.Hand = new LinkedList<Tile>();
 	}
 
 	// Copy Constructor

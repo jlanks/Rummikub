@@ -56,7 +56,8 @@ public class Controller {
 		//TODO show points
 		s += game.getTable().player1().getName() + "\'s hand:\n" + game.getTable().player1().getHand() + "\n\n";
 		s += game.getTable().player2().getName() + "\'s hand:\n" + game.getTable().player2().getHand() + "\n\n";
-		s += game.getTable().player3().getName() + "\'s hand:\n" + game.getTable().player3().getHand() + "\n\n\n";
+		s += game.getTable().player3().getName() + "\'s hand:\n" + game.getTable().player3().getHand() + "\n\n";
+		s += game.getTable().player4().getName() + "\'s hand:\n" + game.getTable().player4().getHand() + "\n\n\n";
 		
 		s += "Hand:\n" + game.getCurrHand() + "\n\n";
 		
