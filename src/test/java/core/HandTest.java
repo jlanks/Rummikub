@@ -56,6 +56,7 @@ public class HandTest {
 		assertEquals(2, game.getCurrHand().getSize());
 		/**/
 		hand.AddAllPossible(game.getMelds());
+		System.out.print(game.getMeldsStrings());
 		assertEquals(0, game.getCurrHand().getSize());
 
 	}

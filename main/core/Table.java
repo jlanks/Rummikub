@@ -14,7 +14,7 @@ public class Table {
 	private ArrayList<Meld> melds = new ArrayList<Meld>();
 	private StrategyOne s1 = new StrategyOne();
 	private StrategyTwo s2 = new StrategyTwo();
-	private StrategyTwo s3 = new StrategyTwo();	//CHANGE THIS LINE WHEN S3 IS DONE
+	private StrategyThree s3 = new StrategyThree();	//CHANGE THIS LINE WHEN S3 IS DONE
 	private StrategyHuman sh = new StrategyHuman();
 
 	public Table() {

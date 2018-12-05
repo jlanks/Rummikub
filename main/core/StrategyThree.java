@@ -14,37 +14,37 @@ public class StrategyThree implements Play {
 		Hand hand = game.getPlayer().getHand();
 		Player player = game.getPlayer();
 		Hand temp = new Hand(hand);
-		Hand temp2 = new Hand(hand);
+		//Hand temp2 = new Hand(hand);
 		
 		if(temp.IdRuns() + temp.IdSets() > 29 && !game.checkFirst()) {
 			System.out.print("jvjrv");
+			if(game.getPlayer().getHand().getSize()>0)
+			hand.makeSet(game, game.getPlayer().getHand().getTile(0));
 			if(hand.getSize()>0)
-			hand.makeSet(game, player.getTile(0));
-			if(hand.getSize()>0)
-			hand.makeRun(game, player.getTile(0));
+			game.getPlayer().getHand().makeRun(game, game.getPlayer().getHand().getTile(0));
 			game.playFirst();	
 		}
 		
 		else if(temp.IdRuns() + temp.IdSets() == game.getHandsum() && game.checkFirst()) {
 			System.out.print("jvjrv");
-			if(hand.getSize()>0) {
+			if(game.getPlayer().getHand().getSize()>0) {
 				
-				hand.makeRun(game, player.getTile(0));
-				if(hand.getSize()>0) {
-				hand.makeSet(game, player.getTile(0));
+				game.getPlayer().getHand().makeRun(game, game.getPlayer().getHand().getTile(0));
+				if(game.getPlayer().getHand().getSize()>0) {
+					game.getPlayer().getHand().makeSet(game, game.getPlayer().getHand().getTile(0));
 				}
 			}
 		
 		}
 		
-		else if (player.checkFirst() && this.checkDiff(game)){
+		else if (game.getPlayer().checkFirst() && this.checkDiff(game)){
 			
 			
 				
-						if(hand.getSize()>0)
-						hand.makeSet(game, player.getTile(0));
-						if(hand.getSize()>0)
-						hand.makeRun(game, player.getTile(0));
+						if(game.getPlayer().getHand().getSize()>0)
+							game.getPlayer().getHand().makeSet(game, player.getTile(0));
+						if(game.getPlayer().getHand().getSize()>0)
+							game.getPlayer().getHand().makeRun(game, player.getTile(0));
 					
 		
 					
@@ -52,7 +52,7 @@ public class StrategyThree implements Play {
 		}
 		
 		else {
-			System.out.print("n");
+			//System.out.print("n");
 			game.getTable().drawTile(game.getPlayer());
 			
 		}

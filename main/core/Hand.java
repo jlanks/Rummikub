@@ -475,8 +475,8 @@ public class Hand {
 		// System.out.println("\n----- HAND CLASS -----");
 		// System.out.println("HI");
 		// keeps track of cols
-		ArrayList<Colour> col = new ArrayList();
-		ArrayList<Integer> indexs = new ArrayList();
+		ArrayList<Colour> col = new ArrayList<Colour>();
+		ArrayList<Integer> indexs = new ArrayList<Integer>();
 		Tile t = null;
 
 		// sorting hand in ascending order
@@ -530,6 +530,13 @@ public class Hand {
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	public void remove(Tile tile) {
 		for (int i = 0; i < this.getSize(); i++) {
 			if (this.getTile(i).equals(tile))
