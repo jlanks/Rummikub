@@ -14,7 +14,7 @@ public class Table {
 	private ArrayList<Meld> melds = new ArrayList<Meld>();
 	private StrategyOne s1 = new StrategyOne();
 	private StrategyTwo s2 = new StrategyTwo();
-	private StrategyThree s3 = new StrategyThree();
+	private StrategyOne s3 = new StrategyOne();	//CHANGE THIS LINE WHEN S3 IS DONE
 	private StrategyHuman sh = new StrategyHuman();
 
 	public Table() {
@@ -23,14 +23,17 @@ public class Table {
 		p2 = new Player("S1", s1);
 		p3 = new Player("S2", s2);
 		p4 = new Player("S3", s3);
+<<<<<<< HEAD
 		//p4 = new Player("Player 4");
 		player.add(p1); 
 		player.add(p2); 
 		player.add(p3); 
 		player.add(p4); 
+=======
+>>>>>>> a0ce8138516053972e998d5cd620a1248c851c4b
 	}
 
-	public void initPlayerN(Player p) {	//Sequentially initializes three players. VERY UNSTABLE.
+	public void initPlayerN(Player p) {	//Sequentially initializes four players. VERY UNSTABLE.
 		if(p1.getName().equals("Human Player")) {
 			p1 = p;
 		} else if (p2.getName().equals("S1")){
@@ -75,11 +78,12 @@ public class Table {
 			p1.addTile(deck.getTopTile());
 			p2.addTile(deck.getTopTile());
 			p3.addTile(deck.getTopTile());
-			//p4.addTile(deck.getTopTile());
+			p4.addTile(deck.getTopTile());
 		}
 		p1.getHand().sortHand();
 		p2.getHand().sortHand();
 		p3.getHand().sortHand();
+		p4.getHand().sortHand();
 	}
 
 	public Player player1() {
