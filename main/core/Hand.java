@@ -477,7 +477,7 @@ public class Hand {
 		// keeps track of cols
 		ArrayList<Colour> col = new ArrayList<Colour>();
 		ArrayList<Integer> indexs = new ArrayList<Integer>();
-		Tile t = null;
+		int ind = -1; 
 
 		// sorting hand in ascending order
 		this.sortHand();
@@ -485,7 +485,7 @@ public class Hand {
 
 		// looping through hand
 		for (int i = 0; i < this.getSize(); i++) {
-			// System.out.println("Checking tile " + i + ": " + this.Hand.get(i));
+			 System.out.println("Checking tile " + i + ": " + this.Hand.get(i));
 
 			// check for sets
 			// System.out.println("Checking for possible sets and runs...");
@@ -497,35 +497,46 @@ public class Hand {
 					col.add(m.getTile(e).getColour());
 
 				if (!col.contains(this.get(i).getColour())) { // if we have a tile with a colour which is not in the
-																// meld already, add the tile to the meld
-
-					m.addTile(Hand.get(i));
-					t = Hand.get(i);
+					System.out.println("Checking for possible sets and runs...");											// meld already, add the tile to the meld
+					ind =i;
+					m.addTile(Hand.get(ind));
+					
 
 				}
 			} else if (m.CheckBack(this.getTile(i))) { // can Tile i go at the back of m?
 				// System.out.println("Found run (back): " + m);
-				m.addLast(Hand.get(i));
-				t = Hand.get(i);
+				System.out.println("Checking for possible sets and runs...");
+				ind =i;
+				m.addLast(Hand.get(ind));
+				
 
 			}
 
 			// now check for runs
 			else if (m.CheckFront(this.getTile(i))) { // can Tile i go at the front of m?
+				System.out.println("Checking for possible sets and runs...");
 				// System.out.println("Found run (front): " + m);
-				m.addFirst(Hand.get(i));
-				t = Hand.get(i);
+				ind = i;
+				m.addFirst(Hand.get(ind));
+				
 
 			}
 
 		}
+		
 		if (g.getTable().getNext(m) == null) {
-			if (t != null)
-				this.remove(t);
+			System.out.println(ind );
+			if (ind != -1) {
+				Hand.remove(ind);
+			}
 			return;
+			
 		} else {
-			if (t != null)
-				this.remove(t);
+			System.out.println(ind );
+			if (ind != -1) {
+				System.out.println(ind);
+				Hand.remove(ind);
+			}
 			AddAllTiles(g, g.getTable().getNext(m));
 		}
 	}

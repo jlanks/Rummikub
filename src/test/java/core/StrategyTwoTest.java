@@ -36,21 +36,21 @@ public class StrategyTwoTest {
 		t.addMeld(m);
 		assertEquals(1, game.getNumMelds());
 
-		p.addTile(t11); 
-		p.addTile(t12);
-		p.addTile(t13);	
-		p.addTile(td);	//dummy tile so doesn't win
+		game.getPlayer().addTile(t11); 
+		game.getPlayer().addTile(t12);
+		game.getPlayer().addTile(t13);	
+		game.getPlayer().addTile(td);	//dummy tile so doesn't win
 		//R1 R13 G13 B13 
 		
 		
-		p.Play(game);
-		System.out.print(game.getMeldsStrings() + "\n");
+		game.getPlayer().Play(game);
+		//System.out.print(game.getMeldsStrings() + "\n");
 		assertEquals(2, game.getNumMelds());
 		assertEquals(1, p.getHand().getSize());
 
-		p.addTile(t10); //	O13
-		p.addTile(t14); //  O6
-		p.addTile(t8); //   O10
+		game.getPlayer().addTile(t10); //	O13
+		game.getPlayer().addTile(t14); //  O6
+		game.getPlayer().addTile(t8); //   O10
 		
 
 		//p.getHand().sortHand();
@@ -75,16 +75,22 @@ public class StrategyTwoTest {
 		 * line 61
 		 */
 		
-		assertEquals(4, p.getHand().getSize());
-		//System.out.print("Melds: " + game.getMeldsStrings() + "\n");
+		assertEquals(4, game.getPlayer().getHand().getSize());
+		System.out.print("Melds: " + game.getMeldsStrings() + "\n");
+		game.getCurrHand().sortHand();
+		System.out.print("CurrHand: " + game.getCurrHand() + "\n");
+		
 		//System.out.print("CurrHand: " + game.getCurrHand() + "\n");
 		//h.AddAllTiles(game, game.getMelds().get(0));
 		//System.out.print("PLAYING...\n");
-		p.Play(game);
+		//assertEquals(1, game.getCurrHand().getSize());
+		game.getPlayer().Play(game);
+		System.out.print("Melds: " + game.getMeldsStrings() + "\n");
+		
 		//System.out.print("DONE\n");
-		System.out.print(game.getMeldsStrings());
+		//System.out.print(game.getMeldsStrings());
 		//System.out.print("Melds: " + game.getMeldsStrings() + "\n");
-		//System.out.print("CurrHand: " + game.getCurrHand() + "\n");
+		System.out.print("CurrHand: " + game.getCurrHand() + "\n");
 		
 		assertEquals(1, game.getCurrHand().getSize());
 

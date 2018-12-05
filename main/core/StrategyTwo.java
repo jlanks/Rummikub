@@ -65,41 +65,36 @@ public class StrategyTwo implements Play {
 		// && game.getPlayer().checkFirst() && game.getCurrHand().getSize() >0 && game.getNumMelds()>0
 		else if(temp.getTotalAddSum(game.getFakeMelds(), game.fakeHand())>0 && game.getPlayer().checkFirst()) {
 			
-			System.out.print(ORIG + "1\n");
+			//System.out.print(ORIG + "1\n");
 			//Try adding tiles for every meld on the table
 			Meld currMeld;
-			ArrayList<Tile>  til = new ArrayList<Tile>();
-			for(int i = 0; i < game.getNumMelds(); i++) {
-				currMeld = game.getTable().getMeld(i);
+			//ArrayList<Tile>  til = new ArrayList<Tile>();
+			
+				currMeld = game.getTable().getMeld(0);
 				//System.out.println("Checking meld " + i + ": " + currMeld);
 				game.getCurrHand().AddAllTiles(game, currMeld);
-			}
-			System.out.print(game.getMeldsStrings() + "hh\n");
-			System.out.print(ORIG + "2\n");
+			/*
+			//System.out.print(game.getMeldsStrings() + "hh\n");
+			
 			// now compare the updates melds with the original and 
 			// remove from hand the tiles which were added to the table
 			
 			// start by looping through the updated list and compare to the orig
 			for(int i =0;i<game.getFakeMelds().size();i++) {
-				System.out.print("jj\n");
+				//System.out.print("jj\n");
 				// check to see if the same size (if not then a tile has been added)
-				if(game.getFakeMelds().get(i).getSize() != ORIG.get(i).getSize()) {
+				if(game.getMelds().get(i).getSize() != ORIG.get(i).getSize()) {
 					
-					for(int j =0;i<game.getFakeMelds().size();j++) {
-						System.out.print("jj\n");
-						if(!ORIG.contains(game.getFakeMelds().get(i).getTile(j))) {
-							til.add(game.getFakeMelds().get(i).getTile(j)); 
-						}
-					}
+					System.out.print(ORIG + "2\n");
 					
 				}
 				
 				
 			}
-			System.out.print(til);
+			//System.out.print(til);
 			for(int i=0;i<til.size();i++)
 				game.getCurrHand().remove(til.get(i));
-				
+			*/	
 			return 4; 
 		}
 		// if the player can't win, draw a card
