@@ -52,19 +52,25 @@ public class CreateMeldView extends Pane {
 		OKButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent me) {
 				String meldTypeStr = (String) selectionBox.getSelectionModel().getSelectedItem();
+				tileList.setItems(FXCollections.observableArrayList(controller.getCurrHand()));
+				tileList.refresh();
 				
+				//TODO only returns ONE index!!!
 				ObservableList<Integer> indexList = tileList.getSelectionModel().getSelectedIndices();
 				ArrayList<String> handList = controller.getCurrHand();
-				//System.out.println("indexList: " + indexList + "\ntilesList: " + handList);
+				
 				
 				int meldSize = indexList.size();
+				System.out.println("indexList: " + indexList.toString() + "\ntilesList: " + handList + "\nmeldSize: " + meldSize);
 				ArrayList<String> meldStr = new ArrayList<String>();
 				ArrayList<String> newHand = handList;
+				
 				for(int i = 0; i < meldSize; i++) {
 					String tile = handList.get(indexList.get(i));
 					meldStr.add(tile);
 					//newHand.remove(tile);
 				}
+				
 				for(int i = 0; i < meldSize; i++) {
 					String tile = handList.get(indexList.get(i));
 					//meldStr.add(tile);
@@ -72,15 +78,8 @@ public class CreateMeldView extends Pane {
 				}
 				//System.out.println(meldTypeStr + " : " + meldStr);
 				
-				if(meldTypeStr.equals("Set")) {
-					//TODO safety check, create set
-					
-				}
-				else if(meldTypeStr.equals("Run")) {
-					//TODO safety check, create set
-					//meldStr will be in increasing order, already in run format (because the hand is sorted & we assume no invalid moves)
-				}
-				tileList.setItems(FXCollections.observableArrayList(controller.getCurrHand()));
+
+				//tileList.setItems(FXCollections.observableArrayList(controller.getCurrHand()));
 				
 				controller.updateHand(newHand);
 				controller.addMeld(meldStr);
