@@ -15,12 +15,16 @@ public class StrategyOne implements Play {
 		Player player = game.getPlayer();
 		Hand temp = new Hand(hand);
 		if (game.checkFirst()) {
-			hand.makeSet(game, player.getTile(0));
-			hand.makeRun(game, player.getTile(0));
+			if(hand.getSize()>2)
+				hand.makeSet(game, player.getTile(0));
+			if(hand.getSize()>2)
+				hand.makeRun(game, player.getTile(0));
 
 		} else if (temp.IdRuns() + temp.IdSets() > 29 && !game.checkFirst()) {
-			hand.makeSet(game, player.getTile(0));
-			hand.makeRun(game, player.getTile(0));
+			if(hand.getSize()>2)
+				hand.makeSet(game, player.getTile(0));
+			if(hand.getSize()>2)
+				hand.makeRun(game, player.getTile(0));
 			game.playFirst();
 
 		} else {
